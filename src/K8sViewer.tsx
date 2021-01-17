@@ -16,6 +16,7 @@ export const K8sViewer: React.FC<K8sViewerProps> = ({ manifests }) => {
     elements,
     flow,
   });
+  //const flow2 = [];
   // return <div>io</div>;
   return (
     <ReactFlow
