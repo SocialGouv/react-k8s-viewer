@@ -1,0 +1,52 @@
+{
+  "name": "react-k8s-viewer",
+  "version": "1.0.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "repository": {
+    "url": "https://github.com/revolunet/react-k8s-viewer",
+    "type": "git"
+  },
+  "license": "Apache-2.0",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
+    "concurrently": "^5.3.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.19.0",
+    "install-peers-cli": "^2.2.0",
+    "prepend-file": "^2.0.0",
+    "prettier": "^2.1.2",
+    "rollup": "^2.33.1",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "ts-node": "^9.0.0",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build-watch": "rollup -c -w",
+    "prepublishOnly": "npm run build",
+    "postinstall": "install-peers -f && cd example && npm i",
+    "start-example": "cd example && npm start",
+    "deploy-example": "cd example && npm run deploy",
+    "dev": "concurrently --kill-others \"npm run build-watch\" \"npm run start-example\"",
+    "test": "npm run test:lint && npm run test:unit",
+    "pretest": "npm run build",
+    "test:unit": "ts-node test/test.ts",
+    "test:lint": "eslint ./src/**/*.ts ./src/**/*.tsx ./example/src/**/*.ts ./example/src/**/*.tsx",
+    "test:lint:fix": "npm run test:lint -- --fix"
+  },
+  "files": [
+    "dist"
+  ]
+}
