@@ -5,11 +5,37 @@ const styles = {
   error: { backgroundColor: "#ff7575", color: "#fff" },
 };
 
+// Ingress
 interface Manifest {
   kind: string;
   [U: string]: any;
 }
 
+type CreateIngressNodeProps = {
+  host: string;
+};
+
+const createIngressNode = ({ host }: CreateIngressNodeProps) => ({
+  id: `Ingress-${host}`,
+  sourcePosition: "right",
+  targetPosition: "left",
+  data: {
+    label: `🌍 ${host}`,
+  },
+});
+
+const createEdge = (source: any, target: any, opts = {}) => ({
+  id: `edge-${source.id}-${target.id}`,
+  source: source.id,
+  target: target.id,
+  ...opts,
+});
+
+/*
+
+Ingress
+
+*/
 export const parseManifests = (manifests: any): any[] => {
   const elements = [] as any;
 
@@ -18,92 +44,97 @@ export const parseManifests = (manifests: any): any[] => {
     manifests.items ||
     manifests;
 
-  elements.push({
-    id: `Internet`,
-    sourcePosition: "right",
-    targetPosition: "left",
-    type: "input",
-    data: {
-      label: `🌥 Internet`,
-    },
-  });
+  if (allManifests.find((m: any) => m.kind === "Ingress")) {
+    const internetNode = {
+      id: `Internet`,
+      sourcePosition: "right",
+      targetPosition: "left",
+      type: "input",
+      data: {
+        label: `🌥 Internet`,
+      },
+    };
 
-  allManifests
-    .filter((manifest: Manifest) => manifest.kind === "Ingress")
-    .filter((manifest: Manifest) => manifest.spec.rules[0].host)
-    .forEach((manifest: Manifest) => {
-      manifest.spec.rules.forEach((rule: any) => {
-        // crée tous les hosts déclarés
-        elements.push({
-          id: `${manifest.kind}-${rule.host}`,
-          sourcePosition: "right",
-          targetPosition: "left",
-          data: {
-            label: `🌍 ${rule.host}`,
-          },
-        });
-        elements.push({
-          id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-Internet`,
-          source: `Internet`,
-          target: `${manifest.kind}-${manifest.spec.rules[0].host}`,
-          label: manifest.spec.tls.length ? "TLS" : "",
-        });
+    elements.push(internetNode);
 
-        if (rule.http) {
-          // edge entre le host et le service
+    allManifests
+      .filter((manifest: Manifest) => manifest.kind === "Ingress")
+      .filter((manifest: Manifest) => manifest.spec.rules[0].host)
+      .forEach((manifest: Manifest) => {
+        // Create a node for each host declared in ingress rules
+        manifest.spec.rules.forEach((rule: any) => {
+          const ingressNode = createIngressNode({ host: rule.host });
+
+          const inEdge = createEdge(internetNode, ingressNode, {
+            label: manifest.spec.tls.length ? "TLS" : "",
+          });
+
+          elements.push(ingressNode);
+          elements.push(inEdge);
+
+          // elements.push({
+          //   id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-Internet`,
+          //   source: `Internet`,
+          //   target: `${manifest.kind}-${rule.host}`,
+          //   label: manifest.spec.tls.length ? "TLS" : "",
+          // });
+
+          if (rule.http) {
+            // edge entre le host et le service
+            elements.push({
+              id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-http-${rule.http.paths[0].backend.serviceName}`,
+              source: `${manifest.kind}-${rule.host}`,
+              target: `Service-${manifest.metadata.namespace}-${rule.http.paths[0].backend.serviceName}`,
+            });
+          }
+        });
+        // edge entre le host et le secret tls
+        manifest.spec.tls.forEach((rule: any) => {
+          if (rule.secretName) {
+            rule.hosts.forEach((host: string) => {
+              elements.push({
+                id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-tls-${host}`,
+                source: `${manifest.kind}-${host}`,
+                target: `Secret-${manifest.metadata.namespace}-${rule.secretName}`,
+                defaultTargetLabel: rule.secretName,
+              });
+              elements.push({
+                id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-Internet-${host}`,
+                source: `Internet`,
+                target: `${manifest.kind}-${host}`,
+                label: manifest.spec.tls.length ? "TLS" : "",
+              });
+            });
+          }
+        });
+      });
+
+    // 2eme passe pour gérer redirections
+    allManifests
+      .filter((manifest: Manifest) => manifest.kind === "Ingress")
+      .filter((manifest: Manifest) => manifest.spec.rules[0].host)
+      .filter(
+        (manifest: Manifest) =>
+          manifest.metadata.annotations[
+            "nginx.ingress.kubernetes.io/permanent-redirect"
+          ]
+      )
+      .forEach((manifest: Manifest) => {
+        manifest.spec.rules.forEach((rule: any) => {
+          const host = manifest.metadata.annotations[
+            "nginx.ingress.kubernetes.io/permanent-redirect"
+          ].replace(/^https?:\/\/([^/$]*).*/i, "$1");
           elements.push({
-            id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-http-${rule.http.paths[0].backend.serviceName}`,
-            source: `${manifest.kind}-${manifest.spec.rules[0].host}`,
-            target: `Service-${manifest.metadata.namespace}-${rule.http.paths[0].backend.serviceName}`,
+            id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-${rule.host}`,
+            source: `${manifest.kind}-${rule.host}`,
+            target: `Ingress-` + host,
+            defaultTargetLabel: host,
+            animated: true,
+            label: "301",
           });
-        }
-      });
-      // edge entre le host et le tls
-      manifest.spec.tls.forEach((rule: any) => {
-        if (rule.secretName) {
-          rule.hosts.forEach((host: string) => {
-            elements.push({
-              id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-tls-${host}`,
-              source: `${manifest.kind}-${host}`,
-              target: `Secret-${manifest.metadata.namespace}-${rule.secretName}`,
-              defaultTargetLabel: rule.secretName,
-            });
-            elements.push({
-              id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-Internet-${host}`,
-              source: `Internet`,
-              target: `${manifest.kind}-${host}`,
-              label: manifest.spec.tls.length ? "TLS" : "",
-            });
-          });
-        }
-      });
-    });
-
-  // 2eme passe pour gérer redirections
-  allManifests
-    .filter((manifest: Manifest) => manifest.kind === "Ingress")
-    .filter((manifest: Manifest) => manifest.spec.rules[0].host)
-    .filter(
-      (manifest: Manifest) =>
-        manifest.metadata.annotations[
-          "nginx.ingress.kubernetes.io/permanent-redirect"
-        ]
-    )
-    .forEach((manifest: Manifest) => {
-      manifest.spec.rules.forEach((rule: any) => {
-        const host = manifest.metadata.annotations[
-          "nginx.ingress.kubernetes.io/permanent-redirect"
-        ].replace(/^https?:\/\/([^/$]*).*/i, "$1");
-        elements.push({
-          id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-${rule.host}`,
-          source: `${manifest.kind}-${rule.host}`,
-          target: `Ingress-` + host,
-          defaultTargetLabel: host,
-          animated: true,
-          label: "301",
         });
       });
-    });
+  }
 
   allManifests
     .filter((manifest: Manifest) => manifest.kind === "Service")
@@ -131,20 +162,38 @@ export const parseManifests = (manifests: any): any[] => {
 
   elements.push(
     ...allManifests
-      .filter(
-        (manifest: Manifest) =>
-          manifest.kind === "Secret" || manifest.kind === "SealedSecret"
-      )
+      .filter((manifest: Manifest) => manifest.kind === "Secret")
       .map((manifest: Manifest) => ({
         id: `Secret-${manifest.metadata.namespace}-${manifest.metadata.name}`,
         sourcePosition: "right",
         targetPosition: "left",
+        type: "output",
         align: "left",
         data: {
-          label: `🔒 ${manifest.metadata.name}`,
+          label: `🔓 ${manifest.metadata.name}`,
         },
       }))
   );
+
+  allManifests
+    .filter((manifest: Manifest) => manifest.kind === "SealedSecret")
+    .forEach((manifest: Manifest) => {
+      elements.push({
+        id: `SealedSecret-${manifest.metadata.namespace}-${manifest.metadata.name}`,
+        sourcePosition: "right",
+        targetPosition: "left",
+        type: "input",
+        align: "left",
+        data: {
+          label: `🔐 ${manifest.metadata.name}`,
+        },
+      });
+      elements.push({
+        id: `edge-SealedSecret-${manifest.metadata.namespace}-${manifest.metadata.name}`,
+        source: `SealedSecret-${manifest.metadata.namespace}-${manifest.metadata.name}`,
+        target: `Secret-${manifest.metadata.namespace}-${manifest.metadata.name}`,
+      });
+    });
 
   elements.push(
     ...allManifests
@@ -152,6 +201,7 @@ export const parseManifests = (manifests: any): any[] => {
       .map((manifest: Manifest) => ({
         id: `${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}`,
         sourcePosition: "right",
+        type: "output",
         targetPosition: "left",
         data: {
           label: `🗒 ${manifest.metadata.name}`,
