@@ -8,7 +8,7 @@ See demo : https://socialgouv.github.io/react-k8s-viewer
 
 ## Usage
 
-`K8sViewer` expect a list of kube manifests as JSON
+`K8sViewer` expect a list of `Manifest` or a `ManifestList` as JSON
 
 ```js
 import { K8sViewer } from "@socialgouv/react-k8s-viewer";
