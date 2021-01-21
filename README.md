@@ -1,4 +1,4 @@
-# react-k8s-viewer
+# @socialgouv/react-k8s-viewer
 
 Render diagrams from your kubernetes manifests
 
@@ -11,7 +11,7 @@ See demo : https://socialgouv.github.io/react-k8s-viewer
 `K8sViewer` expect a list of kube manifests as JSON
 
 ```js
-import { K8sViewer } from "react-k8s-viewer";
+import { K8sViewer } from "@socialgouv/react-k8s-viewer";
 
 import manifests from "./manifests.json";
 
