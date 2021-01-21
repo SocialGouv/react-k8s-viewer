@@ -54,10 +54,11 @@ const manifestsTypes = {
   Ingress: (manifest: Manifest): AnyObject[] => [
     {
       ...baseManifest(manifest),
+      type: "ingress",
       data: {
         label: manifest.spec.rules
           .map((rule: AnyObject) => `🌍 ${rule.host}`)
-          .join("\n"),
+          .join("<br>"),
         manifest,
       },
     },
@@ -75,7 +76,6 @@ const manifestsTypes = {
     {
       ...baseManifest(manifest),
       type: "output",
-      align: "left",
       data: {
         label: `🔓 ${manifest.metadata.name}`,
         manifest,
@@ -86,7 +86,6 @@ const manifestsTypes = {
     {
       ...baseManifest(manifest),
       type: "input",
-      align: "left",
       data: {
         label: `🔐 ${manifest.metadata.name}`,
         manifest,
@@ -216,9 +215,9 @@ export const parseManifests = (manifests: any): any[] => {
 
   if (allManifests.find((m: any) => m.kind === "Ingress")) {
     const internetNode = {
+      ...defaultPositions,
       id: `Internet`,
-      sourcePosition: "right",
-      targetPosition: "left",
+      position: "top",
       type: "input",
       data: {
         label: `🌥 Internet`,
@@ -238,7 +237,7 @@ export const parseManifests = (manifests: any): any[] => {
 
         // internet to ingress edge
         const edge = createEdge(internetNode, ingressNode, {
-          label: manifest.spec.tls.length ? "TLS" : "",
+          label: manifest.spec.tls && manifest.spec.tls.length ? "TLS" : "",
         });
         elements.push(edge);
 
@@ -259,18 +258,19 @@ export const parseManifests = (manifests: any): any[] => {
         });
 
         // ingress to TLS secret edge
-        manifest.spec.tls.forEach((rule: any) => {
-          if (rule.secretName) {
-            const secretNode = getElements(elements, {
-              kind: "Secret",
-              name: rule.secretName,
-            })[0];
-            const edge = createEdge(ingressNode, secretNode, {
-              defaultTargetLabel: rule.secretName,
-            });
-            elements.push(edge);
-          }
-        });
+        manifest.spec.tls &&
+          manifest.spec.tls.forEach((rule: any) => {
+            if (rule.secretName) {
+              const secretNode = getElements(elements, {
+                kind: "Secret",
+                name: rule.secretName,
+              })[0];
+              const edge = createEdge(ingressNode, secretNode, {
+                defaultTargetLabel: rule.secretName,
+              });
+              elements.push(edge);
+            }
+          });
       });
 
     // TODO: 2eme passe pour gérer redirections

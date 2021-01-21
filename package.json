@@ -1,60 +1,56 @@
 {
-  "name": "react-k8s-viewer",
+  "name": "@socialgouv/react-k8s-viewer",
   "version": "1.0.0",
-  "main": "dist/index.cjs.js",
+  "description": "Render diagrams from your kubernetes manifests",
+  "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "repository": {
-    "url": "https://github.com/revolunet/react-k8s-viewer",
-    "type": "git"
+  "scripts": {
+    "build": "npm run build:clean && npm run build:ts",
+    "build:ts": "npx rollup -c",
+    "build:clean": "rm -rf ./dist/*",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "license": "Apache-2.0",
-  "types": "dist/index.d.ts",
   "devDependencies": {
-    "@types/dagre": "^0.7.44",
-    "@types/react": "^16.9.55",
-    "@types/react-dom": "^16.9.9",
-    "@typescript-eslint/eslint-plugin": "^2.10.0",
-    "@typescript-eslint/parser": "^2.10.0",
-    "concurrently": "^5.3.0",
-    "eslint": "^6.6.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.19.0",
-    "install-peers-cli": "^2.2.0",
-    "prepend-file": "^2.0.0",
-    "prettier": "^2.1.2",
-    "rollup": "^2.33.1",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "ts-node": "^9.0.0",
-    "tslib": "^2.0.3",
+    "@babel/core": "^7.11.6",
+    "@storybook/addon-actions": "^6.0.22",
+    "@storybook/addon-essentials": "^6.0.22",
+    "@storybook/addon-links": "^6.0.22",
+    "@storybook/addon-storysource": "^6.1.14",
+    "@storybook/react": "^6.0.22",
+    "@testing-library/react": "^10.0.4",
+    "@types/jest": "^25.2.1",
+    "@types/react": "^16.9.27",
+    "babel-loader": "^8.1.0",
+    "jest": "^25.5.3",
+    "prettier": "^2.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-is": "^16.13.1",
+    "rollup": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
-  "scripts": {
-    "build": "rollup -c",
-    "build-watch": "rollup -c -w",
-    "prepublishOnly": "npm run build",
-    "postinstall": "install-peers -f && cd example && npm i",
-    "start-example": "cd example && npm start",
-    "deploy-example": "cd example && npm run deploy",
-    "dev": "concurrently --kill-others \"npm run build-watch\" \"npm run start-example\"",
-    "test": "npm run test:lint && npm run test:unit",
-    "pretest": "npm run build",
-    "test:unit": "ts-node test/test.ts",
-    "test:lint": "eslint ./src/**/*.ts ./src/**/*.tsx ./example/src/**/*.ts ./example/src/**/*.tsx",
-    "test:lint:fix": "npm run test:lint -- --fix"
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
-    "@kubernetes-models/sealed-secrets": "^1.0.3",
     "dagre": "^0.8.5",
-    "kubernetes-models": "^1.0.3",
-    "rc-simple-tooltip": "^1.3.14",
-    "react-flow-renderer": "^8.2.1"
+    "react-flow-renderer": "^8.4.1"
   }
 }

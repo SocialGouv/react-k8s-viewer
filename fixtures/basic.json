@@ -1,0 +1,237 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "annotations": {
+          "app.gitlab.com/app": "org-sample-next-app",
+          "app.gitlab.com/env": "preprod-dev2",
+          "app.gitlab.com/env.name": "preprod-dev2",
+          "deployment.kubernetes.io/revision": "1"
+        },
+        "labels": {
+          "app": "app",
+          "application": "v2-1-5-sample-next-app",
+          "cert": "wildcard",
+          "owner": "sample-next-app",
+          "team": "sample-next-app"
+        },
+        "name": "app",
+        "namespace": "sample-next-app-85-preprod-dev2"
+      },
+      "spec": {
+        "progressDeadlineSeconds": 600,
+        "replicas": 1,
+        "revisionHistoryLimit": 10,
+        "selector": {
+          "matchLabels": {
+            "app": "app"
+          }
+        },
+        "strategy": {
+          "rollingUpdate": {
+            "maxSurge": "25%",
+            "maxUnavailable": "25%"
+          },
+          "type": "RollingUpdate"
+        },
+        "template": {
+          "metadata": {
+            "annotations": {
+              "app.gitlab.com/app": "org-sample-next-app",
+              "app.gitlab.com/env": "preprod-dev2",
+              "app.gitlab.com/env.name": "preprod-dev2"
+            },
+            "creationTimestamp": null,
+            "labels": {
+              "app": "app",
+              "application": "v2-1-5-sample-next-app",
+              "cert": "wildcard",
+              "owner": "sample-next-app",
+              "team": "sample-next-app"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "envFrom": [
+                  {
+                    "configMapRef": {
+                      "name": "app-configmap"
+                    }
+                  }
+                ],
+                "image": "my.registry.com/org/sample-next-app/app:2.1.5",
+                "imagePullPolicy": "IfNotPresent",
+                "livenessProbe": {
+                  "failureThreshold": 6,
+                  "httpGet": {
+                    "path": "/healthz",
+                    "port": "http",
+                    "scheme": "HTTP"
+                  },
+                  "initialDelaySeconds": 30,
+                  "periodSeconds": 5,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 5
+                },
+                "name": "app",
+                "ports": [
+                  {
+                    "containerPort": 3030,
+                    "name": "http",
+                    "protocol": "TCP"
+                  }
+                ],
+                "readinessProbe": {
+                  "failureThreshold": 15,
+                  "httpGet": {
+                    "path": "/healthz",
+                    "port": "http",
+                    "scheme": "HTTP"
+                  },
+                  "periodSeconds": 5,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 1
+                },
+                "resources": {
+                  "limits": {
+                    "cpu": "50m",
+                    "memory": "128Mi"
+                  },
+                  "requests": {
+                    "cpu": "1m",
+                    "memory": "64Mi"
+                  }
+                },
+                "startupProbe": {
+                  "failureThreshold": 12,
+                  "httpGet": {
+                    "path": "/healthz",
+                    "port": "http",
+                    "scheme": "HTTP"
+                  },
+                  "periodSeconds": 5,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 1
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File"
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "terminationGracePeriodSeconds": 30
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "app.gitlab.com/app": "org-sample-next-app",
+          "app.gitlab.com/env": "preprod-dev2",
+          "app.gitlab.com/env.name": "preprod-dev2"
+        },
+        "labels": {
+          "app": "app",
+          "application": "v2-1-5-sample-next-app",
+          "cert": "wildcard",
+          "owner": "sample-next-app",
+          "team": "sample-next-app"
+        },
+        "name": "app",
+        "namespace": "sample-next-app-85-preprod-dev2"
+      },
+      "spec": {
+        "clusterIP": "1.2.3.4",
+        "ports": [
+          {
+            "name": "http",
+            "port": 80,
+            "targetPort": 3030
+          }
+        ],
+        "selector": {
+          "app": "app"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "data": {
+        "ACCOUNT_MAIL_SENDER": "contact@org.com",
+        "FRONTEND_PORT": "3030",
+        "GRAPHQL_ENDPOINT": "http://hasura/v1/graphql",
+        "NODE_ENV": "production",
+        "PRODUCTION": "false"
+      },
+      "kind": "ConfigMap",
+      "metadata": {
+        "annotations": {
+          "app.gitlab.com/app": "org-sample-next-app",
+          "app.gitlab.com/env": "preprod-dev2",
+          "app.gitlab.com/env.name": "preprod-dev2"
+        },
+        "labels": {
+          "application": "v2-1-5-sample-next-app",
+          "cert": "wildcard",
+          "owner": "sample-next-app",
+          "team": "sample-next-app"
+        },
+        "name": "app-configmap",
+        "namespace": "sample-next-app-85-preprod-dev2"
+      }
+    },
+    {
+      "apiVersion": "extensions/v1beta1",
+      "kind": "Ingress",
+      "metadata": {
+        "annotations": {
+          "app.gitlab.com/app": "org-sample-next-app",
+          "app.gitlab.com/env": "preprod-dev2",
+          "app.gitlab.com/env.name": "preprod-dev2",
+          "kubernetes.io/ingress.class": "nginx"
+        },
+        "labels": {
+          "app": "app",
+          "application": "v2-1-5-sample-next-app",
+          "cert": "wildcard",
+          "owner": "sample-next-app",
+          "team": "sample-next-app"
+        },
+        "name": "app",
+        "namespace": "sample-next-app-85-preprod-dev2"
+      },
+      "spec": {
+        "rules": [
+          {
+            "host": "preprod-sample-next-app.dev2.org.com",
+            "http": {
+              "paths": [
+                {
+                  "backend": {
+                    "serviceName": "app",
+                    "servicePort": 80
+                  },
+                  "path": "/",
+                  "pathType": "Imple  mentationSpecific"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": "",
+    "selfLink": ""
+  }
+}
