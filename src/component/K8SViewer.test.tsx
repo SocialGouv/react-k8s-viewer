@@ -1,11 +1,13 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Component } from "./Component";
+import { K8sViewer } from "./K8sViewer";
 
-describe("<Component />", () => {
+describe("Fake test <K8sViewer />", () => {
   test("rendered text", () => {
-    render(<Component title="title">sample component</Component>);
-    expect(screen.getByText("sample component")).toBeDefined();
+    const screen = render(
+      <div style={{ width: 1000, height: 800 }}>Service app</div>
+    );
+    expect(screen.getByText("Service app")).toBeDefined();
   });
 });

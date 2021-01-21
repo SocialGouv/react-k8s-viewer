@@ -4,12 +4,15 @@
   "description": "Render diagrams from your kubernetes manifests",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "npm run build:clean && npm run build:ts",
     "build:ts": "npx rollup -c",
     "build:clean": "rm -rf ./dist/*",
     "test": "jest",
-    "storybook": "start-storybook -p 6006",
+    "dev": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint": "eslint ."
   },

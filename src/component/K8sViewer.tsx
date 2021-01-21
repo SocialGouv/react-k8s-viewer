@@ -2,7 +2,7 @@
 // eslint-disable-next-line simple-import-sort/sort
 import React from "react";
 import ReactFlow, { Position, Handle } from "react-flow-renderer";
-import type { ReactFlowProps } from "react-flow-renderer";
+import type { Elements, ReactFlowProps } from "react-flow-renderer";
 
 console.log("Position", Position);
 
@@ -57,9 +57,10 @@ const HtmlLabelComponent = ({ data }: HtmlLabelComponentProps) => {
   );
 };
 
-interface K8sViewerProps extends ReactFlowProps {
+interface K8sViewerProps extends Omit<ReactFlowProps, "elements"> {
   manifests: ManifestList | undefined;
 }
+
 export const K8sViewer: React.FC<K8sViewerProps> = ({
   manifests,
 }: K8sViewerProps) => {
@@ -68,7 +69,7 @@ export const K8sViewer: React.FC<K8sViewerProps> = ({
   }
 
   const elements = parseManifests(manifests);
-  const flow = makeLayout(elements);
+  const flow = makeLayout(elements) as Elements;
   console.log({ manifests, elements, flow });
   return (
     <React.Fragment>

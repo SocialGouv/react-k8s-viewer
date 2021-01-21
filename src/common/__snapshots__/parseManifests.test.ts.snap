@@ -1,0 +1,2018 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseManifests() parse basic.json 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "label": "📦 app",
+      "manifest": Object {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "deployment.kubernetes.io/revision": "1",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "progressDeadlineSeconds": 600,
+          "replicas": 1,
+          "revisionHistoryLimit": 10,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "app",
+            },
+          },
+          "strategy": Object {
+            "rollingUpdate": Object {
+              "maxSurge": "25%",
+              "maxUnavailable": "25%",
+            },
+            "type": "RollingUpdate",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "app": "app",
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "configMapRef": Object {
+                        "name": "app-configmap",
+                      },
+                    },
+                  ],
+                  "image": "my.registry.com/org/sample-next-app/app:2.1.5",
+                  "imagePullPolicy": "IfNotPresent",
+                  "livenessProbe": Object {
+                    "failureThreshold": 6,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "initialDelaySeconds": 30,
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 5,
+                  },
+                  "name": "app",
+                  "ports": Array [
+                    Object {
+                      "containerPort": 3030,
+                      "name": "http",
+                      "protocol": "TCP",
+                    },
+                  ],
+                  "readinessProbe": Object {
+                    "failureThreshold": 15,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "50m",
+                      "memory": "128Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "1m",
+                      "memory": "64Mi",
+                    },
+                  },
+                  "startupProbe": Object {
+                    "failureThreshold": 12,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "dnsPolicy": "ClusterFirst",
+              "restartPolicy": "Always",
+              "schedulerName": "default-scheduler",
+              "terminationGracePeriodSeconds": 30,
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service app",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "clusterIP": "1.2.3.4",
+          "ports": Array [
+            Object {
+              "name": "http",
+              "port": 80,
+              "targetPort": 3030,
+            },
+          ],
+          "selector": Object {
+            "app": "app",
+          },
+        },
+      },
+    },
+    "id": "Service-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🗒 app-configmap",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "data": Object {
+          "ACCOUNT_MAIL_SENDER": "contact@org.com",
+          "FRONTEND_PORT": "3030",
+          "GRAPHQL_ENDPOINT": "http://hasura/v1/graphql",
+          "NODE_ENV": "production",
+          "PRODUCTION": "false",
+        },
+        "kind": "ConfigMap",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app-configmap",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+      },
+    },
+    "id": "ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 preprod-sample-next-app.dev2.org.com",
+      "manifest": Object {
+        "apiVersion": "extensions/v1beta1",
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "kubernetes.io/ingress.class": "nginx",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "preprod-sample-next-app.dev2.org.com",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "app",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                    "pathType": "Imple  mentationSpecific",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "🌥 Internet",
+    },
+    "id": "Internet",
+    "position": "top",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-sample-next-app-85-preprod-dev2-app",
+    "label": "",
+    "source": "Internet",
+    "target": "Ingress-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "target": "Service-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-app-Deployment-sample-next-app-85-preprod-dev2-app",
+    "source": "Service-sample-next-app-85-preprod-dev2-app",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "data": Object {
+      "label": "ConfigMap app-configmap",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "target": "ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "type": "smoothstep",
+  },
+]
+`;
+
+exports[`parseManifests() parse ingress-hosts.json 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "label": "🚦 Service app",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "clusterIP": "1.2.3.4",
+          "ports": Array [
+            Object {
+              "name": "http",
+              "port": 80,
+              "targetPort": 3030,
+            },
+          ],
+          "selector": Object {
+            "app": "app",
+          },
+        },
+      },
+    },
+    "id": "Service-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 preprod-sample-next-app.dev2.org.com<br>🌍 preprod2-sample-next-app.dev2.org.com",
+      "manifest": Object {
+        "apiVersion": "extensions/v1beta1",
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "kubernetes.io/ingress.class": "nginx",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "preprod-sample-next-app.dev2.org.com",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "app",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                  },
+                ],
+              },
+            },
+            Object {
+              "host": "preprod2-sample-next-app.dev2.org.com",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "app",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "preprod-sample-next-app.dev2.org.com",
+                "preprod2-sample-next-app.dev2.org.com",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "🌥 Internet",
+    },
+    "id": "Internet",
+    "position": "top",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-sample-next-app-85-preprod-dev2-app",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "target": "Service-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "target": "Service-sample-next-app-85-preprod-dev2-app",
+  },
+]
+`;
+
+exports[`parseManifests() parse sample-next-app.json 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "label": "📦 app",
+      "manifest": Object {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "deployment.kubernetes.io/revision": "1",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "progressDeadlineSeconds": 600,
+          "replicas": 1,
+          "revisionHistoryLimit": 10,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "app",
+            },
+          },
+          "strategy": Object {
+            "rollingUpdate": Object {
+              "maxSurge": "25%",
+              "maxUnavailable": "25%",
+            },
+            "type": "RollingUpdate",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "app": "app",
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "app-sealed-secret",
+                      },
+                    },
+                    Object {
+                      "configMapRef": Object {
+                        "name": "app-configmap",
+                      },
+                    },
+                  ],
+                  "image": "my.registry.com/org/sample-next-app/app:2.1.5",
+                  "imagePullPolicy": "IfNotPresent",
+                  "livenessProbe": Object {
+                    "failureThreshold": 6,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "initialDelaySeconds": 30,
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 5,
+                  },
+                  "name": "app",
+                  "ports": Array [
+                    Object {
+                      "containerPort": 3030,
+                      "name": "http",
+                      "protocol": "TCP",
+                    },
+                  ],
+                  "readinessProbe": Object {
+                    "failureThreshold": 15,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "50m",
+                      "memory": "128Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "1m",
+                      "memory": "64Mi",
+                    },
+                  },
+                  "startupProbe": Object {
+                    "failureThreshold": 12,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "dnsPolicy": "ClusterFirst",
+              "restartPolicy": "Always",
+              "schedulerName": "default-scheduler",
+              "terminationGracePeriodSeconds": 30,
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "📦 hasura",
+      "manifest": Object {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "deployment.kubernetes.io/revision": "1",
+          },
+          "labels": Object {
+            "app": "hasura",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "hasura",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "progressDeadlineSeconds": 600,
+          "replicas": 1,
+          "revisionHistoryLimit": 10,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "hasura",
+            },
+          },
+          "strategy": Object {
+            "rollingUpdate": Object {
+              "maxSurge": "25%",
+              "maxUnavailable": "25%",
+            },
+            "type": "RollingUpdate",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "app": "hasura",
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user",
+                      },
+                    },
+                    Object {
+                      "secretRef": Object {
+                        "name": "hasura-sealed-secret",
+                      },
+                    },
+                    Object {
+                      "configMapRef": Object {
+                        "name": "hasura-configmap",
+                      },
+                    },
+                  ],
+                  "image": "my.registry.com/org/sample-next-app/hasura:2.1.5",
+                  "imagePullPolicy": "IfNotPresent",
+                  "livenessProbe": Object {
+                    "failureThreshold": 6,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "initialDelaySeconds": 30,
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 5,
+                  },
+                  "name": "hasura",
+                  "ports": Array [
+                    Object {
+                      "containerPort": 80,
+                      "name": "http",
+                      "protocol": "TCP",
+                    },
+                  ],
+                  "readinessProbe": Object {
+                    "failureThreshold": 15,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "500m",
+                      "memory": "512Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "100m",
+                      "memory": "64Mi",
+                    },
+                  },
+                  "startupProbe": Object {
+                    "failureThreshold": 12,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "dnsPolicy": "ClusterFirst",
+              "initContainers": Array [
+                Object {
+                  "env": Array [
+                    Object {
+                      "name": "WAIT_FOR_RETRIES",
+                      "value": "24",
+                    },
+                  ],
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user",
+                      },
+                    },
+                  ],
+                  "image": "my.registry.com/org/docker/wait-for-postgres:2.0.0",
+                  "imagePullPolicy": "Always",
+                  "name": "wait-for-postgres",
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "20m",
+                      "memory": "32Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "5m",
+                      "memory": "16Mi",
+                    },
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "restartPolicy": "Always",
+              "schedulerName": "default-scheduler",
+              "terminationGracePeriodSeconds": 30,
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "📦 pgweb",
+      "manifest": Object {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "deployment.kubernetes.io/revision": "1",
+          },
+          "labels": Object {
+            "app": "pgweb",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "component": "pgweb",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "pgweb",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "progressDeadlineSeconds": 600,
+          "replicas": 1,
+          "revisionHistoryLimit": 10,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "pgweb",
+            },
+          },
+          "strategy": Object {
+            "rollingUpdate": Object {
+              "maxSurge": "25%",
+              "maxUnavailable": "25%",
+            },
+            "type": "RollingUpdate",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "app": "pgweb",
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "component": "pgweb",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user",
+                      },
+                    },
+                  ],
+                  "image": "sosedoff/pgweb:0.11.7",
+                  "imagePullPolicy": "IfNotPresent",
+                  "livenessProbe": Object {
+                    "failureThreshold": 6,
+                    "httpGet": Object {
+                      "path": "/",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "initialDelaySeconds": 30,
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 5,
+                  },
+                  "name": "pgweb",
+                  "ports": Array [
+                    Object {
+                      "containerPort": 8081,
+                      "name": "http",
+                      "protocol": "TCP",
+                    },
+                  ],
+                  "readinessProbe": Object {
+                    "failureThreshold": 15,
+                    "httpGet": Object {
+                      "path": "/",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "500m",
+                      "memory": "256Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "100m",
+                      "memory": "64Mi",
+                    },
+                  },
+                  "startupProbe": Object {
+                    "failureThreshold": 12,
+                    "httpGet": Object {
+                      "path": "/",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "dnsPolicy": "ClusterFirst",
+              "initContainers": Array [
+                Object {
+                  "env": Array [
+                    Object {
+                      "name": "WAIT_FOR_RETRIES",
+                      "value": "24",
+                    },
+                  ],
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user",
+                      },
+                    },
+                  ],
+                  "image": "my.registry.com/org/docker/wait-for-postgres:2.0.0",
+                  "imagePullPolicy": "Always",
+                  "name": "wait-for-postgres",
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "20m",
+                      "memory": "32Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "5m",
+                      "memory": "16Mi",
+                    },
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "restartPolicy": "Always",
+              "schedulerName": "default-scheduler",
+              "terminationGracePeriodSeconds": 30,
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-sample-next-app-85-preprod-dev2-pgweb",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service app",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "clusterIP": "1.2.3.4",
+          "ports": Array [
+            Object {
+              "name": "http",
+              "port": 80,
+              "targetPort": 3030,
+            },
+          ],
+          "selector": Object {
+            "app": "app",
+          },
+        },
+      },
+    },
+    "id": "Service-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service hasura",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "app": "hasura",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "hasura",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "clusterIP": "1.2.3.4",
+          "ports": Array [
+            Object {
+              "name": "http",
+              "port": 80,
+            },
+          ],
+          "selector": Object {
+            "app": "hasura",
+          },
+        },
+      },
+    },
+    "id": "Service-sample-next-app-85-preprod-dev2-hasura",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service pgweb",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "app": "pgweb",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "pgweb",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "clusterIP": "1.2.3.4",
+          "ports": Array [
+            Object {
+              "name": "http",
+              "port": 80,
+              "targetPort": 8081,
+            },
+          ],
+          "selector": Object {
+            "app": "pgweb",
+          },
+        },
+      },
+    },
+    "id": "Service-sample-next-app-85-preprod-dev2-pgweb",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🗒 app-configmap",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "data": Object {
+          "ACCOUNT_MAIL_SENDER": "contact@org.com",
+          "FRONTEND_PORT": "3030",
+          "GRAPHQL_ENDPOINT": "http://hasura/v1/graphql",
+          "NODE_ENV": "production",
+          "PRODUCTION": "false",
+        },
+        "kind": "ConfigMap",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app-configmap",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+      },
+    },
+    "id": "ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🗒 hasura-configmap",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "data": Object {
+          "ACCOUNT_EMAIL_WEBHOOK_URL": "http://app:80/api/webhooks/account",
+          "HASURA_GRAPHQL_ENABLED_LOG_TYPES": "startup, http-log, webhook-log, websocket-log, query-log",
+          "HASURA_GRAPHQL_ENABLE_CONSOLE": "true",
+          "HASURA_GRAPHQL_LOG_LEVEL": "debug",
+          "HASURA_GRAPHQL_NO_OF_RETRIES": "5",
+          "HASURA_GRAPHQL_SERVER_PORT": "80",
+          "HASURA_GRAPHQL_UNAUTHORIZED_ROLE": "anonymous",
+        },
+        "kind": "ConfigMap",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "hasura-configmap",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+      },
+    },
+    "id": "ConfigMap-sample-next-app-85-preprod-dev2-hasura-configmap",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 app-sealed-secret",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "data": Object {
+          "ACCOUNT_EMAIL_SECRET": "xxx",
+          "HASURA_GRAPHQL_ADMIN_SECRET": "xxx",
+          "HASURA_GRAPHQL_JWT_SECRET": "xxx",
+          "SMTP_EMAIL_PASSWORD": "xxx",
+          "SMTP_EMAIL_USER": "xxx",
+          "SMTP_URL": "xxx",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app-sealed-secret",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "type": "Opaque",
+      },
+    },
+    "id": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 azure-pg-user",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "data": Object {
+          "DATABASE_URL": "xxx",
+          "HASURA_GRAPHQL_DATABASE_URL": "xxx",
+          "PGDATABASE": "xxx",
+          "PGHOST": "xxx",
+          "PGPASSWORD": "xxx",
+          "PGSSLMODE": "xxx",
+          "PGUSER": "xxx",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "azure-pg-user",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "type": "Opaque",
+      },
+    },
+    "id": "Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 hasura-sealed-secret",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "data": Object {
+          "ACCOUNT_EMAIL_SECRET": "xxx",
+          "HASURA_GRAPHQL_ADMIN_SECRET": "xxx",
+          "HASURA_GRAPHQL_JWT_SECRET": "xxx",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "hasura-sealed-secret",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "type": "Opaque",
+      },
+    },
+    "id": "Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 wildcard-crt",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "data": Object {
+          "ca.crt": "",
+          "tls.crt": "xxx",
+          "tls.key": "xxx",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "certmanager.k8s.io/certificate-name": "wildcard-crt",
+            "certmanager.k8s.io/common-name": "*.dev2.org.com",
+            "certmanager.k8s.io/issuer-kind": "ClusterIssuer",
+            "certmanager.k8s.io/issuer-name": "letsencrypt-wildcard",
+          },
+          "labels": Object {
+            "certmanager.k8s.io/certificate-name": "wildcard-crt",
+          },
+          "name": "wildcard-crt",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "type": "kubernetes.io/tls",
+      },
+    },
+    "id": "Secret-sample-next-app-85-preprod-dev2-wildcard-crt",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 preprod-sample-next-app.dev2.org.com",
+      "manifest": Object {
+        "apiVersion": "extensions/v1beta1",
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "kubernetes.io/ingress.class": "nginx",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "preprod-sample-next-app.dev2.org.com",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "app",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                    "pathType": "ImplementationSpecific",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "preprod-sample-next-app.dev2.org.com",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 hasura-preprod-sample-next-app.dev2.org.com",
+      "manifest": Object {
+        "apiVersion": "extensions/v1beta1",
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "kubernetes.io/ingress.class": "nginx",
+          },
+          "labels": Object {
+            "app": "hasura",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "hasura",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "hasura-preprod-sample-next-app.dev2.org.com",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "hasura",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                    "pathType": "ImplementationSpecific",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "hasura-preprod-sample-next-app.dev2.org.com",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-sample-next-app-85-preprod-dev2-hasura",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 pgweb-preprod-sample-next-app.dev2.org.com",
+      "manifest": Object {
+        "apiVersion": "extensions/v1beta1",
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "kubernetes.io/ingress.class": "nginx",
+          },
+          "labels": Object {
+            "app": "pgweb",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "pgweb",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "pgweb-preprod-sample-next-app.dev2.org.com",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "pgweb",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                    "pathType": "ImplementationSpecific",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "pgweb-preprod-sample-next-app.dev2.org.com",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-sample-next-app-85-preprod-dev2-pgweb",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "🔐 app-sealed-secret",
+      "manifest": Object {
+        "apiVersion": "bitnami.com/v1alpha1",
+        "kind": "SealedSecret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app-sealed-secret",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "ACCOUNT_EMAIL_SECRET": "xxx",
+            "HASURA_GRAPHQL_ADMIN_SECRET": "xxx",
+            "HASURA_GRAPHQL_JWT_SECRET": "xxx",
+            "SMTP_EMAIL_PASSWORD": "xxx",
+            "SMTP_EMAIL_USER": "xxx",
+            "SMTP_URL": "xxx",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+              "name": "app-sealed-secret",
+            },
+          },
+        },
+      },
+    },
+    "id": "SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "data": Object {
+      "label": "🔐 azure-pg-user",
+      "manifest": Object {
+        "apiVersion": "bitnami.com/v1alpha1",
+        "kind": "SealedSecret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "azure-pg-user",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "DATABASE_URL": "xxx",
+            "HASURA_GRAPHQL_DATABASE_URL": "xxx",
+            "PGDATABASE": "xxx",
+            "PGHOST": "xxx",
+            "PGPASSWORD": "xxx",
+            "PGSSLMODE": "xxx",
+            "PGUSER": "xxx",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+              "name": "azure-pg-user",
+            },
+            "type": "Opaque",
+          },
+        },
+      },
+    },
+    "id": "SealedSecret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "data": Object {
+      "label": "🔐 hasura-sealed-secret",
+      "manifest": Object {
+        "apiVersion": "bitnami.com/v1alpha1",
+        "kind": "SealedSecret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "hasura-sealed-secret",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "ACCOUNT_EMAIL_SECRET": "xxx",
+            "HASURA_GRAPHQL_ADMIN_SECRET": "xxx",
+            "HASURA_GRAPHQL_JWT_SECRET": "xxx",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+              "name": "hasura-sealed-secret",
+            },
+            "type": "Opaque",
+          },
+        },
+      },
+    },
+    "id": "SealedSecret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "data": Object {
+      "label": "🌥 Internet",
+    },
+    "id": "Internet",
+    "position": "top",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-sample-next-app-85-preprod-dev2-app",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "target": "Service-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "defaultTargetLabel": "wildcard-crt",
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Secret-sample-next-app-85-preprod-dev2-wildcard-crt",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "target": "Secret-sample-next-app-85-preprod-dev2-wildcard-crt",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-sample-next-app-85-preprod-dev2-hasura",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-sample-next-app-85-preprod-dev2-hasura",
+  },
+  Object {
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-hasura-Service-sample-next-app-85-preprod-dev2-hasura",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-hasura",
+    "target": "Service-sample-next-app-85-preprod-dev2-hasura",
+  },
+  Object {
+    "defaultTargetLabel": "wildcard-crt",
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-hasura-Secret-sample-next-app-85-preprod-dev2-wildcard-crt",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-hasura",
+    "target": "Secret-sample-next-app-85-preprod-dev2-wildcard-crt",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-sample-next-app-85-preprod-dev2-pgweb",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-sample-next-app-85-preprod-dev2-pgweb",
+  },
+  Object {
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-pgweb-Service-sample-next-app-85-preprod-dev2-pgweb",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-pgweb",
+    "target": "Service-sample-next-app-85-preprod-dev2-pgweb",
+  },
+  Object {
+    "defaultTargetLabel": "wildcard-crt",
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-pgweb-Secret-sample-next-app-85-preprod-dev2-wildcard-crt",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-pgweb",
+    "target": "Secret-sample-next-app-85-preprod-dev2-wildcard-crt",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-app-Deployment-sample-next-app-85-preprod-dev2-app",
+    "source": "Service-sample-next-app-85-preprod-dev2-app",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-hasura-Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "source": "Service-sample-next-app-85-preprod-dev2-hasura",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-pgweb-Deployment-sample-next-app-85-preprod-dev2-pgweb",
+    "source": "Service-sample-next-app-85-preprod-dev2-pgweb",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-pgweb",
+  },
+  Object {
+    "id": "edge-SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "source": "SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "target": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+  },
+  Object {
+    "id": "edge-SealedSecret-sample-next-app-85-preprod-dev2-azure-pg-user-Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "source": "SealedSecret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "target": "Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+  },
+  Object {
+    "id": "edge-SealedSecret-sample-next-app-85-preprod-dev2-hasura-sealed-secret-Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
+    "source": "SealedSecret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
+    "target": "Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret app-sealed-secret",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "target": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "ConfigMap app-configmap",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "target": "ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret azure-pg-user",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "target": "Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret hasura-sealed-secret",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "target": "Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "ConfigMap hasura-configmap",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-ConfigMap-sample-next-app-85-preprod-dev2-hasura-configmap",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "target": "ConfigMap-sample-next-app-85-preprod-dev2-hasura-configmap",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret azure-pg-user",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-pgweb-Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-pgweb",
+    "target": "Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "type": "smoothstep",
+  },
+]
+`;
+
+exports[`parseManifests() parse sealed-secret.json 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "label": "📦 app",
+      "manifest": Object {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "deployment.kubernetes.io/revision": "1",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "progressDeadlineSeconds": 600,
+          "replicas": 1,
+          "revisionHistoryLimit": 10,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "app",
+            },
+          },
+          "strategy": Object {
+            "rollingUpdate": Object {
+              "maxSurge": "25%",
+              "maxUnavailable": "25%",
+            },
+            "type": "RollingUpdate",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "app": "app",
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "app-sealed-secret",
+                      },
+                    },
+                  ],
+                  "image": "my.registry.com/org/sample-next-app/app:2.1.5",
+                  "imagePullPolicy": "IfNotPresent",
+                  "livenessProbe": Object {
+                    "failureThreshold": 6,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "initialDelaySeconds": 30,
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 5,
+                  },
+                  "name": "app",
+                  "ports": Array [
+                    Object {
+                      "containerPort": 3030,
+                      "name": "http",
+                      "protocol": "TCP",
+                    },
+                  ],
+                  "readinessProbe": Object {
+                    "failureThreshold": 15,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "50m",
+                      "memory": "128Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "1m",
+                      "memory": "64Mi",
+                    },
+                  },
+                  "startupProbe": Object {
+                    "failureThreshold": 12,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "dnsPolicy": "ClusterFirst",
+              "restartPolicy": "Always",
+              "schedulerName": "default-scheduler",
+              "terminationGracePeriodSeconds": 30,
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 app-sealed-secret",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "data": Object {
+          "ACCOUNT_EMAIL_SECRET": "xxx",
+          "HASURA_GRAPHQL_ADMIN_SECRET": "xxx",
+          "HASURA_GRAPHQL_JWT_SECRET": "xxx",
+          "SMTP_EMAIL_PASSWORD": "xxx",
+          "SMTP_EMAIL_USER": "xxx",
+          "SMTP_URL": "xxx",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app-sealed-secret",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "type": "Opaque",
+      },
+    },
+    "id": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🔐 app-sealed-secret",
+      "manifest": Object {
+        "apiVersion": "bitnami.com/v1alpha1",
+        "kind": "SealedSecret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app-sealed-secret",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "ACCOUNT_EMAIL_SECRET": "xxx",
+            "HASURA_GRAPHQL_ADMIN_SECRET": "xxx",
+            "HASURA_GRAPHQL_JWT_SECRET": "xxx",
+            "SMTP_EMAIL_PASSWORD": "xxx",
+            "SMTP_EMAIL_USER": "xxx",
+            "SMTP_URL": "xxx",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+              "name": "app-sealed-secret",
+            },
+          },
+        },
+      },
+    },
+    "id": "SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "id": "edge-SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "source": "SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "target": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret app-sealed-secret",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "target": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "type": "smoothstep",
+  },
+]
+`;

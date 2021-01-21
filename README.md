@@ -8,14 +8,18 @@ See demo : https://socialgouv.github.io/react-k8s-viewer
 
 ## Usage
 
-`K8sViewer` expect a list of kube manifests as SJON
+`K8sViewer` expect a list of kube manifests as JSON
 
 ```js
 import { K8sViewer } from "react-k8s-viewer";
 
 import manifests from "./manifests.json";
 
-const App = () => <K8sViewer manifests={manifests} />;
+const App = () => (
+  <div style={{ width: 1000, height: 400 }}>
+    <K8sViewer manifests={manifests} />
+  </div>
+);
 ```
 
 To extract the manifests from some namespace:
