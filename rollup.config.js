@@ -1,7 +1,7 @@
 import typescript from "rollup-plugin-typescript2";
+
 import pkg from "./package.json";
 
-const extensions = [".js", ".jsx", ".ts", ".tsx"];
 const input = "src/index.ts";
 const external = [
   ...Object.keys(pkg.dependencies || {}),
@@ -16,6 +16,7 @@ const plugins = [
 
 export default [
   {
+    external,
     input,
     output: {
       file: pkg.module,
@@ -23,9 +24,9 @@ export default [
       sourcemap: true,
     },
     plugins,
-    external,
   },
   {
+    external,
     input,
     output: {
       file: pkg.main,
@@ -33,6 +34,5 @@ export default [
       sourcemap: true,
     },
     plugins,
-    external,
   },
 ];
