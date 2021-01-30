@@ -4,8 +4,6 @@ import React from "react";
 import ReactFlow, { Position, Handle } from "react-flow-renderer";
 import type { Elements, ReactFlowProps } from "react-flow-renderer";
 
-console.log("Position", Position);
-
 // eslint-disable-next-line import/no-unresolved
 import { makeLayout } from "../common/makeLayout";
 // eslint-disable-next-line import/no-unresolved
@@ -35,24 +33,15 @@ const HtmlLabelComponent = ({ data }: HtmlLabelComponentProps) => {
   return (
     <div
       style={{
-        width: 150,
         whiteSpace: "nowrap",
         overflow: "hidden",
       }}
       className="react-flow__node-default react-flow__node-input react-flow__node-output"
       title={data.label}
     >
-      <Handle
-        type="target"
-        position={Position.Left}
-        style={{ borderRadius: 0 }}
-      />
-      <span dangerouslySetInnerHTML={{ __html: data.label }} />
-      <Handle
-        type="source"
-        position={Position.Right}
-        style={{ top: "30%", borderRadius: 0 }}
-      />
+      <Handle type="target" position={Position.Left} />
+      <div dangerouslySetInnerHTML={{ __html: data.label }} />
+      <Handle type="source" position={Position.Right} />
     </div>
   );
 };

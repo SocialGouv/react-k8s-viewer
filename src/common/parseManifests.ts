@@ -257,7 +257,7 @@ export const parseManifests = (manifests: any): any[] => {
             kind: "Service",
             name,
           })[0];
-          const edge = createEdge(ingressNode, serviceNode, {});
+          const edge = createEdge(ingressNode, serviceNode);
           elements.push(edge);
         });
 
