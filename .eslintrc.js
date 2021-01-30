@@ -9,10 +9,21 @@ module.exports = {
   rules: {
     "react/prop-types": "off",
     "simple-import-sort/sort": "off",
+    "sort-keys-fix/sort-keys-fix": "off",
   },
+  overrides: [
+    {
+      files: ["*.js", "*.ts", "*.tsx", "*.jsx"],
+    },
+  ],
   settings: {
     react: {
       version: "detect",
+    },
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
+      },
     },
   },
 };
