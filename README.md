@@ -25,5 +25,9 @@ const App = () => (
 To extract the manifests from some namespace:
 
 ```sh
-kubectl --namespace some-app  get deploy,ing,service,secret,sealedsecret,configmap -ojson > manifests.json
+kubectl --namespace some-app get deploy,ing,service,secret,sealedsecret,configmap -ojson > manifests.json
 ```
+
+## Todo:
+
+- handle multiple namespaces

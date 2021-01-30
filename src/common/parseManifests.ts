@@ -113,15 +113,19 @@ const manifestsTypes = {
   ],
   Deployment: (manifest: Manifest): AnyObject[] => {
     const volumes = getManifestVolumes(manifest);
+    const replicas = manifest.spec.replicas || 1;
     return [
       ...volumes,
-      {
-        ...baseManifest(manifest),
-        data: {
-          label: `📦 ${manifest.metadata.name}`,
-          manifest,
-        },
-      },
+      ...Array.from({ length: replicas }, (k, v) => {
+        return {
+          ...baseManifest(manifest),
+          id: baseManifest(manifest).id + `-${v}`,
+          data: {
+            label: `📦 ${manifest.metadata.name}`,
+            manifest,
+          },
+        };
+      }),
     ];
   },
   CronJob: (manifest: Manifest): AnyObject[] => {
@@ -148,11 +152,11 @@ const manifestsTypes = {
 
 const createEdge = (source: any, target: any, opts = {}) => {
   if (!source) {
-    console.log("createEdge.error source", source);
+    console.log("createEdge.error source", source, opts);
     return null;
   }
   if (!target) {
-    console.log("createEdge.error target", target);
+    console.log("createEdge.error target", target, opts);
     return null;
   }
   return {
@@ -315,17 +319,19 @@ export const parseManifests = (manifests: any): any[] => {
         name: manifest.metadata.name,
       })[0];
 
-      const deploymentNode = getElements(elements, {
+      const deploymentNodes = getElements(elements, {
         kind: "Deployment",
         name: targetDeploymentName,
-      })[0];
-
-      const edge = createEdge(serviceNode, deploymentNode, {
-        // defaultTargetLabel: rule.secretName,
-        animated: true,
       });
 
-      elements.push(edge);
+      deploymentNodes.forEach((deploymentNode) => {
+        const edge = createEdge(serviceNode, deploymentNode, {
+          // defaultTargetLabel: rule.secretName,
+          animated: true,
+        });
+
+        elements.push(edge);
+      });
     });
 
   allManifests
@@ -368,136 +374,138 @@ export const parseManifests = (manifests: any): any[] => {
         manifest.kind === "Deployment"
     )
     .forEach((manifest: Manifest) => {
-      const manifestNode = getElements(elements, {
+      const manifestNodes = getElements(elements, {
         kind: manifest.kind,
         name: manifest.metadata.name,
-      })[0];
+      });
 
-      if (manifest.spec.template.spec.imagePullSecrets) {
-        manifest.spec.template.spec.imagePullSecrets.forEach(
-          (pullSecret: any) => {
-            const secretNode = getElements(elements, {
-              kind: "Secret",
-              name: pullSecret.name,
-            })[0];
-            const edge = createEdge(manifestNode, secretNode, {
-              type: "smoothstep",
-              data: {
-                label: `Secret ${pullSecret.name}`,
-              },
-            });
-            elements.push(edge);
-          }
-        );
-      }
-
-      manifest.spec.template.spec.volumes &&
-        manifest.spec.template.spec.volumes
-          .filter((volume: any) => !volume.name.match(/^default-token-/))
-          .forEach((volume: any) => {
-            const volumeNode = getVolume(
-              elements,
-              manifest.metadata.namespace,
-              volume
-            );
-
-            const edge = createEdge(manifestNode, volumeNode, {
-              type: "smoothstep",
-            });
-            elements.push(edge);
-
-            if (volume.configMap) {
-              const configMapNode = getElements(elements, {
-                kind: "ConfigMap",
-                name: volume.configMap.name,
-              })[0];
-              const edge = createEdge(volumeNode, configMapNode, {
-                type: "smoothstep",
-                data: {
-                  label: `ConfigMap ${volume.configMap.name}`,
-                  ...volume,
-                },
-              });
-              elements.push(edge);
-            }
-            if (volume.azureFile) {
+      manifestNodes.forEach((manifestNode) => {
+        if (manifest.spec.template.spec.imagePullSecrets) {
+          manifest.spec.template.spec.imagePullSecrets.forEach(
+            (pullSecret: any) => {
               const secretNode = getElements(elements, {
                 kind: "Secret",
-                name: volume.azureFile.secretName,
-              })[0];
-              const edge = createEdge(volumeNode, secretNode, {
-                type: "smoothstep",
-                data: {
-                  label: `Secret ${volume.azureFile.secretName}`,
-                  ...volume,
-                },
-              });
-              elements.push(edge);
-            }
-          });
-
-      manifest.spec.template.spec.containers.forEach((container: any) => {
-        if (container.envFrom) {
-          container.envFrom.forEach((envFrom: any) => {
-            if (envFrom.secretRef) {
-              const secretNode = getElements(elements, {
-                kind: "Secret",
-                name: envFrom.secretRef.name,
+                name: pullSecret.name,
               })[0];
               const edge = createEdge(manifestNode, secretNode, {
                 type: "smoothstep",
                 data: {
-                  label: `Secret ${envFrom.secretRef.name}`,
+                  label: `Secret ${pullSecret.name}`,
                 },
               });
               elements.push(edge);
             }
-            if (envFrom.configMapRef) {
-              const configMapNode = getElements(elements, {
-                kind: "ConfigMap",
-                name: envFrom.configMapRef.name,
-              })[0];
-              const edge = createEdge(manifestNode, configMapNode, {
-                type: "smoothstep",
-                data: {
-                  label: `ConfigMap ${envFrom.configMapRef.name}`,
-                },
-              });
-              elements.push(edge);
-            }
-          });
+          );
         }
-        if (container.env) {
-          container.env.forEach((env: any) => {
-            if (env.valueFrom) {
-              if (env.valueFrom.secretKeyRef) {
-                const secretNode = getElements(elements, {
-                  kind: "Secret",
-                  name: env.valueFrom.secretKeyRef.name,
-                })[0];
-                const edge = createEdge(manifestNode, secretNode, {
-                  type: "smoothstep",
-                  data: {
-                    label: `Secret ${env.valueFrom.secretKeyRef.name}`,
-                  },
-                });
-                elements.push(edge);
-              } else if (env.valueFrom.configMapRef) {
+
+        manifest.spec.template.spec.volumes &&
+          manifest.spec.template.spec.volumes
+            .filter((volume: any) => !volume.name.match(/^default-token-/))
+            .forEach((volume: any) => {
+              const volumeNode = getVolume(
+                elements,
+                manifest.metadata.namespace,
+                volume
+              );
+
+              const edge = createEdge(manifestNode, volumeNode, {
+                type: "smoothstep",
+              });
+              elements.push(edge);
+
+              if (volume.configMap) {
                 const configMapNode = getElements(elements, {
-                  kind: "Secret",
-                  name: env.valueFrom.configMapRef.name,
+                  kind: "ConfigMap",
+                  name: volume.configMap.name,
                 })[0];
-                const edge = createEdge(manifestNode, configMapNode, {
+                const edge = createEdge(volumeNode, configMapNode, {
                   type: "smoothstep",
                   data: {
-                    label: `ConfigMap ${env.valueFrom.configMapRef.name}`,
+                    label: `ConfigMap ${volume.configMap.name}`,
+                    ...volume,
                   },
                 });
                 elements.push(edge);
               }
-            }
-          });
-        }
+              if (volume.azureFile) {
+                const secretNode = getElements(elements, {
+                  kind: "Secret",
+                  name: volume.azureFile.secretName,
+                })[0];
+                const edge = createEdge(volumeNode, secretNode, {
+                  type: "smoothstep",
+                  data: {
+                    label: `Secret ${volume.azureFile.secretName}`,
+                    ...volume,
+                  },
+                });
+                elements.push(edge);
+              }
+            });
+
+        manifest.spec.template.spec.containers.forEach((container: any) => {
+          if (container.envFrom) {
+            container.envFrom.forEach((envFrom: any) => {
+              if (envFrom.secretRef) {
+                const secretNode = getElements(elements, {
+                  kind: "Secret",
+                  name: envFrom.secretRef.name,
+                })[0];
+                const edge = createEdge(manifestNode, secretNode, {
+                  type: "smoothstep",
+                  data: {
+                    label: `Secret ${envFrom.secretRef.name}`,
+                  },
+                });
+                elements.push(edge);
+              }
+              if (envFrom.configMapRef) {
+                const configMapNode = getElements(elements, {
+                  kind: "ConfigMap",
+                  name: envFrom.configMapRef.name,
+                })[0];
+                const edge = createEdge(manifestNode, configMapNode, {
+                  type: "smoothstep",
+                  data: {
+                    label: `ConfigMap ${envFrom.configMapRef.name}`,
+                  },
+                });
+                elements.push(edge);
+              }
+            });
+          }
+          if (container.env) {
+            container.env.forEach((env: any) => {
+              if (env.valueFrom) {
+                if (env.valueFrom.secretKeyRef) {
+                  const secretNode = getElements(elements, {
+                    kind: "Secret",
+                    name: env.valueFrom.secretKeyRef.name,
+                  })[0];
+                  const edge = createEdge(manifestNode, secretNode, {
+                    type: "smoothstep",
+                    data: {
+                      label: `Secret ${env.valueFrom.secretKeyRef.name}`,
+                    },
+                  });
+                  elements.push(edge);
+                } else if (env.valueFrom.configMapRef) {
+                  const configMapNode = getElements(elements, {
+                    kind: "Secret",
+                    name: env.valueFrom.configMapRef.name,
+                  })[0];
+                  const edge = createEdge(manifestNode, configMapNode, {
+                    type: "smoothstep",
+                    data: {
+                      label: `ConfigMap ${env.valueFrom.configMapRef.name}`,
+                    },
+                  });
+                  elements.push(edge);
+                }
+              }
+            });
+          }
+        });
       });
     });
 

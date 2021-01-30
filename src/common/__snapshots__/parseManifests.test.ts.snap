@@ -134,7 +134,7 @@ Array [
         },
       },
     },
-    "id": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "Deployment-sample-next-app-85-preprod-dev2-app-0",
     "sourcePosition": "right",
     "targetPosition": "left",
   },
@@ -286,16 +286,16 @@ Array [
   },
   Object {
     "animated": true,
-    "id": "edge-Service-sample-next-app-85-preprod-dev2-app-Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-app-Deployment-sample-next-app-85-preprod-dev2-app-0",
     "source": "Service-sample-next-app-85-preprod-dev2-app",
-    "target": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-app-0",
   },
   Object {
     "data": Object {
       "label": "ConfigMap app-configmap",
     },
-    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
-    "source": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-0-ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app-0",
     "target": "ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
     "type": "smoothstep",
   },
@@ -472,7 +472,7 @@ Array [
         },
         "spec": Object {
           "progressDeadlineSeconds": 600,
-          "replicas": 1,
+          "replicas": 3,
           "revisionHistoryLimit": 10,
           "selector": Object {
             "matchLabels": Object {
@@ -584,7 +584,289 @@ Array [
         },
       },
     },
-    "id": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "Deployment-sample-next-app-85-preprod-dev2-app-0",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "📦 app",
+      "manifest": Object {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "deployment.kubernetes.io/revision": "1",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "progressDeadlineSeconds": 600,
+          "replicas": 3,
+          "revisionHistoryLimit": 10,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "app",
+            },
+          },
+          "strategy": Object {
+            "rollingUpdate": Object {
+              "maxSurge": "25%",
+              "maxUnavailable": "25%",
+            },
+            "type": "RollingUpdate",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "app": "app",
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "app-sealed-secret",
+                      },
+                    },
+                    Object {
+                      "configMapRef": Object {
+                        "name": "app-configmap",
+                      },
+                    },
+                  ],
+                  "image": "my.registry.com/org/sample-next-app/app:2.1.5",
+                  "imagePullPolicy": "IfNotPresent",
+                  "livenessProbe": Object {
+                    "failureThreshold": 6,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "initialDelaySeconds": 30,
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 5,
+                  },
+                  "name": "app",
+                  "ports": Array [
+                    Object {
+                      "containerPort": 3030,
+                      "name": "http",
+                      "protocol": "TCP",
+                    },
+                  ],
+                  "readinessProbe": Object {
+                    "failureThreshold": 15,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "50m",
+                      "memory": "128Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "1m",
+                      "memory": "64Mi",
+                    },
+                  },
+                  "startupProbe": Object {
+                    "failureThreshold": 12,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "dnsPolicy": "ClusterFirst",
+              "restartPolicy": "Always",
+              "schedulerName": "default-scheduler",
+              "terminationGracePeriodSeconds": 30,
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-sample-next-app-85-preprod-dev2-app-1",
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "📦 app",
+      "manifest": Object {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+            "deployment.kubernetes.io/revision": "1",
+          },
+          "labels": Object {
+            "app": "app",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "progressDeadlineSeconds": 600,
+          "replicas": 3,
+          "revisionHistoryLimit": 10,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "app",
+            },
+          },
+          "strategy": Object {
+            "rollingUpdate": Object {
+              "maxSurge": "25%",
+              "maxUnavailable": "25%",
+            },
+            "type": "RollingUpdate",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-sample-next-app",
+                "app.gitlab.com/env": "preprod-dev2",
+                "app.gitlab.com/env.name": "preprod-dev2",
+              },
+              "creationTimestamp": null,
+              "labels": Object {
+                "app": "app",
+                "application": "v2-1-5-sample-next-app",
+                "cert": "wildcard",
+                "owner": "sample-next-app",
+                "team": "sample-next-app",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "app-sealed-secret",
+                      },
+                    },
+                    Object {
+                      "configMapRef": Object {
+                        "name": "app-configmap",
+                      },
+                    },
+                  ],
+                  "image": "my.registry.com/org/sample-next-app/app:2.1.5",
+                  "imagePullPolicy": "IfNotPresent",
+                  "livenessProbe": Object {
+                    "failureThreshold": 6,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "initialDelaySeconds": 30,
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 5,
+                  },
+                  "name": "app",
+                  "ports": Array [
+                    Object {
+                      "containerPort": 3030,
+                      "name": "http",
+                      "protocol": "TCP",
+                    },
+                  ],
+                  "readinessProbe": Object {
+                    "failureThreshold": 15,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "resources": Object {
+                    "limits": Object {
+                      "cpu": "50m",
+                      "memory": "128Mi",
+                    },
+                    "requests": Object {
+                      "cpu": "1m",
+                      "memory": "64Mi",
+                    },
+                  },
+                  "startupProbe": Object {
+                    "failureThreshold": 12,
+                    "httpGet": Object {
+                      "path": "/healthz",
+                      "port": "http",
+                      "scheme": "HTTP",
+                    },
+                    "periodSeconds": 5,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1,
+                  },
+                  "terminationMessagePath": "/dev/termination-log",
+                  "terminationMessagePolicy": "File",
+                },
+              ],
+              "dnsPolicy": "ClusterFirst",
+              "restartPolicy": "Always",
+              "schedulerName": "default-scheduler",
+              "terminationGracePeriodSeconds": 30,
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-sample-next-app-85-preprod-dev2-app-2",
     "sourcePosition": "right",
     "targetPosition": "left",
   },
@@ -762,7 +1044,7 @@ Array [
         },
       },
     },
-    "id": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "id": "Deployment-sample-next-app-85-preprod-dev2-hasura-0",
     "sourcePosition": "right",
     "targetPosition": "left",
   },
@@ -932,7 +1214,7 @@ Array [
         },
       },
     },
-    "id": "Deployment-sample-next-app-85-preprod-dev2-pgweb",
+    "id": "Deployment-sample-next-app-85-preprod-dev2-pgweb-0",
     "sourcePosition": "right",
     "targetPosition": "left",
   },
@@ -1679,21 +1961,33 @@ Array [
   },
   Object {
     "animated": true,
-    "id": "edge-Service-sample-next-app-85-preprod-dev2-app-Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-app-Deployment-sample-next-app-85-preprod-dev2-app-0",
     "source": "Service-sample-next-app-85-preprod-dev2-app",
-    "target": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-app-0",
   },
   Object {
     "animated": true,
-    "id": "edge-Service-sample-next-app-85-preprod-dev2-hasura-Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-app-Deployment-sample-next-app-85-preprod-dev2-app-1",
+    "source": "Service-sample-next-app-85-preprod-dev2-app",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-app-1",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-app-Deployment-sample-next-app-85-preprod-dev2-app-2",
+    "source": "Service-sample-next-app-85-preprod-dev2-app",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-app-2",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-hasura-Deployment-sample-next-app-85-preprod-dev2-hasura-0",
     "source": "Service-sample-next-app-85-preprod-dev2-hasura",
-    "target": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-hasura-0",
   },
   Object {
     "animated": true,
-    "id": "edge-Service-sample-next-app-85-preprod-dev2-pgweb-Deployment-sample-next-app-85-preprod-dev2-pgweb",
+    "id": "edge-Service-sample-next-app-85-preprod-dev2-pgweb-Deployment-sample-next-app-85-preprod-dev2-pgweb-0",
     "source": "Service-sample-next-app-85-preprod-dev2-pgweb",
-    "target": "Deployment-sample-next-app-85-preprod-dev2-pgweb",
+    "target": "Deployment-sample-next-app-85-preprod-dev2-pgweb-0",
   },
   Object {
     "id": "edge-SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
@@ -1714,8 +2008,8 @@ Array [
     "data": Object {
       "label": "Secret app-sealed-secret",
     },
-    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
-    "source": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-0-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app-0",
     "target": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
     "type": "smoothstep",
   },
@@ -1723,8 +2017,44 @@ Array [
     "data": Object {
       "label": "ConfigMap app-configmap",
     },
-    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
-    "source": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-0-ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app-0",
+    "target": "ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret app-sealed-secret",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-1-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app-1",
+    "target": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "ConfigMap app-configmap",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-1-ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app-1",
+    "target": "ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret app-sealed-secret",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-2-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app-2",
+    "target": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "ConfigMap app-configmap",
+    },
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-2-ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app-2",
     "target": "ConfigMap-sample-next-app-85-preprod-dev2-app-configmap",
     "type": "smoothstep",
   },
@@ -1732,8 +2062,8 @@ Array [
     "data": Object {
       "label": "Secret azure-pg-user",
     },
-    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
-    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-0-Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura-0",
     "target": "Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
     "type": "smoothstep",
   },
@@ -1741,8 +2071,8 @@ Array [
     "data": Object {
       "label": "Secret hasura-sealed-secret",
     },
-    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
-    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-0-Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura-0",
     "target": "Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret",
     "type": "smoothstep",
   },
@@ -1750,8 +2080,8 @@ Array [
     "data": Object {
       "label": "ConfigMap hasura-configmap",
     },
-    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-ConfigMap-sample-next-app-85-preprod-dev2-hasura-configmap",
-    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura",
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-hasura-0-ConfigMap-sample-next-app-85-preprod-dev2-hasura-configmap",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-hasura-0",
     "target": "ConfigMap-sample-next-app-85-preprod-dev2-hasura-configmap",
     "type": "smoothstep",
   },
@@ -1759,8 +2089,8 @@ Array [
     "data": Object {
       "label": "Secret azure-pg-user",
     },
-    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-pgweb-Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
-    "source": "Deployment-sample-next-app-85-preprod-dev2-pgweb",
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-pgweb-0-Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-pgweb-0",
     "target": "Secret-sample-next-app-85-preprod-dev2-azure-pg-user",
     "type": "smoothstep",
   },
@@ -1901,7 +2231,7 @@ Array [
         },
       },
     },
-    "id": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "Deployment-sample-next-app-85-preprod-dev2-app-0",
     "sourcePosition": "right",
     "targetPosition": "left",
   },
@@ -2009,8 +2339,8 @@ Array [
     "data": Object {
       "label": "Secret app-sealed-secret",
     },
-    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
-    "source": "Deployment-sample-next-app-85-preprod-dev2-app",
+    "id": "edge-Deployment-sample-next-app-85-preprod-dev2-app-0-Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
+    "source": "Deployment-sample-next-app-85-preprod-dev2-app-0",
     "target": "Secret-sample-next-app-85-preprod-dev2-app-sealed-secret",
     "type": "smoothstep",
   },
