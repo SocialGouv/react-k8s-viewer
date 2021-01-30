@@ -5,11 +5,10 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2020,
-    sourceType: "module",
   },
   rules: {
-    "react/prop-types": 0,
+    "react/prop-types": "off",
+    "simple-import-sort/sort": "off",
   },
   settings: {
     react: {
