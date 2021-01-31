@@ -1,33 +1,24 @@
 import React from "react";
 import ReactFlow from "react-flow-renderer";
-import type { Elements, ReactFlowProps } from "react-flow-renderer";
+import type { OnLoadFunc, Elements, ReactFlowProps } from "react-flow-renderer";
 
 import { makeLayout } from "../common/makeLayout";
 import { parseManifests } from "../common/parseManifests";
 import { HtmlFlowNode } from "./HtmlFlowNode";
 
-type AnyObject = {
-  [U: string]: any;
-};
+import type { ManifestList, Manifest } from "../types/types";
 
-interface ManifestList {
-  kind: string;
-  apiVersion: string;
-  items: any[];
-  metadata?: AnyObject;
-}
-
-const onLoad = (reactFlowInstance: any) => {
+const onLoad = (reactFlowInstance): OnLoadFunc => {
   reactFlowInstance.fitView();
-  console.log("onload");
 };
 
 interface K8sViewerProps extends Omit<ReactFlowProps, "elements"> {
-  manifests: ManifestList | undefined;
+  manifests: ManifestList | Manifest[];
 }
 
 export const K8sViewer: React.FC<K8sViewerProps> = ({
   manifests,
+  ...props
 }: K8sViewerProps) => {
   if (!manifests) {
     return <div>Invalid manifests</div>;
@@ -45,6 +36,7 @@ export const K8sViewer: React.FC<K8sViewerProps> = ({
         nodesDraggable={true}
         elementsSelectable={false}
         nodesConnectable={false}
+        {...props}
         elements={flow}
       />
     </React.Fragment>

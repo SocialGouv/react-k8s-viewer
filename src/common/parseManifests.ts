@@ -1,3 +1,14 @@
+import type { Elements, Node, Edge } from "react-flow-renderer";
+
+import type { AnyObject, Manifest, ManifestList } from "../types/types";
+
+import { Volume } from "kubernetes-models/api/core/v1/Volume";
+import { Container } from "kubernetes-models/api/core/v1/Container";
+import { EnvFromSource } from "kubernetes-models/api/core/v1/EnvFromSource";
+import { EnvVar } from "kubernetes-models/api/core/v1/EnvVar";
+import { IngressRule } from "kubernetes-models/networking.k8s.io/v1beta1/IngressRule";
+import { IngressTLS } from "kubernetes-models/networking.k8s.io/v1beta1/IngressTLS";
+
 const styles = {
   Deployments: "#0f4c75",
   Ingress: "#1e9e99",
@@ -5,28 +16,19 @@ const styles = {
   error: { backgroundColor: "#ff7575", color: "#fff" },
 };
 
-interface Manifest {
-  kind: string;
-  [U: string]: any;
-}
-
-interface AnyObject {
-  [U: string]: any;
-}
-
 const defaultPositions = {
   sourcePosition: "right",
   targetPosition: "left",
 };
 
-const baseManifest = (manifest: AnyObject) => ({
+const getFlowNode = (manifest: Manifest) => ({
   id: `${manifest.kind}-${manifest.metadata.namespace || ""}-${
     manifest.metadata.name
   }`,
   ...defaultPositions,
 });
 
-const createVolumeElement = (manifest: Manifest, volume: AnyObject) => {
+const createVolumeNode = (manifest: Manifest, volume: AnyObject): Node => {
   const volumeName =
     (volume.azureFile && volume.azureFile.shareName) ||
     (volume.configMap && volume.configMap.name) ||
@@ -40,20 +42,20 @@ const createVolumeElement = (manifest: Manifest, volume: AnyObject) => {
   };
 };
 
-const getManifestVolumes = (manifest: Manifest) => {
+const getManifestNodes = (manifest: Manifest): Node[] => {
   return (
     (manifest.spec.template.spec.volumes &&
       manifest.spec.template.spec.volumes
-        .filter((volume: any) => !volume.name.match(/^default-token-/))
-        .map((volume: any) => createVolumeElement(manifest, volume))) ||
+        .filter((volume: Volume) => !volume.name.match(/^default-token-/))
+        .map((volume: Volume) => createVolumeNode(manifest, volume))) ||
     []
   );
 };
 
 const manifestsTypes = {
-  Ingress: (manifest: Manifest): AnyObject[] => [
+  Ingress: (manifest: Manifest): Node[] => [
     {
-      ...baseManifest(manifest),
+      ...getFlowNode(manifest),
       type: "ingress",
       data: {
         label: manifest.spec.rules
@@ -63,18 +65,18 @@ const manifestsTypes = {
       },
     },
   ],
-  Service: (manifest: Manifest): AnyObject[] => [
+  Service: (manifest: Manifest): Node[] => [
     {
-      ...baseManifest(manifest),
+      ...getFlowNode(manifest),
       data: {
         label: `🚦 ${manifest.kind} ${manifest.metadata.name}`,
         manifest,
       },
     },
   ],
-  Secret: (manifest: Manifest): AnyObject[] => [
+  Secret: (manifest: Manifest): Node[] => [
     {
-      ...baseManifest(manifest),
+      ...getFlowNode(manifest),
       type: "output",
       data: {
         label: `🔓 ${manifest.metadata.name}`,
@@ -82,9 +84,9 @@ const manifestsTypes = {
       },
     },
   ],
-  SealedSecret: (manifest: Manifest): AnyObject[] => [
+  SealedSecret: (manifest: Manifest): Node[] => [
     {
-      ...baseManifest(manifest),
+      ...getFlowNode(manifest),
       type: "input",
       data: {
         label: `🔐 ${manifest.metadata.name}`,
@@ -92,9 +94,9 @@ const manifestsTypes = {
       },
     },
   ],
-  ConfigMap: (manifest: Manifest): AnyObject[] => [
+  ConfigMap: (manifest: Manifest): Node[] => [
     {
-      ...baseManifest(manifest),
+      ...getFlowNode(manifest),
       type: "output",
       data: {
         label: `🗒 ${manifest.metadata.name}`,
@@ -102,24 +104,25 @@ const manifestsTypes = {
       },
     },
   ],
-  ServiceMonitor: (manifest: Manifest): AnyObject[] => [
+  ServiceMonitor: (manifest: Manifest): Node[] => [
     {
-      ...baseManifest(manifest),
+      ...getFlowNode(manifest),
       data: {
         label: `📊 ${manifest.metadata.name}`,
         manifest,
       },
     },
   ],
-  Deployment: (manifest: Manifest): AnyObject[] => {
-    const volumes = getManifestVolumes(manifest);
+  Deployment: (manifest: Manifest): Node[] => {
+    const volumes = getManifestNodes(manifest);
     const replicas = manifest.spec.replicas || 1;
     return [
       ...volumes,
       ...Array.from({ length: replicas }, (k, v) => {
+        const node = getFlowNode(manifest);
         return {
-          ...baseManifest(manifest),
-          id: baseManifest(manifest).id + `-${v}`,
+          ...node,
+          id: node.id + `-${v}`,
           data: {
             label: `📦 ${manifest.metadata.name}`,
             manifest,
@@ -128,29 +131,29 @@ const manifestsTypes = {
       }),
     ];
   },
-  CronJob: (manifest: Manifest): AnyObject[] => {
-    const volumes = getManifestVolumes(manifest);
+  CronJob: (manifest: Manifest): Node[] => {
+    const volumes = getManifestNodes(manifest);
     return [
       ...volumes,
       {
-        ...baseManifest(manifest),
+        ...getFlowNode(manifest),
         data: { label: `⏳ ${manifest.metadata.name}`, manifest },
       },
     ];
   },
-  Job: (manifest: Manifest): AnyObject[] => {
-    const volumes = getManifestVolumes(manifest);
+  Job: (manifest: Manifest): Node[] => {
+    const volumes = getManifestNodes(manifest);
     return [
       ...volumes,
       {
-        ...baseManifest(manifest),
+        ...getFlowNode(manifest),
         data: { label: `⚡️ ${manifest.metadata.name}`, manifest },
       },
     ];
   },
-} as AnyObject;
+};
 
-const createEdge = (source: any, target: any, opts = {}) => {
+const createEdge = (source: Node, target: Node, opts = {}): Edge => {
   if (!source) {
     console.log("createEdge.error source", source, opts);
     return null;
@@ -167,8 +170,8 @@ const createEdge = (source: any, target: any, opts = {}) => {
   };
 };
 
-const getElements = (elements: AnyObject[], filters: AnyObject) => {
-  const filtered = elements.filter((e: any) => {
+const getElements = (elements: Elements, filters: AnyObject): Elements => {
+  const filtered = elements.filter((e) => {
     const isValid = e && e.data && e.data.manifest;
     if (!isValid) {
       return false;
@@ -183,21 +186,23 @@ const getElements = (elements: AnyObject[], filters: AnyObject) => {
 };
 
 const getVolume = (
-  elements: AnyObject[],
+  elements: Elements,
   namespace: string,
-  volume: AnyObject
-) => {
+  volume: Volume
+): Node => {
   const volumeName =
     (volume.azureFile && volume.azureFile.shareName) ||
     (volume.configMap && volume.configMap.name) ||
     volume.name;
 
   const volumeId = `volume-${namespace}-${volumeName}`;
-  return elements.find((e: AnyObject) => e.id === volumeId);
+  return elements.find((e: Element) => e.id === volumeId);
 };
 
-export const parseManifests = (manifests: any): any[] => {
-  const elements = [] as any;
+export const parseManifests = (
+  manifests: ManifestList | Manifest[]
+): Elements => {
+  const elements = [] as Elements;
 
   const allManifests =
     (Array.isArray(manifests) && manifests[0].items) ||
@@ -209,15 +214,15 @@ export const parseManifests = (manifests: any): any[] => {
     const definition = manifestsTypes[manifest.kind];
     if (definition) {
       const createdNodes = definition(manifest);
-      createdNodes.filter(Boolean).forEach((node: AnyObject) => {
-        if (!elements.find((e: AnyObject) => e.id === node.id)) {
+      createdNodes.filter(Boolean).forEach((node: Node) => {
+        if (!elements.find((e: Node) => e.id === node.id)) {
           elements.push(node);
         }
       });
     }
   });
 
-  if (allManifests.find((m: any) => m.kind === "Ingress")) {
+  if (allManifests.find((m: Manifest) => m.kind === "Ingress")) {
     const internetNode = {
       ...defaultPositions,
       id: `Internet`,
@@ -245,13 +250,13 @@ export const parseManifests = (manifests: any): any[] => {
         });
         elements.push(edge);
 
-        const isValidRule = (rule: AnyObject) =>
+        const isValidRule = (rule: IngressRule) =>
           rule.http &&
           rule.http.paths.length &&
           rule.http.paths[0].backend.serviceName;
 
         // ingress to services edge
-        manifest.spec.rules.filter(isValidRule).forEach((rule: AnyObject) => {
+        manifest.spec.rules.filter(isValidRule).forEach((rule: IngressRule) => {
           const name = rule.http.paths[0].backend.serviceName;
           const serviceNode = getElements(elements, {
             kind: "Service",
@@ -263,14 +268,14 @@ export const parseManifests = (manifests: any): any[] => {
 
         // ingress to TLS secret edge
         manifest.spec.tls &&
-          manifest.spec.tls.forEach((rule: any) => {
-            if (rule.secretName) {
+          manifest.spec.tls.forEach((tls: IngressTLS) => {
+            if (tls.secretName) {
               const secretNode = getElements(elements, {
                 kind: "Secret",
-                name: rule.secretName,
+                name: tls.secretName,
               })[0];
               const edge = createEdge(ingressNode, secretNode, {
-                defaultTargetLabel: rule.secretName,
+                defaultTargetLabel: tls.secretName,
               });
               elements.push(edge);
             }
@@ -382,7 +387,7 @@ export const parseManifests = (manifests: any): any[] => {
       manifestNodes.forEach((manifestNode) => {
         if (manifest.spec.template.spec.imagePullSecrets) {
           manifest.spec.template.spec.imagePullSecrets.forEach(
-            (pullSecret: any) => {
+            (pullSecret: AnyObject) => {
               const secretNode = getElements(elements, {
                 kind: "Secret",
                 name: pullSecret.name,
@@ -400,8 +405,8 @@ export const parseManifests = (manifests: any): any[] => {
 
         manifest.spec.template.spec.volumes &&
           manifest.spec.template.spec.volumes
-            .filter((volume: any) => !volume.name.match(/^default-token-/))
-            .forEach((volume: any) => {
+            .filter((volume: Volume) => !volume.name.match(/^default-token-/))
+            .forEach((volume: Volume) => {
               const volumeNode = getVolume(
                 elements,
                 manifest.metadata.namespace,
@@ -443,76 +448,78 @@ export const parseManifests = (manifests: any): any[] => {
               }
             });
 
-        manifest.spec.template.spec.containers.forEach((container: any) => {
-          if (container.envFrom) {
-            container.envFrom.forEach((envFrom: any) => {
-              if (envFrom.secretRef) {
-                const secretNode = getElements(elements, {
-                  kind: "Secret",
-                  name: envFrom.secretRef.name,
-                })[0];
-                const edge = createEdge(manifestNode, secretNode, {
-                  type: "smoothstep",
-                  data: {
-                    label: `Secret ${envFrom.secretRef.name}`,
-                  },
-                });
-                elements.push(edge);
-              }
-              if (envFrom.configMapRef) {
-                const configMapNode = getElements(elements, {
-                  kind: "ConfigMap",
-                  name: envFrom.configMapRef.name,
-                })[0];
-                const edge = createEdge(manifestNode, configMapNode, {
-                  type: "smoothstep",
-                  data: {
-                    label: `ConfigMap ${envFrom.configMapRef.name}`,
-                  },
-                });
-                elements.push(edge);
-              }
-            });
-          }
-          if (container.env) {
-            container.env.forEach((env: any) => {
-              if (env.valueFrom) {
-                if (env.valueFrom.secretKeyRef) {
+        manifest.spec.template.spec.containers.forEach(
+          (container: Container) => {
+            if (container.envFrom) {
+              container.envFrom.forEach((envFrom: EnvFromSource) => {
+                if (envFrom.secretRef) {
                   const secretNode = getElements(elements, {
                     kind: "Secret",
-                    name: env.valueFrom.secretKeyRef.name,
+                    name: envFrom.secretRef.name,
                   })[0];
                   const edge = createEdge(manifestNode, secretNode, {
                     type: "smoothstep",
                     data: {
-                      label: `Secret ${env.valueFrom.secretKeyRef.name}`,
-                    },
-                  });
-                  elements.push(edge);
-                } else if (env.valueFrom.configMapRef) {
-                  const configMapNode = getElements(elements, {
-                    kind: "Secret",
-                    name: env.valueFrom.configMapRef.name,
-                  })[0];
-                  const edge = createEdge(manifestNode, configMapNode, {
-                    type: "smoothstep",
-                    data: {
-                      label: `ConfigMap ${env.valueFrom.configMapRef.name}`,
+                      label: `Secret ${envFrom.secretRef.name}`,
                     },
                   });
                   elements.push(edge);
                 }
-              }
-            });
+                if (envFrom.configMapRef) {
+                  const configMapNode = getElements(elements, {
+                    kind: "ConfigMap",
+                    name: envFrom.configMapRef.name,
+                  })[0];
+                  const edge = createEdge(manifestNode, configMapNode, {
+                    type: "smoothstep",
+                    data: {
+                      label: `ConfigMap ${envFrom.configMapRef.name}`,
+                    },
+                  });
+                  elements.push(edge);
+                }
+              });
+            }
+            if (container.env) {
+              container.env.forEach((env: EnvVar) => {
+                if (env.valueFrom) {
+                  if (env.valueFrom.secretKeyRef) {
+                    const secretNode = getElements(elements, {
+                      kind: "Secret",
+                      name: env.valueFrom.secretKeyRef.name,
+                    })[0];
+                    const edge = createEdge(manifestNode, secretNode, {
+                      type: "smoothstep",
+                      data: {
+                        label: `Secret ${env.valueFrom.secretKeyRef.name}`,
+                      },
+                    });
+                    elements.push(edge);
+                  } else if (env.valueFrom.configMapRef) {
+                    const configMapNode = getElements(elements, {
+                      kind: "Secret",
+                      name: env.valueFrom.configMapRef.name,
+                    })[0];
+                    const edge = createEdge(manifestNode, configMapNode, {
+                      type: "smoothstep",
+                      data: {
+                        label: `ConfigMap ${env.valueFrom.configMapRef.name}`,
+                      },
+                    });
+                    elements.push(edge);
+                  }
+                }
+              });
+            }
           }
-        });
+        );
       });
     });
 
   // ensure not found elements are explicit
-  elements.forEach((element: any) => {
+  elements.forEach((element) => {
     if (element && element.target) {
-      if (!elements.find((el: any) => el.id === element.target)) {
+      if (!elements.find((el) => el.id === element.target)) {
         // target not found
         elements.push({
           id: element.target,
@@ -527,7 +534,7 @@ export const parseManifests = (manifests: any): any[] => {
           style: styles.error,
         });
       }
-      if (!elements.find((el: any) => el.id === element.source)) {
+      if (!elements.find((el) => el.id === element.source)) {
         // source not found
         elements.push({
           id: element.source,

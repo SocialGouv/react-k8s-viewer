@@ -1363,6 +1363,24 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@kubernetes-models/base@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@kubernetes-models/base/-/base-1.1.0.tgz#dd52675f466376dd451cf020253c5f01b3aac9ba"
+  integrity sha512-b7r8TBcbaokpfOswd+2gcgtUmESLIyHf6ufYQbdY7nyWQjk4ZJXunm4vggqa8+6NAoc1MoxIwha9R9i3PQaCHA==
+  dependencies:
+    "@kubernetes-models/validate" "^1.0.1"
+    is-plain-object "^5.0.0"
+    tslib "^2.0.3"
+
+"@kubernetes-models/validate@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@kubernetes-models/validate/-/validate-1.0.1.tgz#377b1b6738bbd5226dfba958e681aa6d4db86a2b"
+  integrity sha512-MCzrJfEfcxwvsGeX7v9iVK81EJq05+d8tvWXivgTQvaNFMLFkY3boUQxkp/0nqafpHIT4BxWf1LBIR3+57btuQ==
+  dependencies:
+    ajv "^6.12.6"
+    big-integer "^1.6.48"
+    tslib "^2.0.3"
+
 "@mdx-js/loader@^1.6.19":
   version "1.6.22"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.6.22.tgz#d9e8fe7f8185ff13c9c8639c048b123e30d322c4"
@@ -2752,7 +2770,7 @@ ajv-keywords@^3.1.0, ajv-keywords@^3.4.1, ajv-keywords@^3.5.2:
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
   integrity sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==
 
-ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.12.5:
+ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.12.5, ajv@^6.12.6:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -3515,6 +3533,11 @@ better-opn@^2.0.0:
   integrity sha512-kIPXZS5qwyKiX/HcRvDYfmBQUa8XP17I0mYZZ0y4UhpYOSvtsLHDYqmomS+Mj20aDvD3knEiQ0ecQy2nhio3yA==
   dependencies:
     open "^7.0.3"
+
+big-integer@^1.6.48:
+  version "1.6.48"
+  resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.48.tgz#8fd88bd1632cba4a1c8c3e3d7159f08bb95b4b9e"
+  integrity sha512-j51egjPa7/i+RdiRuJbPdJ2FIUYYPhvYLjzoYbcMMm62ooO6F94fETG4MTs46zPAF9Brs04OajboA/qTGuz78w==
 
 big.js@^5.2.2:
   version "5.2.2"
@@ -7866,6 +7889,15 @@ kleur@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
+
+kubernetes-models@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/kubernetes-models/-/kubernetes-models-1.0.3.tgz#928d1ee31f533c22d4868b7cc7357e0c46a9e1c6"
+  integrity sha512-5RtMfOqFfyLK1bEGeylUQvp8gPSNQaTeihV4q5iWfSEw+S9JtYLKGy5/Z/Ts9JVnbM80NrD2RPGNDAFShYksyQ==
+  dependencies:
+    "@kubernetes-models/base" "^1.1.0"
+    "@kubernetes-models/validate" "^1.0.1"
+    tslib "^2.0.3"
 
 language-subtag-registry@~0.3.2:
   version "0.3.21"

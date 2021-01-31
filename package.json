@@ -33,6 +33,7 @@
     "babel-loader": "^8.1.0",
     "eslint": "^7.18.0",
     "jest": "^25.5.3",
+    "kubernetes-models": "^1.0.3",
     "prettier": "^2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
