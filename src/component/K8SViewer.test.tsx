@@ -1,7 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-
-import { K8sViewer } from "./K8sViewer";
+import { render } from "@testing-library/react";
 
 describe("Fake test <K8sViewer />", () => {
   test("rendered text", () => {

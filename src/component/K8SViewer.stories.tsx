@@ -4,11 +4,18 @@ import { Meta } from "@storybook/react/types-6-0";
 
 import { K8sViewer } from "./K8sViewer";
 
-// Primary will be the name for the first story
 export const Basic: React.FC<{}> = () => (
   <div style={{ height: 200 }}>
     <ReactFlowProvider>
       <K8sViewer manifests={require("../../fixtures/basic.json")} />
+    </ReactFlowProvider>
+  </div>
+);
+
+export const Replicas: React.FC<{}> = () => (
+  <div style={{ height: 200 }}>
+    <ReactFlowProvider>
+      <K8sViewer manifests={require("../../fixtures/replicas.json")} />
     </ReactFlowProvider>
   </div>
 );

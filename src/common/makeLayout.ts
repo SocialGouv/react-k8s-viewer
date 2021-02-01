@@ -14,7 +14,7 @@ interface SuperNode extends Node {
 }
 
 // auto-layout with dagre
-export const makeLayout = (elements: EdgeProps[]): any[] => {
+export const makeLayout = (elements: any[]): any[] => {
   const g = new dagre.graphlib.Graph();
   g.setGraph({ rankdir: "LR", align: "DR", edgesep: 20 });
   g.setDefaultEdgeLabel(function () {

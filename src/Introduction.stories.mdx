@@ -2,4 +2,24 @@
 
 # react-k8s-viewer
 
-Show various usage of [react-k8s-viewer](https://github.com/socialgouv/react-k8s-viewer).
+[react-k8s-viewer](https://github.com/socialgouv/react-k8s-viewer) parse kubernetes manifests and output a flow diagram using [react-flow](https://github.com/wbkd/react-flow/).
+
+This demo website is a [storybook](https://github.com/SocialGouv/react-k8s-viewer/raw/master/demo.png) documentation.
+
+### Usage
+
+```jsx
+import { K8sViewer } from "@socialgouv/react-k8s-viewer";
+
+import manifests from "./manifests.json";
+
+const App = () => (
+  <div style={{ width: 1000, height: 400 }}>
+    <K8sViewer manifests={manifests} />
+  </div>
+);
+```
+
+See the [README and source on GitHub](https://github.com/socialgouv/react-k8s-viewer)
+
+![](https://github.com/SocialGouv/react-k8s-viewer/raw/master/demo.png)

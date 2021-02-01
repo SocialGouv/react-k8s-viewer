@@ -5,15 +5,25 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2020,
-    sourceType: "module",
   },
   rules: {
-    "react/prop-types": 0,
+    "react/prop-types": "off",
+    "simple-import-sort/sort": "off",
+    "sort-keys-fix/sort-keys-fix": "off",
   },
+  overrides: [
+    {
+      files: ["*.js", "*.ts", "*.tsx", "*.jsx"],
+    },
+  ],
   settings: {
     react: {
       version: "detect",
+    },
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
+      },
     },
   },
 };
