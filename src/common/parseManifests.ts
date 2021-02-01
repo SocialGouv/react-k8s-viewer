@@ -503,7 +503,8 @@ export const parseManifests = (
                       elements.push(edge);
                     }
                   }
-                });
+                }
+              );
             }
             if (container.env) {
               container.env.forEach((env: IIoK8sApiCoreV1EnvVar) => {
@@ -547,7 +548,7 @@ export const parseManifests = (
 
   // todo: create placeholders for missing nodes
   // ensure not found elements are explicit
- /* elements.forEach((element) => {
+  /* elements.forEach((element) => {
     if (element && element.target) {
       if (!elements.find((el) => el.id === element.target)) {
         // target not found
