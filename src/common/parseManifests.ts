@@ -1,29 +1,24 @@
-import type { Elements, Node, Edge } from "react-flow-renderer";
+import type { FlowElement, Elements, Node, Edge } from "react-flow-renderer";
+import { Position } from "react-flow-renderer";
 
 import type { AnyObject, Manifest, ManifestList } from "../types/types";
 
 import { Volume } from "kubernetes-models/api/core/v1/Volume";
 import { Container } from "kubernetes-models/api/core/v1/Container";
-import { EnvFromSource } from "kubernetes-models/api/core/v1/EnvFromSource";
-import { EnvVar } from "kubernetes-models/api/core/v1/EnvVar";
+import { IIoK8sApiCoreV1EnvFromSource } from "kubernetes-models/_definitions/IoK8sApiCoreV1EnvFromSource";
+import { IIoK8sApiCoreV1EnvVar } from "kubernetes-models/_definitions/IoK8sApiCoreV1EnvVar";
 import { IngressRule } from "kubernetes-models/networking.k8s.io/v1beta1/IngressRule";
 import { IngressTLS } from "kubernetes-models/networking.k8s.io/v1beta1/IngressTLS";
 
-const styles = {
-  Deployments: "#0f4c75",
-  Ingress: "#1e9e99",
-  Job: "#333",
-  error: { backgroundColor: "#ff7575", color: "#fff" },
-};
-
 const defaultPositions = {
-  sourcePosition: "right",
-  targetPosition: "left",
+  position: { x: 0, y: 0 },
+  sourcePosition: Position.Right,
+  targetPosition: Position.Left,
 };
 
 const getFlowNode = (manifest: Manifest) => ({
-  id: `${manifest.kind}-${manifest.metadata.namespace || ""}-${
-    manifest.metadata.name
+  id: `${manifest.kind}-${manifest?.metadata?.namespace || ""}-${
+    manifest?.metadata?.name || ""
   }`,
   ...defaultPositions,
 });
@@ -34,7 +29,7 @@ const createVolumeNode = (manifest: Manifest, volume: AnyObject): Node => {
     (volume.configMap && volume.configMap.name) ||
     volume.name;
 
-  const volumeId = `volume-${manifest.metadata.namespace}-${volumeName}`;
+  const volumeId = `volume-${manifest?.metadata?.namespace}-${volumeName}`;
   return {
     id: volumeId,
     ...defaultPositions,
@@ -69,7 +64,7 @@ const manifestsTypes = {
     {
       ...getFlowNode(manifest),
       data: {
-        label: `🚦 ${manifest.kind} ${manifest.metadata.name}`,
+        label: `🚦 ${manifest.kind} ${manifest?.metadata?.name}`,
         manifest,
       },
     },
@@ -79,7 +74,7 @@ const manifestsTypes = {
       ...getFlowNode(manifest),
       type: "output",
       data: {
-        label: `🔓 ${manifest.metadata.name}`,
+        label: `🔓 ${manifest?.metadata?.name}`,
         manifest,
       },
     },
@@ -89,7 +84,7 @@ const manifestsTypes = {
       ...getFlowNode(manifest),
       type: "input",
       data: {
-        label: `🔐 ${manifest.metadata.name}`,
+        label: `🔐 ${manifest?.metadata?.name}`,
         manifest,
       },
     },
@@ -99,7 +94,7 @@ const manifestsTypes = {
       ...getFlowNode(manifest),
       type: "output",
       data: {
-        label: `🗒 ${manifest.metadata.name}`,
+        label: `🗒 ${manifest?.metadata?.name}`,
         manifest,
       },
     },
@@ -108,7 +103,7 @@ const manifestsTypes = {
     {
       ...getFlowNode(manifest),
       data: {
-        label: `📊 ${manifest.metadata.name}`,
+        label: `📊 ${manifest?.metadata?.name}`,
         manifest,
       },
     },
@@ -124,7 +119,7 @@ const manifestsTypes = {
           ...node,
           id: node.id + `-${v}`,
           data: {
-            label: `📦 ${manifest.metadata.name}`,
+            label: `📦 ${manifest?.metadata?.name}`,
             manifest,
           },
         };
@@ -137,7 +132,7 @@ const manifestsTypes = {
       ...volumes,
       {
         ...getFlowNode(manifest),
-        data: { label: `⏳ ${manifest.metadata.name}`, manifest },
+        data: { label: `⏳ ${manifest?.metadata?.name}`, manifest },
       },
     ];
   },
@@ -147,13 +142,17 @@ const manifestsTypes = {
       ...volumes,
       {
         ...getFlowNode(manifest),
-        data: { label: `⚡️ ${manifest.metadata.name}`, manifest },
+        data: { label: `⚡️ ${manifest?.metadata?.name}`, manifest },
       },
     ];
   },
-};
+} as AnyObject;
 
-const createEdge = (source: Node, target: Node, opts = {}): Edge => {
+const createEdge = (
+  source: FlowElement,
+  target: FlowElement,
+  opts = {}
+): Edge | null => {
   if (!source) {
     console.log("createEdge.error source", source, opts);
     return null;
@@ -178,7 +177,7 @@ const getElements = (elements: Elements, filters: AnyObject): Elements => {
     }
     const isKind = !filters.kind || e.data.manifest.kind === filters.kind;
     const isName =
-      !filters.name || e.data.manifest.metadata.name === filters.name;
+      !filters.name || e.data.manifest?.metadata?.name === filters.name;
 
     return isKind && isName;
   });
@@ -189,14 +188,14 @@ const getVolume = (
   elements: Elements,
   namespace: string,
   volume: Volume
-): Node => {
+): Node | Edge | undefined => {
   const volumeName =
     (volume.azureFile && volume.azureFile.shareName) ||
     (volume.configMap && volume.configMap.name) ||
     volume.name;
 
   const volumeId = `volume-${namespace}-${volumeName}`;
-  return elements.find((e: Element) => e.id === volumeId);
+  return elements.find((e: any) => e.id && e.id === volumeId);
 };
 
 export const parseManifests = (
@@ -206,16 +205,18 @@ export const parseManifests = (
 
   const allManifests =
     (Array.isArray(manifests) && manifests[0].items) ||
-    manifests.items ||
+    //@ts-expect-error
+    (typeof manifests.items !== "undefined" && manifests.items) ||
     manifests;
 
   // create all Nodes elements
   allManifests.forEach((manifest: Manifest) => {
-    const definition = manifestsTypes[manifest.kind];
+    const definition = manifestsTypes[manifest.kind] as Function;
     if (definition) {
       const createdNodes = definition(manifest);
       createdNodes.filter(Boolean).forEach((node: Node) => {
-        if (!elements.find((e: Node) => e.id === node.id)) {
+        //@ts-expect-error
+        if (!elements.find((n: Node) => n.id === node.id)) {
           elements.push(node);
         }
       });
@@ -226,12 +227,11 @@ export const parseManifests = (
     const internetNode = {
       ...defaultPositions,
       id: `Internet`,
-      position: "top",
       type: "input",
       data: {
         label: `🌥 Internet`,
       },
-    };
+    } as Node;
 
     elements.push(internetNode);
 
@@ -241,14 +241,17 @@ export const parseManifests = (
       .forEach((manifest: Manifest) => {
         const ingressNode = getElements(elements, {
           kind: "Ingress",
-          name: manifest.metadata.name,
+          name: manifest?.metadata?.name,
         })[0];
 
         // internet to ingress edge
         const edge = createEdge(internetNode, ingressNode, {
           label: manifest.spec.tls && manifest.spec.tls.length ? "TLS" : "",
         });
-        elements.push(edge);
+
+        if (edge) {
+          elements.push(edge);
+        }
 
         const isValidRule = (rule: IngressRule) =>
           rule.http &&
@@ -257,13 +260,15 @@ export const parseManifests = (
 
         // ingress to services edge
         manifest.spec.rules.filter(isValidRule).forEach((rule: IngressRule) => {
-          const name = rule.http.paths[0].backend.serviceName;
+          const name = rule?.http?.paths[0].backend.serviceName;
           const serviceNode = getElements(elements, {
             kind: "Service",
             name,
           })[0];
           const edge = createEdge(ingressNode, serviceNode);
-          elements.push(edge);
+          if (edge) {
+            elements.push(edge);
+          }
         });
 
         // ingress to TLS secret edge
@@ -277,7 +282,9 @@ export const parseManifests = (
               const edge = createEdge(ingressNode, secretNode, {
                 defaultTargetLabel: tls.secretName,
               });
-              elements.push(edge);
+              if (edge) {
+                elements.push(edge);
+              }
             }
           });
       });
@@ -298,7 +305,7 @@ export const parseManifests = (
     //         "nginx.ingress.kubernetes.io/permanent-redirect"
     //       ].replace(/^https?:\/\/([^/$]*).*/i, "$1");
     //       elements.push({
-    //         id: `edge-${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}-${rule.host}`,
+    //         id: `edge-${manifest.kind}-${manifest?.metadata?.namespace}-${manifest?.metadata?.name}-${rule.host}`,
     //         source: `${manifest.kind}-${rule.host}`,
     //         target: `Ingress-` + host,
     //         defaultTargetLabel: host,
@@ -321,7 +328,7 @@ export const parseManifests = (
 
       const serviceNode = getElements(elements, {
         kind: "Service",
-        name: manifest.metadata.name,
+        name: manifest?.metadata?.name,
       })[0];
 
       const deploymentNodes = getElements(elements, {
@@ -334,8 +341,9 @@ export const parseManifests = (
           // defaultTargetLabel: rule.secretName,
           animated: true,
         });
-
-        elements.push(edge);
+        if (edge) {
+          elements.push(edge);
+        }
       });
     });
 
@@ -344,14 +352,16 @@ export const parseManifests = (
     .forEach((manifest: Manifest) => {
       const secretNode = getElements(elements, {
         kind: "Secret",
-        name: manifest.metadata.name,
+        name: manifest?.metadata?.name,
       })[0];
       const sealedSecretNode = getElements(elements, {
         kind: "SealedSecret",
-        name: manifest.metadata.name,
+        name: manifest?.metadata?.name,
       })[0];
       const edge = createEdge(sealedSecretNode, secretNode);
-      elements.push(edge);
+      if (edge) {
+        elements.push(edge);
+      }
     });
 
   allManifests
@@ -359,7 +369,7 @@ export const parseManifests = (
     .forEach((manifest: Manifest) => {
       const serviceMonitorNode = getElements(elements, {
         kind: "ServiceMonitor",
-        name: manifest.metadata.name,
+        name: manifest?.metadata?.name,
       })[0];
       const serviceNode = getElements(elements, {
         kind: "Service",
@@ -368,7 +378,9 @@ export const parseManifests = (
       const edge = createEdge(serviceMonitorNode, serviceNode, {
         animated: true,
       });
-      elements.push(edge);
+      if (edge) {
+        elements.push(edge);
+      }
     });
 
   allManifests
@@ -381,7 +393,7 @@ export const parseManifests = (
     .forEach((manifest: Manifest) => {
       const manifestNodes = getElements(elements, {
         kind: manifest.kind,
-        name: manifest.metadata.name,
+        name: manifest?.metadata?.name,
       });
 
       manifestNodes.forEach((manifestNode) => {
@@ -398,7 +410,9 @@ export const parseManifests = (
                   label: `Secret ${pullSecret.name}`,
                 },
               });
-              elements.push(edge);
+              if (edge) {
+                elements.push(edge);
+              }
             }
           );
         }
@@ -409,79 +423,90 @@ export const parseManifests = (
             .forEach((volume: Volume) => {
               const volumeNode = getVolume(
                 elements,
-                manifest.metadata.namespace,
+                manifest?.metadata?.namespace,
                 volume
               );
-
-              const edge = createEdge(manifestNode, volumeNode, {
-                type: "smoothstep",
-              });
-              elements.push(edge);
-
-              if (volume.configMap) {
-                const configMapNode = getElements(elements, {
-                  kind: "ConfigMap",
-                  name: volume.configMap.name,
-                })[0];
-                const edge = createEdge(volumeNode, configMapNode, {
+              if (volumeNode) {
+                const edge = createEdge(manifestNode, volumeNode, {
                   type: "smoothstep",
-                  data: {
-                    label: `ConfigMap ${volume.configMap.name}`,
-                    ...volume,
-                  },
                 });
-                elements.push(edge);
-              }
-              if (volume.azureFile) {
-                const secretNode = getElements(elements, {
-                  kind: "Secret",
-                  name: volume.azureFile.secretName,
-                })[0];
-                const edge = createEdge(volumeNode, secretNode, {
-                  type: "smoothstep",
-                  data: {
-                    label: `Secret ${volume.azureFile.secretName}`,
-                    ...volume,
-                  },
-                });
-                elements.push(edge);
+                if (edge) {
+                  elements.push(edge);
+                }
+                if (volume.configMap) {
+                  const configMapNode = getElements(elements, {
+                    kind: "ConfigMap",
+                    name: volume.configMap.name,
+                  })[0];
+                  const edge = createEdge(volumeNode, configMapNode, {
+                    type: "smoothstep",
+                    data: {
+                      label: `ConfigMap ${volume.configMap.name}`,
+                      ...volume,
+                    },
+                  });
+                  if (edge) {
+                    elements.push(edge);
+                  }
+                }
+                if (volume.azureFile) {
+                  const secretNode = getElements(elements, {
+                    kind: "Secret",
+                    name: volume.azureFile.secretName,
+                  })[0];
+                  const edge = createEdge(volumeNode, secretNode, {
+                    type: "smoothstep",
+                    data: {
+                      label: `Secret ${volume.azureFile.secretName}`,
+                      ...volume,
+                    },
+                  });
+                  if (edge) {
+                    elements.push(edge);
+                  }
+                }
               }
             });
 
         manifest.spec.template.spec.containers.forEach(
           (container: Container) => {
             if (container.envFrom) {
-              container.envFrom.forEach((envFrom: EnvFromSource) => {
-                if (envFrom.secretRef) {
-                  const secretNode = getElements(elements, {
-                    kind: "Secret",
-                    name: envFrom.secretRef.name,
-                  })[0];
-                  const edge = createEdge(manifestNode, secretNode, {
-                    type: "smoothstep",
-                    data: {
-                      label: `Secret ${envFrom.secretRef.name}`,
-                    },
-                  });
-                  elements.push(edge);
-                }
-                if (envFrom.configMapRef) {
-                  const configMapNode = getElements(elements, {
-                    kind: "ConfigMap",
-                    name: envFrom.configMapRef.name,
-                  })[0];
-                  const edge = createEdge(manifestNode, configMapNode, {
-                    type: "smoothstep",
-                    data: {
-                      label: `ConfigMap ${envFrom.configMapRef.name}`,
-                    },
-                  });
-                  elements.push(edge);
-                }
-              });
+              container.envFrom.forEach(
+                (envFrom: IIoK8sApiCoreV1EnvFromSource) => {
+                  if (envFrom.secretRef) {
+                    const secretNode = getElements(elements, {
+                      kind: "Secret",
+                      name: envFrom.secretRef.name,
+                    })[0];
+                    const edge = createEdge(manifestNode, secretNode, {
+                      type: "smoothstep",
+                      data: {
+                        label: `Secret ${envFrom.secretRef.name}`,
+                      },
+                    });
+                    if (edge) {
+                      elements.push(edge);
+                    }
+                  }
+                  if (envFrom.configMapRef) {
+                    const configMapNode = getElements(elements, {
+                      kind: "ConfigMap",
+                      name: envFrom.configMapRef.name,
+                    })[0];
+                    const edge = createEdge(manifestNode, configMapNode, {
+                      type: "smoothstep",
+                      data: {
+                        label: `ConfigMap ${envFrom.configMapRef.name}`,
+                      },
+                    });
+                    if (edge) {
+                      elements.push(edge);
+                    }
+                  }
+                });
             }
             if (container.env) {
-              container.env.forEach((env: EnvVar) => {
+              container.env.forEach((env: IIoK8sApiCoreV1EnvVar) => {
                 if (env.valueFrom) {
                   if (env.valueFrom.secretKeyRef) {
                     const secretNode = getElements(elements, {
@@ -494,19 +519,23 @@ export const parseManifests = (
                         label: `Secret ${env.valueFrom.secretKeyRef.name}`,
                       },
                     });
-                    elements.push(edge);
-                  } else if (env.valueFrom.configMapRef) {
+                    if (edge) {
+                      elements.push(edge);
+                    }
+                  } else if (env.valueFrom.configMapKeyRef) {
                     const configMapNode = getElements(elements, {
                       kind: "Secret",
-                      name: env.valueFrom.configMapRef.name,
+                      name: env.valueFrom.configMapKeyRef.name,
                     })[0];
                     const edge = createEdge(manifestNode, configMapNode, {
                       type: "smoothstep",
                       data: {
-                        label: `ConfigMap ${env.valueFrom.configMapRef.name}`,
+                        label: `ConfigMap ${env.valueFrom.configMapKeyRef.name}`,
                       },
                     });
-                    elements.push(edge);
+                    if (edge) {
+                      elements.push(edge);
+                    }
                   }
                 }
               });
@@ -516,8 +545,9 @@ export const parseManifests = (
       });
     });
 
+  // todo: create placeholders for missing nodes
   // ensure not found elements are explicit
-  elements.forEach((element) => {
+ /* elements.forEach((element) => {
     if (element && element.target) {
       if (!elements.find((el) => el.id === element.target)) {
         // target not found
@@ -551,6 +581,7 @@ export const parseManifests = (
       }
     }
   });
+  */
 
   return elements.filter(Boolean);
 };
