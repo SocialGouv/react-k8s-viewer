@@ -8,7 +8,7 @@ import { HtmlFlowNode } from "./HtmlFlowNode";
 
 import type { ManifestList, Manifest } from "../types/types";
 
-const onLoad = (reactFlowInstance): OnLoadFunc => {
+const onLoad: OnLoadFunc = (reactFlowInstance) => {
   reactFlowInstance.fitView();
 };
 
