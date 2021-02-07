@@ -300,6 +300,7 @@ Array [
   },
   Object {
     "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app",
+    "label": "'\\"/\\"'",
     "source": "Ingress-sample-next-app-85-preprod-dev2-app",
     "target": "Service-sample-next-app-85-preprod-dev2-app",
   },
@@ -370,7 +371,52 @@ Array [
   },
   Object {
     "data": Object {
-      "label": "🌍 preprod-sample-next-app.dev2.org.com<br>🌍 preprod2-sample-next-app.dev2.org.com",
+      "label": "🚦 Service app-admin",
+      "manifest": Object {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-sample-next-app",
+            "app.gitlab.com/env": "preprod-dev2",
+            "app.gitlab.com/env.name": "preprod-dev2",
+          },
+          "labels": Object {
+            "app": "app-admin",
+            "application": "v2-1-5-sample-next-app",
+            "cert": "wildcard",
+            "owner": "sample-next-app",
+            "team": "sample-next-app",
+          },
+          "name": "app-admin",
+          "namespace": "sample-next-app-85-preprod-dev2",
+        },
+        "spec": Object {
+          "clusterIP": "1.2.3.4",
+          "ports": Array [
+            Object {
+              "name": "http",
+              "port": 80,
+              "targetPort": 3030,
+            },
+          ],
+          "selector": Object {
+            "app": "app-admin",
+          },
+        },
+      },
+    },
+    "id": "Service-sample-next-app-85-preprod-dev2-app-admin",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 preprod.com<br>🌍 preprod2.com",
       "manifest": Object {
         "apiVersion": "extensions/v1beta1",
         "kind": "Ingress",
@@ -394,7 +440,7 @@ Array [
         "spec": Object {
           "rules": Array [
             Object {
-              "host": "preprod-sample-next-app.dev2.org.com",
+              "host": "preprod.com",
               "http": Object {
                 "paths": Array [
                   Object {
@@ -408,7 +454,7 @@ Array [
               },
             },
             Object {
-              "host": "preprod2-sample-next-app.dev2.org.com",
+              "host": "preprod2.com",
               "http": Object {
                 "paths": Array [
                   Object {
@@ -417,6 +463,13 @@ Array [
                       "servicePort": 80,
                     },
                     "path": "/",
+                  },
+                  Object {
+                    "backend": Object {
+                      "serviceName": "app-admin",
+                      "servicePort": 80,
+                    },
+                    "path": "/admin",
                   },
                 ],
               },
@@ -425,8 +478,8 @@ Array [
           "tls": Array [
             Object {
               "hosts": Array [
-                "preprod-sample-next-app.dev2.org.com",
-                "preprod2-sample-next-app.dev2.org.com",
+                "preprod.com",
+                "preprod2.com",
               ],
               "secretName": "wildcard-crt",
             },
@@ -464,13 +517,21 @@ Array [
   },
   Object {
     "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app",
+    "label": "'\\"/\\"'",
     "source": "Ingress-sample-next-app-85-preprod-dev2-app",
     "target": "Service-sample-next-app-85-preprod-dev2-app",
   },
   Object {
     "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app",
+    "label": "'\\"/\\"'",
     "source": "Ingress-sample-next-app-85-preprod-dev2-app",
     "target": "Service-sample-next-app-85-preprod-dev2-app",
+  },
+  Object {
+    "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app-admin",
+    "label": "'\\"/admin\\"'",
+    "source": "Ingress-sample-next-app-85-preprod-dev2-app",
+    "target": "Service-sample-next-app-85-preprod-dev2-app-admin",
   },
 ]
 `;
@@ -2029,6 +2090,7 @@ Array [
   },
   Object {
     "id": "edge-Ingress-sample-next-app-85-preprod-dev2-app-Service-sample-next-app-85-preprod-dev2-app",
+    "label": "'\\"/\\"'",
     "source": "Ingress-sample-next-app-85-preprod-dev2-app",
     "target": "Service-sample-next-app-85-preprod-dev2-app",
   },
@@ -2046,6 +2108,7 @@ Array [
   },
   Object {
     "id": "edge-Ingress-sample-next-app-85-preprod-dev2-hasura-Service-sample-next-app-85-preprod-dev2-hasura",
+    "label": "'\\"/\\"'",
     "source": "Ingress-sample-next-app-85-preprod-dev2-hasura",
     "target": "Service-sample-next-app-85-preprod-dev2-hasura",
   },
@@ -2063,6 +2126,7 @@ Array [
   },
   Object {
     "id": "edge-Ingress-sample-next-app-85-preprod-dev2-pgweb-Service-sample-next-app-85-preprod-dev2-pgweb",
+    "label": "'\\"/\\"'",
     "source": "Ingress-sample-next-app-85-preprod-dev2-pgweb",
     "target": "Service-sample-next-app-85-preprod-dev2-pgweb",
   },

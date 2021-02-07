@@ -260,14 +260,20 @@ export const parseManifests = (
 
         // ingress to services edge
         manifest.spec.rules.filter(isValidRule).forEach((rule: IngressRule) => {
-          const name = rule?.http?.paths[0].backend.serviceName;
-          const serviceNode = getElements(elements, {
-            kind: "Service",
-            name,
-          })[0];
-          const edge = createEdge(ingressNode, serviceNode);
-          if (edge) {
-            elements.push(edge);
+          if (rule.http && rule.http.paths && rule.http.paths.length) {
+            rule.http.paths.forEach((path) => {
+              const name = path.backend.serviceName;
+              const serviceNode = getElements(elements, {
+                kind: "Service",
+                name,
+              })[0];
+              const edge = createEdge(ingressNode, serviceNode, {
+                label: path.path && `'"${path.path}"'`,
+              });
+              if (edge) {
+                elements.push(edge);
+              }
+            });
           }
         });
 
