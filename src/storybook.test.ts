@@ -3,9 +3,9 @@ import { render } from "@testing-library/react";
 
 const reactTestingLibrarySerializer = {
   //@ts-expect-error
-  print: (val, serialize, indent) => serialize(val.container.firstChild),
+  print: (val, serialize) => serialize(val.container.firstChild),
   //@ts-expect-error
-  test: (val) => val && val.hasOwnProperty("container"),
+  test: (val) => val && val["container"],
 };
 
 initStoryshots({
