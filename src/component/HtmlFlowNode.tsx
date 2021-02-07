@@ -15,6 +15,7 @@ export const HtmlFlowNode = ({ data }: HtmlLabelComponentProps) => {
       style={{
         whiteSpace: "nowrap",
         overflow: "hidden",
+        textAlign: "left"
       }}
       className="react-flow__node-default react-flow__node-input react-flow__node-output"
       title={data.label}
