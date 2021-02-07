@@ -34,6 +34,39 @@
         }
       }
     },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "app.gitlab.com/app": "org-sample-next-app",
+          "app.gitlab.com/env": "preprod-dev2",
+          "app.gitlab.com/env.name": "preprod-dev2"
+        },
+        "labels": {
+          "app": "app-admin",
+          "application": "v2-1-5-sample-next-app",
+          "cert": "wildcard",
+          "owner": "sample-next-app",
+          "team": "sample-next-app"
+        },
+        "name": "app-admin",
+        "namespace": "sample-next-app-85-preprod-dev2"
+      },
+      "spec": {
+        "clusterIP": "1.2.3.4",
+        "ports": [
+          {
+            "name": "http",
+            "port": 80,
+            "targetPort": 3030
+          }
+        ],
+        "selector": {
+          "app": "app-admin"
+        }
+      }
+    },
 
     {
       "apiVersion": "extensions/v1beta1",
@@ -58,7 +91,7 @@
       "spec": {
         "rules": [
           {
-            "host": "preprod-sample-next-app.dev2.org.com",
+            "host": "preprod.com",
             "http": {
               "paths": [
                 {
@@ -72,7 +105,7 @@
             }
           },
           {
-            "host": "preprod2-sample-next-app.dev2.org.com",
+            "host": "preprod2.com",
             "http": {
               "paths": [
                 {
@@ -81,6 +114,13 @@
                     "servicePort": 80
                   },
                   "path": "/"
+                },
+                {
+                  "backend": {
+                    "serviceName": "app-admin",
+                    "servicePort": 80
+                  },
+                  "path": "/admin"
                 }
               ]
             }
@@ -89,8 +129,8 @@
         "tls": [
           {
             "hosts": [
-              "preprod-sample-next-app.dev2.org.com",
-              "preprod2-sample-next-app.dev2.org.com"
+              "preprod.com",
+              "preprod2.com"
             ],
             "secretName": "wildcard-crt"
           }

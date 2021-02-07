@@ -1,0 +1,957 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots K8sViewer Basic 1`] = `
+<div
+  style="height: 200px;"
+>
+  <div
+    class="react-flow"
+  >
+    <div
+      class="react-flow__renderer react-flow__zoompane"
+    >
+      <div
+        class="react-flow__nodes"
+        style="transform: translate(0px,250px) scale(0.5);"
+      >
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          style="z-index: 3; transform: translate(750px,0px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          />
+          📦 app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-sample-next-app-85-preprod-dev2-app"
+          style="z-index: 3; transform: translate(500px,0px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app"
+          />
+          🚦 Service app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="ConfigMap-sample-next-app-85-preprod-dev2-app-configmap"
+          style="z-index: 3; transform: translate(1000px,0px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="ConfigMap-sample-next-app-85-preprod-dev2-app-configmap"
+          />
+          🗒 app-configmap
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-sample-next-app-85-preprod-dev2-app"
+          style="z-index: 3; transform: translate(250px,0px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 preprod-sample-next-app.dev2.org.com"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-app"
+            />
+            <div>
+              🌍 preprod-sample-next-app.dev2.org.com
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-app"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="Internet"
+          style="z-index: 3; transform: translate(0px,0px); pointer-events: all; opacity: 0;"
+        >
+          🌥 Internet
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Internet"
+          />
+        </div>
+      </div>
+      <svg
+        class="react-flow__edges"
+        height="500"
+        width="500"
+      >
+        <defs>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrowclosed"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="#b1b1b7"
+              points="-5,-4 0,0 -5,4 -5,-4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+            />
+          </marker>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrow"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="none"
+              points="-5,-4 0,0 -5,4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </marker>
+        </defs>
+        <g
+          transform="translate(0,250) scale(0.5)"
+        />
+      </svg>
+      <div
+        class="react-flow__pane"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots K8sViewer Ingress Hosts 1`] = `
+<div
+  style="height: 300px;"
+>
+  <div
+    class="react-flow"
+  >
+    <div
+      class="react-flow__renderer react-flow__zoompane"
+    >
+      <div
+        class="react-flow__nodes"
+        style="transform: translate(22.727272727272748px,204.54545454545456px) scale(0.9090909090909091);"
+      >
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-sample-next-app-85-preprod-dev2-app"
+          style="z-index: 3; transform: translate(500px,0px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app"
+          />
+          🚦 Service app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-sample-next-app-85-preprod-dev2-app-admin"
+          style="z-index: 3; transform: translate(500px,100px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app-admin"
+          />
+          🚦 Service app-admin
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app-admin"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-sample-next-app-85-preprod-dev2-app"
+          style="z-index: 3; transform: translate(250px,100px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 preprod.com<br>🌍 preprod2.com"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-app"
+            />
+            <div>
+              🌍 preprod.com
+              <br />
+              🌍 preprod2.com
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-app"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="Internet"
+          style="z-index: 3; transform: translate(0px,100px); pointer-events: all; opacity: 0;"
+        >
+          🌥 Internet
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Internet"
+          />
+        </div>
+      </div>
+      <svg
+        class="react-flow__edges"
+        height="500"
+        width="500"
+      >
+        <defs>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrowclosed"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="#b1b1b7"
+              points="-5,-4 0,0 -5,4 -5,-4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+            />
+          </marker>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrow"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="none"
+              points="-5,-4 0,0 -5,4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </marker>
+        </defs>
+        <g
+          transform="translate(22.727272727272748,204.54545454545456) scale(0.9090909090909091)"
+        />
+      </svg>
+      <div
+        class="react-flow__pane"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots K8sViewer Replicas 1`] = `
+<div
+  style="height: 200px;"
+>
+  <div
+    class="react-flow"
+  >
+    <div
+      class="react-flow__renderer react-flow__zoompane"
+    >
+      <div
+        class="react-flow__nodes"
+        style="transform: translate(22.727272727272748px,68.18181818181819px) scale(1.8181818181818181);"
+      >
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          style="z-index: 3; transform: translate(250px,0px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          />
+          📦 app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-app-1"
+          style="z-index: 3; transform: translate(250px,100px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-1"
+          />
+          📦 app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-1"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-app-2"
+          style="z-index: 3; transform: translate(250px,200px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-2"
+          />
+          📦 app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-2"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-sample-next-app-85-preprod-dev2-app"
+          style="z-index: 3; transform: translate(0px,100px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app"
+          />
+          🚦 Service app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app"
+          />
+        </div>
+      </div>
+      <svg
+        class="react-flow__edges"
+        height="500"
+        width="500"
+      >
+        <defs>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrowclosed"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="#b1b1b7"
+              points="-5,-4 0,0 -5,4 -5,-4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+            />
+          </marker>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrow"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="none"
+              points="-5,-4 0,0 -5,4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </marker>
+        </defs>
+        <g
+          transform="translate(22.727272727272748,68.18181818181819) scale(1.8181818181818181)"
+        />
+      </svg>
+      <div
+        class="react-flow__pane"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots K8sViewer Sample Next App 1`] = `
+<div
+  style="height: 700px;"
+>
+  <div
+    class="react-flow"
+  >
+    <div
+      class="react-flow__renderer react-flow__zoompane"
+    >
+      <div
+        class="react-flow__nodes"
+        style="transform: translate(0px,20px) scale(0.5);"
+      >
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          style="z-index: 3; transform: translate(750px,100px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          />
+          📦 app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-app-1"
+          style="z-index: 3; transform: translate(750px,200px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-1"
+          />
+          📦 app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-1"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-app-2"
+          style="z-index: 3; transform: translate(750px,300px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-2"
+          />
+          📦 app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-2"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-hasura-0"
+          style="z-index: 3; transform: translate(750px,700px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-hasura-0"
+          />
+          📦 hasura
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-hasura-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-pgweb-0"
+          style="z-index: 3; transform: translate(750px,500px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-pgweb-0"
+          />
+          📦 pgweb
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-pgweb-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-sample-next-app-85-preprod-dev2-app"
+          style="z-index: 3; transform: translate(500px,200px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app"
+          />
+          🚦 Service app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-app"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-sample-next-app-85-preprod-dev2-hasura"
+          style="z-index: 3; transform: translate(500px,700px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-hasura"
+          />
+          🚦 Service hasura
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-hasura"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-sample-next-app-85-preprod-dev2-pgweb"
+          style="z-index: 3; transform: translate(500px,500px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-pgweb"
+          />
+          🚦 Service pgweb
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-sample-next-app-85-preprod-dev2-pgweb"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="ConfigMap-sample-next-app-85-preprod-dev2-app-configmap"
+          style="z-index: 3; transform: translate(1000px,300px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="ConfigMap-sample-next-app-85-preprod-dev2-app-configmap"
+          />
+          🗒 app-configmap
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="ConfigMap-sample-next-app-85-preprod-dev2-hasura-configmap"
+          style="z-index: 3; transform: translate(1000px,800px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="ConfigMap-sample-next-app-85-preprod-dev2-hasura-configmap"
+          />
+          🗒 hasura-configmap
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-sample-next-app-85-preprod-dev2-app-sealed-secret"
+          style="z-index: 3; transform: translate(1000px,60px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-sample-next-app-85-preprod-dev2-app-sealed-secret"
+          />
+          🔓 app-sealed-secret
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-sample-next-app-85-preprod-dev2-azure-pg-user"
+          style="z-index: 3; transform: translate(1000px,500px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-sample-next-app-85-preprod-dev2-azure-pg-user"
+          />
+          🔓 azure-pg-user
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret"
+          style="z-index: 3; transform: translate(1000px,700px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-sample-next-app-85-preprod-dev2-hasura-sealed-secret"
+          />
+          🔓 hasura-sealed-secret
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-sample-next-app-85-preprod-dev2-wildcard-crt"
+          style="z-index: 3; transform: translate(500px,920px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-sample-next-app-85-preprod-dev2-wildcard-crt"
+          />
+          🔓 wildcard-crt
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-sample-next-app-85-preprod-dev2-app"
+          style="z-index: 3; transform: translate(250px,720px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 preprod-sample-next-app.dev2.org.com"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-app"
+            />
+            <div>
+              🌍 preprod-sample-next-app.dev2.org.com
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-app"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-sample-next-app-85-preprod-dev2-hasura"
+          style="z-index: 3; transform: translate(250px,820px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 hasura-preprod-sample-next-app.dev2.org.com"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-hasura"
+            />
+            <div>
+              🌍 hasura-preprod-sample-next-app.dev2.org.com
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-hasura"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-sample-next-app-85-preprod-dev2-pgweb"
+          style="z-index: 3; transform: translate(250px,920px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 pgweb-preprod-sample-next-app.dev2.org.com"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-pgweb"
+            />
+            <div>
+              🌍 pgweb-preprod-sample-next-app.dev2.org.com
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-sample-next-app-85-preprod-dev2-pgweb"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret"
+          style="z-index: 3; transform: translate(750px,0px); pointer-events: all; opacity: 0;"
+        >
+          🔐 app-sealed-secret
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="SealedSecret-sample-next-app-85-preprod-dev2-azure-pg-user"
+          style="z-index: 3; transform: translate(750px,400px); pointer-events: all; opacity: 0;"
+        >
+          🔐 azure-pg-user
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="SealedSecret-sample-next-app-85-preprod-dev2-azure-pg-user"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="SealedSecret-sample-next-app-85-preprod-dev2-hasura-sealed-secret"
+          style="z-index: 3; transform: translate(750px,600px); pointer-events: all; opacity: 0;"
+        >
+          🔐 hasura-sealed-secret
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="SealedSecret-sample-next-app-85-preprod-dev2-hasura-sealed-secret"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="Internet"
+          style="z-index: 3; transform: translate(0px,820px); pointer-events: all; opacity: 0;"
+        >
+          🌥 Internet
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Internet"
+          />
+        </div>
+      </div>
+      <svg
+        class="react-flow__edges"
+        height="500"
+        width="500"
+      >
+        <defs>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrowclosed"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="#b1b1b7"
+              points="-5,-4 0,0 -5,4 -5,-4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+            />
+          </marker>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrow"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="none"
+              points="-5,-4 0,0 -5,4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </marker>
+        </defs>
+        <g
+          transform="translate(0,20) scale(0.5)"
+        />
+      </svg>
+      <div
+        class="react-flow__pane"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots K8sViewer Sealed Secret 1`] = `
+<div
+  style="height: 200px;"
+>
+  <div
+    class="react-flow"
+  >
+    <div
+      class="react-flow__renderer react-flow__zoompane"
+    >
+      <div
+        class="react-flow__nodes"
+        style="transform: translate(22.727272727272748px,159.0909090909091px) scale(1.8181818181818181);"
+      >
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          style="z-index: 3; transform: translate(0px,100px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          />
+          📦 app
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-sample-next-app-85-preprod-dev2-app-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-sample-next-app-85-preprod-dev2-app-sealed-secret"
+          style="z-index: 3; transform: translate(250px,100px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-sample-next-app-85-preprod-dev2-app-sealed-secret"
+          />
+          🔓 app-sealed-secret
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret"
+          style="z-index: 3; transform: translate(0px,0px); pointer-events: all; opacity: 0;"
+        >
+          🔐 app-sealed-secret
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="SealedSecret-sample-next-app-85-preprod-dev2-app-sealed-secret"
+          />
+        </div>
+      </div>
+      <svg
+        class="react-flow__edges"
+        height="500"
+        width="500"
+      >
+        <defs>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrowclosed"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="#b1b1b7"
+              points="-5,-4 0,0 -5,4 -5,-4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+            />
+          </marker>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrow"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="none"
+              points="-5,-4 0,0 -5,4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </marker>
+        </defs>
+        <g
+          transform="translate(22.727272727272748,159.0909090909091) scale(1.8181818181818181)"
+        />
+      </svg>
+      <div
+        class="react-flow__pane"
+      />
+    </div>
+  </div>
+</div>
+`;
