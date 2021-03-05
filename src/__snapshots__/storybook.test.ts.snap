@@ -625,20 +625,8 @@ exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="Secret-123-85-master-dev2-hasura-sealed-secret"
-          style="z-index: 3; transform: translate(1000px,520px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Secret-123-85-master-dev2-hasura-sealed-secret"
-          />
-          🔓 hasura-sealed-secret
-        </div>
-        <div
-          class="react-flow__node react-flow__node-output"
           data-id="ConfigMap-123-85-master-dev2-hasura-configmap"
-          style="z-index: 3; transform: translate(1000px,620px); pointer-events: all; opacity: 0;"
+          style="z-index: 3; transform: translate(1000px,520px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
@@ -738,7 +726,7 @@ exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
         <div
           class="react-flow__node react-flow__node-input"
           data-id="SealedSecret-123-85-master-dev2-strapi-sealed-secret"
-          style="z-index: 3; transform: translate(750px,720px); pointer-events: all; opacity: 0;"
+          style="z-index: 3; transform: translate(750px,820px); pointer-events: all; opacity: 0;"
         >
           🔐 strapi-sealed-secret
           <div
@@ -749,20 +737,8 @@ exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="Secret-123-85-master-dev2-strapi-sealed-secret"
-          style="z-index: 3; transform: translate(1000px,720px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Secret-123-85-master-dev2-strapi-sealed-secret"
-          />
-          🔓 strapi-sealed-secret
-        </div>
-        <div
-          class="react-flow__node react-flow__node-output"
           data-id="ConfigMap-123-85-master-dev2-strapi-configmap"
-          style="z-index: 3; transform: translate(1000px,820px); pointer-events: all; opacity: 0;"
+          style="z-index: 3; transform: translate(1000px,720px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
@@ -824,6 +800,30 @@ exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
             data-handlepos="right"
             data-nodeid="Internet"
           />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-123-85-master-dev2-hasura-sealed-secret"
+          style="z-index: 3; transform: translate(1000px,620px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-123-85-master-dev2-hasura-sealed-secret"
+          />
+          🔓 hasura-sealed-secret
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-123-85-master-dev2-strapi-sealed-secret"
+          style="z-index: 3; transform: translate(1000px,820px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-123-85-master-dev2-strapi-sealed-secret"
+          />
+          🔓 strapi-sealed-secret
         </div>
       </div>
       <svg

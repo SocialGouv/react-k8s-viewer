@@ -90,9 +90,6 @@ const manifestsTypes = {
         manifest,
       },
     },
-    {
-      ...manifestsTypes.Secret({ ...manifest, kind: "Secret" })[0],
-    },
   ],
   ConfigMap: (manifest: Manifest): Node[] => [
     {
@@ -370,10 +367,15 @@ export const parseManifests = (
   allManifests
     .filter((manifest: Manifest) => manifest.kind === "SealedSecret")
     .forEach((manifest: Manifest) => {
-      const secretNode = getElements(elements, {
+      let secretNode = getElements(elements, {
         kind: "Secret",
         name: manifest?.metadata?.name,
       })[0];
+      if (!secretNode) {
+        // create missing secret node
+        secretNode = manifestsTypes.Secret({ ...manifest, kind: "Secret" })[0];
+        elements.push(secretNode);
+      }
       const sealedSecretNode = getElements(elements, {
         kind: "SealedSecret",
         name: manifest?.metadata?.name,

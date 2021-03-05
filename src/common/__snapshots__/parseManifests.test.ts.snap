@@ -3181,63 +3181,6 @@ Array [
   },
   Object {
     "data": Object {
-      "label": "🔓 hasura-sealed-secret",
-      "manifest": Object {
-        "encryptedData": Object {
-          "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value",
-        },
-        "kind": "Secret",
-        "metadata": Object {
-          "annotations": Object {
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
-            "sealedsecrets.bitnami.com/cluster-wide": "true",
-          },
-          "labels": Object {
-            "application": "chore-d-u8fps8-les123",
-            "cert": "wildcard",
-            "owner": "les123",
-            "team": "les123",
-          },
-          "name": "hasura-sealed-secret",
-          "namespace": "123-85-master-dev2",
-        },
-        "spec": Object {
-          "encryptedData": Object {
-            "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value",
-          },
-          "template": Object {
-            "metadata": Object {
-              "annotations": Object {
-                "app.gitlab.com/app": "org-123-les123",
-                "app.gitlab.com/env": "chore-d-u8fps8",
-                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
-                "sealedsecrets.bitnami.com/cluster-wide": "true",
-              },
-              "labels": Object {
-                "application": "chore-d-u8fps8-les123",
-                "cert": "wildcard",
-                "owner": "les123",
-                "team": "les123",
-              },
-              "name": "hasura-sealed-secret",
-            },
-          },
-        },
-      },
-    },
-    "id": "Secret-123-85-master-dev2-hasura-sealed-secret",
-    "position": Object {
-      "x": 0,
-      "y": 0,
-    },
-    "sourcePosition": "right",
-    "targetPosition": "left",
-    "type": "output",
-  },
-  Object {
-    "data": Object {
       "label": "🗒 hasura-configmap",
       "manifest": Object {
         "data": Object {
@@ -3668,63 +3611,6 @@ Array [
   },
   Object {
     "data": Object {
-      "label": "🔓 strapi-sealed-secret",
-      "manifest": Object {
-        "encryptedData": Object {
-          "hello": "some-sealed-secret-value",
-        },
-        "kind": "Secret",
-        "metadata": Object {
-          "annotations": Object {
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
-            "sealedsecrets.bitnami.com/cluster-wide": "true",
-          },
-          "labels": Object {
-            "application": "chore-d-u8fps8-les123",
-            "cert": "wildcard",
-            "owner": "les123",
-            "team": "les123",
-          },
-          "name": "strapi-sealed-secret",
-          "namespace": "123-85-master-dev2",
-        },
-        "spec": Object {
-          "encryptedData": Object {
-            "hello": "some-sealed-secret-value",
-          },
-          "template": Object {
-            "metadata": Object {
-              "annotations": Object {
-                "app.gitlab.com/app": "org-123-les123",
-                "app.gitlab.com/env": "chore-d-u8fps8",
-                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
-                "sealedsecrets.bitnami.com/cluster-wide": "true",
-              },
-              "labels": Object {
-                "application": "chore-d-u8fps8-les123",
-                "cert": "wildcard",
-                "owner": "les123",
-                "team": "les123",
-              },
-              "name": "strapi-sealed-secret",
-            },
-          },
-        },
-      },
-    },
-    "id": "Secret-123-85-master-dev2-strapi-sealed-secret",
-    "position": Object {
-      "x": 0,
-      "y": 0,
-    },
-    "sourcePosition": "right",
-    "targetPosition": "left",
-    "type": "output",
-  },
-  Object {
-    "data": Object {
       "label": "🗒 strapi-configmap",
       "manifest": Object {
         "data": Object {
@@ -3954,9 +3840,123 @@ Array [
     "target": "Deployment-123-85-master-dev2-strapi-0",
   },
   Object {
+    "data": Object {
+      "label": "🔓 hasura-sealed-secret",
+      "manifest": Object {
+        "encryptedData": Object {
+          "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "hasura-sealed-secret",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+              "name": "hasura-sealed-secret",
+            },
+          },
+        },
+      },
+    },
+    "id": "Secret-123-85-master-dev2-hasura-sealed-secret",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
     "id": "edge-SealedSecret-123-85-master-dev2-hasura-sealed-secret-Secret-123-85-master-dev2-hasura-sealed-secret",
     "source": "SealedSecret-123-85-master-dev2-hasura-sealed-secret",
     "target": "Secret-123-85-master-dev2-hasura-sealed-secret",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 strapi-sealed-secret",
+      "manifest": Object {
+        "encryptedData": Object {
+          "hello": "some-sealed-secret-value",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "strapi-sealed-secret",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "hello": "some-sealed-secret-value",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+              "name": "strapi-sealed-secret",
+            },
+          },
+        },
+      },
+    },
+    "id": "Secret-123-85-master-dev2-strapi-sealed-secret",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
   },
   Object {
     "id": "edge-SealedSecret-123-85-master-dev2-strapi-sealed-secret-Secret-123-85-master-dev2-strapi-sealed-secret",
