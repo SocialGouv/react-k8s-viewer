@@ -36,16 +36,7 @@ export const SealedSecret: React.FC<{}> = () => (
   </div>
 );
 
-// Secondary will be the name for the second story
-export const SampleNextApp: React.FC<{}> = () => (
-  <div style={{ height: 700 }}>
-    <ReactFlowProvider>
-      <K8sViewer manifests={require("../../fixtures/sample-next-app.json")} />
-    </ReactFlowProvider>
-  </div>
-);
-
 export default {
-  title: "K8sViewer", // Title of you main menu entry for this group of stories
+  title: "K8sViewer - Basic examples", // Title of you main menu entry for this group of stories
   component: K8sViewer, // This is the component documented by this Storybook page
 } as Meta;
