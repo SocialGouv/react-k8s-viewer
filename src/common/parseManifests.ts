@@ -53,9 +53,11 @@ const manifestsTypes = {
       ...getFlowNode(manifest),
       type: "ingress",
       data: {
-        label: manifest.spec.rules
-          .map((rule: AnyObject) => `🌍 ${rule.host}`)
-          .join("<br>"),
+        label:
+          manifest.spec.rules &&
+          manifest.spec.rules
+            .map((rule: AnyObject) => `🌍 ${rule.host}`)
+            .join("<br>"),
         manifest,
       },
     },
@@ -202,12 +204,18 @@ export const parseManifests = (
   manifests: ManifestList | Manifest[]
 ): Elements => {
   const elements = [] as Elements;
+  let allManifests = [];
 
-  const allManifests =
-    (Array.isArray(manifests) && manifests[0].items) ||
-    //@ts-expect-error
-    (typeof manifests.items !== "undefined" && manifests.items) ||
-    manifests;
+  // handle different inputs
+  if (Array.isArray(manifests)) {
+    if (manifests[0].items) {
+      allManifests = manifests[0].items;
+    } else {
+      allManifests = manifests;
+    }
+  } else if (manifests.items) {
+    allManifests = manifests.items;
+  }
 
   // create all Nodes elements
   allManifests.forEach((manifest: Manifest) => {
@@ -236,7 +244,10 @@ export const parseManifests = (
     elements.push(internetNode);
 
     allManifests
-      .filter((manifest: Manifest) => manifest.kind === "Ingress")
+      .filter(
+        (manifest: Manifest) =>
+          manifest.kind === "Ingress" && manifest.spec.rules
+      )
       .filter((manifest: Manifest) => manifest.spec.rules[0].host)
       .forEach((manifest: Manifest) => {
         const ingressNode = getElements(elements, {
@@ -356,10 +367,15 @@ export const parseManifests = (
   allManifests
     .filter((manifest: Manifest) => manifest.kind === "SealedSecret")
     .forEach((manifest: Manifest) => {
-      const secretNode = getElements(elements, {
+      let secretNode = getElements(elements, {
         kind: "Secret",
         name: manifest?.metadata?.name,
       })[0];
+      if (!secretNode) {
+        // create missing secret node
+        secretNode = manifestsTypes.Secret({ ...manifest, kind: "Secret" })[0];
+        elements.push(secretNode);
+      }
       const sealedSecretNode = getElements(elements, {
         kind: "SealedSecret",
         name: manifest?.metadata?.name,
