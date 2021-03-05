@@ -419,397 +419,397 @@ exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
       >
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Deployment-1000jours-85-master-dev2-pgweb-0"
+          data-id="Deployment-123-85-master-dev2-pgweb-0"
           style="z-index: 3; transform: translate(750px,0px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Deployment-1000jours-85-master-dev2-pgweb-0"
+            data-nodeid="Deployment-123-85-master-dev2-pgweb-0"
           />
           📦 pgweb
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Deployment-1000jours-85-master-dev2-pgweb-0"
+            data-nodeid="Deployment-123-85-master-dev2-pgweb-0"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Service-1000jours-85-master-dev2-pgweb"
+          data-id="Service-123-85-master-dev2-pgweb"
           style="z-index: 3; transform: translate(500px,0px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Service-1000jours-85-master-dev2-pgweb"
+            data-nodeid="Service-123-85-master-dev2-pgweb"
           />
           🚦 Service pgweb
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Service-1000jours-85-master-dev2-pgweb"
+            data-nodeid="Service-123-85-master-dev2-pgweb"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-1000jours-85-master-dev2-pgweb"
+          data-id="Ingress-123-85-master-dev2-pgweb"
           style="z-index: 3; transform: translate(250px,0px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__node-default react-flow__node-input react-flow__node-output"
             style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 pgweb-chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr"
+            title="🌍 pgweb-chore-d-u8fps8-les123.dev2.factory.fr"
           >
             <div
               class="react-flow__handle react-flow__handle-left nodrag target connectable"
               data-handlepos="left"
-              data-nodeid="Ingress-1000jours-85-master-dev2-pgweb"
+              data-nodeid="Ingress-123-85-master-dev2-pgweb"
             />
             <div>
-              🌍 pgweb-chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr
+              🌍 pgweb-chore-d-u8fps8-les123.dev2.factory.fr
             </div>
             <div
               class="react-flow__handle react-flow__handle-right nodrag source connectable"
               data-handlepos="right"
-              data-nodeid="Ingress-1000jours-85-master-dev2-pgweb"
+              data-nodeid="Ingress-123-85-master-dev2-pgweb"
             />
           </div>
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Deployment-1000jours-85-master-dev2-expo-0"
+          data-id="Deployment-123-85-master-dev2-expo-0"
           style="z-index: 3; transform: translate(750px,100px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Deployment-1000jours-85-master-dev2-expo-0"
+            data-nodeid="Deployment-123-85-master-dev2-expo-0"
           />
           📦 expo
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Deployment-1000jours-85-master-dev2-expo-0"
+            data-nodeid="Deployment-123-85-master-dev2-expo-0"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Service-1000jours-85-master-dev2-expo"
+          data-id="Service-123-85-master-dev2-expo"
           style="z-index: 3; transform: translate(500px,100px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Service-1000jours-85-master-dev2-expo"
+            data-nodeid="Service-123-85-master-dev2-expo"
           />
           🚦 Service expo
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Service-1000jours-85-master-dev2-expo"
+            data-nodeid="Service-123-85-master-dev2-expo"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-1000jours-85-master-dev2-expo"
+          data-id="Ingress-123-85-master-dev2-expo"
           style="z-index: 3; transform: translate(250px,100px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__node-default react-flow__node-input react-flow__node-output"
             style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr"
+            title="🌍 chore-d-u8fps8-les123.dev2.factory.fr"
           >
             <div
               class="react-flow__handle react-flow__handle-left nodrag target connectable"
               data-handlepos="left"
-              data-nodeid="Ingress-1000jours-85-master-dev2-expo"
+              data-nodeid="Ingress-123-85-master-dev2-expo"
             />
             <div>
-              🌍 chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr
+              🌍 chore-d-u8fps8-les123.dev2.factory.fr
             </div>
             <div
               class="react-flow__handle react-flow__handle-right nodrag source connectable"
               data-handlepos="right"
-              data-nodeid="Ingress-1000jours-85-master-dev2-expo"
+              data-nodeid="Ingress-123-85-master-dev2-expo"
             />
           </div>
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Deployment-1000jours-85-master-dev2-expo-metro-0"
+          data-id="Deployment-123-85-master-dev2-expo-metro-0"
           style="z-index: 3; transform: translate(750px,200px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Deployment-1000jours-85-master-dev2-expo-metro-0"
+            data-nodeid="Deployment-123-85-master-dev2-expo-metro-0"
           />
           📦 expo-metro
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Deployment-1000jours-85-master-dev2-expo-metro-0"
+            data-nodeid="Deployment-123-85-master-dev2-expo-metro-0"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Service-1000jours-85-master-dev2-expo-metro"
+          data-id="Service-123-85-master-dev2-expo-metro"
           style="z-index: 3; transform: translate(500px,200px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Service-1000jours-85-master-dev2-expo-metro"
+            data-nodeid="Service-123-85-master-dev2-expo-metro"
           />
           🚦 Service expo-metro
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Service-1000jours-85-master-dev2-expo-metro"
+            data-nodeid="Service-123-85-master-dev2-expo-metro"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-1000jours-85-master-dev2-expo-metro"
+          data-id="Ingress-123-85-master-dev2-expo-metro"
           style="z-index: 3; transform: translate(250px,200px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__node-default react-flow__node-input react-flow__node-output"
             style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 expo-metro-chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr"
+            title="🌍 expo-metro-chore-d-u8fps8-les123.dev2.factory.fr"
           >
             <div
               class="react-flow__handle react-flow__handle-left nodrag target connectable"
               data-handlepos="left"
-              data-nodeid="Ingress-1000jours-85-master-dev2-expo-metro"
+              data-nodeid="Ingress-123-85-master-dev2-expo-metro"
             />
             <div>
-              🌍 expo-metro-chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr
+              🌍 expo-metro-chore-d-u8fps8-les123.dev2.factory.fr
             </div>
             <div
               class="react-flow__handle react-flow__handle-right nodrag source connectable"
               data-handlepos="right"
-              data-nodeid="Ingress-1000jours-85-master-dev2-expo-metro"
+              data-nodeid="Ingress-123-85-master-dev2-expo-metro"
             />
           </div>
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Deployment-1000jours-85-master-dev2-hasura-0"
+          data-id="Deployment-123-85-master-dev2-hasura-0"
           style="z-index: 3; transform: translate(750px,300px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Deployment-1000jours-85-master-dev2-hasura-0"
+            data-nodeid="Deployment-123-85-master-dev2-hasura-0"
           />
           📦 hasura
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Deployment-1000jours-85-master-dev2-hasura-0"
+            data-nodeid="Deployment-123-85-master-dev2-hasura-0"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-input"
-          data-id="SealedSecret-1000jours-85-master-dev2-hasura-sealed-secret"
+          data-id="SealedSecret-123-85-master-dev2-hasura-sealed-secret"
           style="z-index: 3; transform: translate(750px,400px); pointer-events: all; opacity: 0;"
         >
           🔐 hasura-sealed-secret
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="SealedSecret-1000jours-85-master-dev2-hasura-sealed-secret"
+            data-nodeid="SealedSecret-123-85-master-dev2-hasura-sealed-secret"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="Secret-1000jours-85-master-dev2-hasura-sealed-secret"
+          data-id="Secret-123-85-master-dev2-hasura-sealed-secret"
           style="z-index: 3; transform: translate(1000px,520px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Secret-1000jours-85-master-dev2-hasura-sealed-secret"
+            data-nodeid="Secret-123-85-master-dev2-hasura-sealed-secret"
           />
           🔓 hasura-sealed-secret
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="ConfigMap-1000jours-85-master-dev2-hasura-configmap"
+          data-id="ConfigMap-123-85-master-dev2-hasura-configmap"
           style="z-index: 3; transform: translate(1000px,620px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="ConfigMap-1000jours-85-master-dev2-hasura-configmap"
+            data-nodeid="ConfigMap-123-85-master-dev2-hasura-configmap"
           />
           🗒 hasura-configmap
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Service-1000jours-85-master-dev2-hasura"
+          data-id="Service-123-85-master-dev2-hasura"
           style="z-index: 3; transform: translate(500px,300px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Service-1000jours-85-master-dev2-hasura"
+            data-nodeid="Service-123-85-master-dev2-hasura"
           />
           🚦 Service hasura
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Service-1000jours-85-master-dev2-hasura"
+            data-nodeid="Service-123-85-master-dev2-hasura"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-1000jours-85-master-dev2-hasura"
+          data-id="Ingress-123-85-master-dev2-hasura"
           style="z-index: 3; transform: translate(250px,300px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__node-default react-flow__node-input react-flow__node-output"
             style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 hasura-chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr"
+            title="🌍 hasura-chore-d-u8fps8-les123.dev2.factory.fr"
           >
             <div
               class="react-flow__handle react-flow__handle-left nodrag target connectable"
               data-handlepos="left"
-              data-nodeid="Ingress-1000jours-85-master-dev2-hasura"
+              data-nodeid="Ingress-123-85-master-dev2-hasura"
             />
             <div>
-              🌍 hasura-chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr
+              🌍 hasura-chore-d-u8fps8-les123.dev2.factory.fr
             </div>
             <div
               class="react-flow__handle react-flow__handle-right nodrag source connectable"
               data-handlepos="right"
-              data-nodeid="Ingress-1000jours-85-master-dev2-hasura"
+              data-nodeid="Ingress-123-85-master-dev2-hasura"
             />
           </div>
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Job-1000jours-85-master-dev2-create-db-job-4113006e"
+          data-id="Job-123-85-master-dev2-create-db-job-4113006e"
           style="z-index: 3; transform: translate(0px,100px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Job-1000jours-85-master-dev2-create-db-job-4113006e"
+            data-nodeid="Job-123-85-master-dev2-create-db-job-4113006e"
           />
           ⚡️ create-db-job-4113006e
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Job-1000jours-85-master-dev2-create-db-job-4113006e"
+            data-nodeid="Job-123-85-master-dev2-create-db-job-4113006e"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="Secret-1000jours-85-master-dev2-azure-pg-user-4113006e"
+          data-id="Secret-123-85-master-dev2-azure-pg-user-4113006e"
           style="z-index: 3; transform: translate(1000px,420px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Secret-1000jours-85-master-dev2-azure-pg-user-4113006e"
+            data-nodeid="Secret-123-85-master-dev2-azure-pg-user-4113006e"
           />
           🔓 azure-pg-user-4113006e
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Deployment-1000jours-85-master-dev2-strapi-0"
+          data-id="Deployment-123-85-master-dev2-strapi-0"
           style="z-index: 3; transform: translate(750px,500px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Deployment-1000jours-85-master-dev2-strapi-0"
+            data-nodeid="Deployment-123-85-master-dev2-strapi-0"
           />
           📦 strapi
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Deployment-1000jours-85-master-dev2-strapi-0"
+            data-nodeid="Deployment-123-85-master-dev2-strapi-0"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-input"
-          data-id="SealedSecret-1000jours-85-master-dev2-strapi-sealed-secret"
+          data-id="SealedSecret-123-85-master-dev2-strapi-sealed-secret"
           style="z-index: 3; transform: translate(750px,720px); pointer-events: all; opacity: 0;"
         >
           🔐 strapi-sealed-secret
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="SealedSecret-1000jours-85-master-dev2-strapi-sealed-secret"
+            data-nodeid="SealedSecret-123-85-master-dev2-strapi-sealed-secret"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="Secret-1000jours-85-master-dev2-strapi-sealed-secret"
+          data-id="Secret-123-85-master-dev2-strapi-sealed-secret"
           style="z-index: 3; transform: translate(1000px,720px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Secret-1000jours-85-master-dev2-strapi-sealed-secret"
+            data-nodeid="Secret-123-85-master-dev2-strapi-sealed-secret"
           />
           🔓 strapi-sealed-secret
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="ConfigMap-1000jours-85-master-dev2-strapi-configmap"
+          data-id="ConfigMap-123-85-master-dev2-strapi-configmap"
           style="z-index: 3; transform: translate(1000px,820px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="ConfigMap-1000jours-85-master-dev2-strapi-configmap"
+            data-nodeid="ConfigMap-123-85-master-dev2-strapi-configmap"
           />
           🗒 strapi-configmap
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Service-1000jours-85-master-dev2-strapi"
+          data-id="Service-123-85-master-dev2-strapi"
           style="z-index: 3; transform: translate(500px,500px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Service-1000jours-85-master-dev2-strapi"
+            data-nodeid="Service-123-85-master-dev2-strapi"
           />
           🚦 Service strapi
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Service-1000jours-85-master-dev2-strapi"
+            data-nodeid="Service-123-85-master-dev2-strapi"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-1000jours-85-master-dev2-strapi"
+          data-id="Ingress-123-85-master-dev2-strapi"
           style="z-index: 3; transform: translate(250px,500px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__node-default react-flow__node-input react-flow__node-output"
             style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 strapi-chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr"
+            title="🌍 strapi-chore-d-u8fps8-les123.dev2.factory.fr"
           >
             <div
               class="react-flow__handle react-flow__handle-left nodrag target connectable"
               data-handlepos="left"
-              data-nodeid="Ingress-1000jours-85-master-dev2-strapi"
+              data-nodeid="Ingress-123-85-master-dev2-strapi"
             />
             <div>
-              🌍 strapi-chore-d-u8fps8-les1000jours.dev2.fabrique.social.gouv.fr
+              🌍 strapi-chore-d-u8fps8-les123.dev2.factory.fr
             </div>
             <div
               class="react-flow__handle react-flow__handle-right nodrag source connectable"
               data-handlepos="right"
-              data-nodeid="Ingress-1000jours-85-master-dev2-strapi"
+              data-nodeid="Ingress-123-85-master-dev2-strapi"
             />
           </div>
         </div>

@@ -2535,3 +2535,1496 @@ Array [
   },
 ]
 `;
+
+exports[`parseManifests() parse strapi-hasura-dev.json 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "label": "📦 pgweb",
+      "manifest": Object {
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "pgweb",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "replicas": 1,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "pgweb",
+            },
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user-4113006e",
+                      },
+                    },
+                  ],
+                  "image": "sosedoff/pgweb:0.11.7",
+                  "name": "pgweb",
+                },
+              ],
+              "initContainers": Array [
+                Object {
+                  "env": Array [
+                    Object {
+                      "name": "WAIT_FOR_RETRIES",
+                      "value": "24",
+                    },
+                  ],
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user-4113006e",
+                      },
+                    },
+                  ],
+                  "image": "registry.com/org/docker/wait-for-postgres:4.6.0",
+                  "imagePullPolicy": "Always",
+                  "name": "wait-for-postgres",
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-123-85-master-dev2-pgweb-0",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service pgweb",
+      "manifest": Object {
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "pgweb",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "selector": Object {
+            "app": "pgweb",
+          },
+        },
+      },
+    },
+    "id": "Service-123-85-master-dev2-pgweb",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 pgweb-chore-d-u8fps8-les123.dev2.factory.fr",
+      "manifest": Object {
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "pgweb",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "pgweb-chore-d-u8fps8-les123.dev2.factory.fr",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "pgweb",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "pgweb-chore-d-u8fps8-les123.dev2.factory.fr",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-123-85-master-dev2-pgweb",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "📦 expo",
+      "manifest": Object {
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "expo",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "replicas": 1,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "expo",
+            },
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "image": "harbor.factory.fr/123/les123-front:4113006e12d735981f1d69f71fbd2f8759ad1cae",
+                  "name": "expo",
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-123-85-master-dev2-expo-0",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service expo",
+      "manifest": Object {
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "expo",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "selector": Object {
+            "app": "expo",
+          },
+        },
+      },
+    },
+    "id": "Service-123-85-master-dev2-expo",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 chore-d-u8fps8-les123.dev2.factory.fr",
+      "manifest": Object {
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "expo",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "chore-d-u8fps8-les123.dev2.factory.fr",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "expo",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "chore-d-u8fps8-les123.dev2.factory.fr",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-123-85-master-dev2-expo",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "📦 expo-metro",
+      "manifest": Object {
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "expo-metro",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "replicas": 1,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "expo-metro",
+            },
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "image": "harbor.factory.fr/123/les123-front:4113006e12d735981f1d69f71fbd2f8759ad1cae",
+                  "name": "expo-metro",
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-123-85-master-dev2-expo-metro-0",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service expo-metro",
+      "manifest": Object {
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "expo-metro",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "selector": Object {
+            "app": "expo-metro",
+          },
+        },
+      },
+    },
+    "id": "Service-123-85-master-dev2-expo-metro",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 expo-metro-chore-d-u8fps8-les123.dev2.factory.fr",
+      "manifest": Object {
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "expo-metro",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "expo-metro-chore-d-u8fps8-les123.dev2.factory.fr",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "expo-metro",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "expo-metro-chore-d-u8fps8-les123.dev2.factory.fr",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-123-85-master-dev2-expo-metro",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "📦 hasura",
+      "manifest": Object {
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "hasura",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "replicas": 1,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "hasura",
+            },
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user-4113006e",
+                      },
+                    },
+                    Object {
+                      "secretRef": Object {
+                        "name": "hasura-sealed-secret",
+                      },
+                    },
+                    Object {
+                      "configMapRef": Object {
+                        "name": "hasura-configmap",
+                      },
+                    },
+                  ],
+                  "image": "harbor.factory.fr/123/les123-hasura:4113006e12d735981f1d69f71fbd2f8759ad1cae",
+                  "name": "hasura",
+                },
+              ],
+              "initContainers": Array [
+                Object {
+                  "env": Array [
+                    Object {
+                      "name": "WAIT_FOR_RETRIES",
+                      "value": "24",
+                    },
+                  ],
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user-4113006e",
+                      },
+                    },
+                  ],
+                  "image": "registry.com/org/docker/wait-for-postgres:4.6.0",
+                  "imagePullPolicy": "Always",
+                  "name": "wait-for-postgres",
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-123-85-master-dev2-hasura-0",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🔐 hasura-sealed-secret",
+      "manifest": Object {
+        "encryptedData": Object {
+          "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value",
+        },
+        "kind": "SealedSecret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "hasura-sealed-secret",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+              "name": "hasura-sealed-secret",
+            },
+          },
+        },
+      },
+    },
+    "id": "SealedSecret-123-85-master-dev2-hasura-sealed-secret",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 hasura-sealed-secret",
+      "manifest": Object {
+        "encryptedData": Object {
+          "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "hasura-sealed-secret",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+              "name": "hasura-sealed-secret",
+            },
+          },
+        },
+      },
+    },
+    "id": "Secret-123-85-master-dev2-hasura-sealed-secret",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🗒 hasura-configmap",
+      "manifest": Object {
+        "data": Object {
+          "HASURA_GRAPHQL_DEV_MODE": "some-configmap-value",
+          "HASURA_GRAPHQL_ENABLED_LOG_TYPES": "some-configmap-value",
+          "HASURA_GRAPHQL_ENABLE_CONSOLE": "some-configmap-value",
+          "HASURA_GRAPHQL_LOG_LEVEL": "some-configmap-value",
+          "HASURA_GRAPHQL_NO_OF_RETRIES": "some-configmap-value",
+          "HASURA_GRAPHQL_SERVER_PORT": "some-configmap-value",
+        },
+        "kind": "ConfigMap",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "hasura-configmap",
+          "namespace": "123-85-master-dev2",
+        },
+      },
+    },
+    "id": "ConfigMap-123-85-master-dev2-hasura-configmap",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service hasura",
+      "manifest": Object {
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "hasura",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "selector": Object {
+            "app": "hasura",
+          },
+        },
+      },
+    },
+    "id": "Service-123-85-master-dev2-hasura",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 hasura-chore-d-u8fps8-les123.dev2.factory.fr",
+      "manifest": Object {
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "hasura",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "hasura-chore-d-u8fps8-les123.dev2.factory.fr",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "hasura",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "hasura-chore-d-u8fps8-les123.dev2.factory.fr",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-123-85-master-dev2-hasura",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "⚡️ create-db-job-4113006e",
+      "manifest": Object {
+        "kind": "Job",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "create-db-job-4113006e",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "env": Array [
+                    Object {
+                      "name": "NEW_DB_NAME",
+                      "value": "autodevops_123",
+                    },
+                    Object {
+                      "name": "NEW_USER",
+                      "value": "user_123",
+                    },
+                    Object {
+                      "name": "NEW_PASSWORD",
+                      "value": "password_123",
+                    },
+                    Object {
+                      "name": "NEW_DB_EXTENSIONS",
+                      "value": "hstore pgcrypto citext uuid-ossp",
+                    },
+                  ],
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-admin-user",
+                      },
+                    },
+                  ],
+                  "image": "registry.com/org/docker/azure-db:2.6.1",
+                  "imagePullPolicy": "IfNotPresent",
+                  "name": "create-db-user",
+                },
+              ],
+              "restartPolicy": "Never",
+            },
+          },
+        },
+      },
+    },
+    "id": "Job-123-85-master-dev2-create-db-job-4113006e",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 azure-pg-user-4113006e",
+      "manifest": Object {
+        "data": Object {},
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "azure-pg-user-4113006e",
+          "namespace": "123-85-master-dev2",
+        },
+      },
+    },
+    "id": "Secret-123-85-master-dev2-azure-pg-user-4113006e",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "📦 strapi",
+      "manifest": Object {
+        "kind": "Deployment",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "strapi",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "replicas": 1,
+          "selector": Object {
+            "matchLabels": Object {
+              "app": "strapi",
+            },
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+            },
+            "spec": Object {
+              "containers": Array [
+                Object {
+                  "env": Array [
+                    Object {
+                      "name": "DATABASE_CLIENT",
+                      "value": "postgres",
+                    },
+                    Object {
+                      "name": "DATABASE_NAME",
+                      "value": "$(PGDATABASE)",
+                    },
+                    Object {
+                      "name": "DATABASE_HOST",
+                      "value": "$(PGHOST)",
+                    },
+                    Object {
+                      "name": "DATABASE_PORT",
+                      "value": "$(PGPORT)",
+                    },
+                    Object {
+                      "name": "DATABASE_USERNAME",
+                      "value": "$(PGUSER)",
+                    },
+                    Object {
+                      "name": "DATABASE_PASSWORD",
+                      "value": "$(PGPASSWORD)",
+                    },
+                    Object {
+                      "name": "DATABASE_SSL",
+                      "value": "true",
+                    },
+                  ],
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user-4113006e",
+                      },
+                    },
+                    Object {
+                      "secretRef": Object {
+                        "name": "strapi-sealed-secret",
+                      },
+                    },
+                    Object {
+                      "configMapRef": Object {
+                        "name": "strapi-configmap",
+                      },
+                    },
+                  ],
+                  "image": "harbor.factory.fr/123/les123-strapi:4113006e12d735981f1d69f71fbd2f8759ad1cae",
+                  "name": "strapi",
+                },
+              ],
+              "initContainers": Array [
+                Object {
+                  "env": Array [
+                    Object {
+                      "name": "WAIT_FOR_RETRIES",
+                      "value": "24",
+                    },
+                  ],
+                  "envFrom": Array [
+                    Object {
+                      "secretRef": Object {
+                        "name": "azure-pg-user-4113006e",
+                      },
+                    },
+                  ],
+                  "image": "registry.com/org/docker/wait-for-postgres:4.6.0",
+                  "imagePullPolicy": "Always",
+                  "name": "wait-for-postgres",
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+    "id": "Deployment-123-85-master-dev2-strapi-0",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🔐 strapi-sealed-secret",
+      "manifest": Object {
+        "encryptedData": Object {
+          "hello": "some-sealed-secret-value",
+        },
+        "kind": "SealedSecret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "strapi-sealed-secret",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "hello": "some-sealed-secret-value",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+              "name": "strapi-sealed-secret",
+            },
+          },
+        },
+      },
+    },
+    "id": "SealedSecret-123-85-master-dev2-strapi-sealed-secret",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "data": Object {
+      "label": "🔓 strapi-sealed-secret",
+      "manifest": Object {
+        "encryptedData": Object {
+          "hello": "some-sealed-secret-value",
+        },
+        "kind": "Secret",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "strapi-sealed-secret",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "encryptedData": Object {
+            "hello": "some-sealed-secret-value",
+          },
+          "template": Object {
+            "metadata": Object {
+              "annotations": Object {
+                "app.gitlab.com/app": "org-123-les123",
+                "app.gitlab.com/env": "chore-d-u8fps8",
+                "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+                "sealedsecrets.bitnami.com/cluster-wide": "true",
+              },
+              "labels": Object {
+                "application": "chore-d-u8fps8-les123",
+                "cert": "wildcard",
+                "owner": "les123",
+                "team": "les123",
+              },
+              "name": "strapi-sealed-secret",
+            },
+          },
+        },
+      },
+    },
+    "id": "Secret-123-85-master-dev2-strapi-sealed-secret",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🗒 strapi-configmap",
+      "manifest": Object {
+        "data": Object {
+          "NODE_ENV": "some-configmap-value",
+          "STRAPI_LOG_LEVEL": "some-configmap-value",
+        },
+        "kind": "ConfigMap",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "strapi-configmap",
+          "namespace": "123-85-master-dev2",
+        },
+      },
+    },
+    "id": "ConfigMap-123-85-master-dev2-strapi-configmap",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "output",
+  },
+  Object {
+    "data": Object {
+      "label": "🚦 Service strapi",
+      "manifest": Object {
+        "kind": "Service",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "strapi",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "selector": Object {
+            "app": "strapi",
+          },
+        },
+      },
+    },
+    "id": "Service-123-85-master-dev2-strapi",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+  },
+  Object {
+    "data": Object {
+      "label": "🌍 strapi-chore-d-u8fps8-les123.dev2.factory.fr",
+      "manifest": Object {
+        "kind": "Ingress",
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "org-123-les123",
+            "app.gitlab.com/env": "chore-d-u8fps8",
+            "app.gitlab.com/env.name": "chore-db-schema2-dev2",
+          },
+          "labels": Object {
+            "application": "chore-d-u8fps8-les123",
+            "cert": "wildcard",
+            "owner": "les123",
+            "team": "les123",
+          },
+          "name": "strapi",
+          "namespace": "123-85-master-dev2",
+        },
+        "spec": Object {
+          "rules": Array [
+            Object {
+              "host": "strapi-chore-d-u8fps8-les123.dev2.factory.fr",
+              "http": Object {
+                "paths": Array [
+                  Object {
+                    "backend": Object {
+                      "serviceName": "strapi",
+                      "servicePort": 80,
+                    },
+                    "path": "/",
+                  },
+                ],
+              },
+            },
+          ],
+          "tls": Array [
+            Object {
+              "hosts": Array [
+                "strapi-chore-d-u8fps8-les123.dev2.factory.fr",
+              ],
+              "secretName": "wildcard-crt",
+            },
+          ],
+        },
+      },
+    },
+    "id": "Ingress-123-85-master-dev2-strapi",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "ingress",
+  },
+  Object {
+    "data": Object {
+      "label": "🌥 Internet",
+    },
+    "id": "Internet",
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "sourcePosition": "right",
+    "targetPosition": "left",
+    "type": "input",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-123-85-master-dev2-pgweb",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-123-85-master-dev2-pgweb",
+  },
+  Object {
+    "id": "edge-Ingress-123-85-master-dev2-pgweb-Service-123-85-master-dev2-pgweb",
+    "label": "'\\"/\\"'",
+    "source": "Ingress-123-85-master-dev2-pgweb",
+    "target": "Service-123-85-master-dev2-pgweb",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-123-85-master-dev2-expo",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-123-85-master-dev2-expo",
+  },
+  Object {
+    "id": "edge-Ingress-123-85-master-dev2-expo-Service-123-85-master-dev2-expo",
+    "label": "'\\"/\\"'",
+    "source": "Ingress-123-85-master-dev2-expo",
+    "target": "Service-123-85-master-dev2-expo",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-123-85-master-dev2-expo-metro",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-123-85-master-dev2-expo-metro",
+  },
+  Object {
+    "id": "edge-Ingress-123-85-master-dev2-expo-metro-Service-123-85-master-dev2-expo-metro",
+    "label": "'\\"/\\"'",
+    "source": "Ingress-123-85-master-dev2-expo-metro",
+    "target": "Service-123-85-master-dev2-expo-metro",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-123-85-master-dev2-hasura",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-123-85-master-dev2-hasura",
+  },
+  Object {
+    "id": "edge-Ingress-123-85-master-dev2-hasura-Service-123-85-master-dev2-hasura",
+    "label": "'\\"/\\"'",
+    "source": "Ingress-123-85-master-dev2-hasura",
+    "target": "Service-123-85-master-dev2-hasura",
+  },
+  Object {
+    "id": "edge-Internet-Ingress-123-85-master-dev2-strapi",
+    "label": "TLS",
+    "source": "Internet",
+    "target": "Ingress-123-85-master-dev2-strapi",
+  },
+  Object {
+    "id": "edge-Ingress-123-85-master-dev2-strapi-Service-123-85-master-dev2-strapi",
+    "label": "'\\"/\\"'",
+    "source": "Ingress-123-85-master-dev2-strapi",
+    "target": "Service-123-85-master-dev2-strapi",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-123-85-master-dev2-pgweb-Deployment-123-85-master-dev2-pgweb-0",
+    "source": "Service-123-85-master-dev2-pgweb",
+    "target": "Deployment-123-85-master-dev2-pgweb-0",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-123-85-master-dev2-expo-Deployment-123-85-master-dev2-expo-0",
+    "source": "Service-123-85-master-dev2-expo",
+    "target": "Deployment-123-85-master-dev2-expo-0",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-123-85-master-dev2-expo-metro-Deployment-123-85-master-dev2-expo-metro-0",
+    "source": "Service-123-85-master-dev2-expo-metro",
+    "target": "Deployment-123-85-master-dev2-expo-metro-0",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-123-85-master-dev2-hasura-Deployment-123-85-master-dev2-hasura-0",
+    "source": "Service-123-85-master-dev2-hasura",
+    "target": "Deployment-123-85-master-dev2-hasura-0",
+  },
+  Object {
+    "animated": true,
+    "id": "edge-Service-123-85-master-dev2-strapi-Deployment-123-85-master-dev2-strapi-0",
+    "source": "Service-123-85-master-dev2-strapi",
+    "target": "Deployment-123-85-master-dev2-strapi-0",
+  },
+  Object {
+    "id": "edge-SealedSecret-123-85-master-dev2-hasura-sealed-secret-Secret-123-85-master-dev2-hasura-sealed-secret",
+    "source": "SealedSecret-123-85-master-dev2-hasura-sealed-secret",
+    "target": "Secret-123-85-master-dev2-hasura-sealed-secret",
+  },
+  Object {
+    "id": "edge-SealedSecret-123-85-master-dev2-strapi-sealed-secret-Secret-123-85-master-dev2-strapi-sealed-secret",
+    "source": "SealedSecret-123-85-master-dev2-strapi-sealed-secret",
+    "target": "Secret-123-85-master-dev2-strapi-sealed-secret",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret azure-pg-user-4113006e",
+    },
+    "id": "edge-Deployment-123-85-master-dev2-pgweb-0-Secret-123-85-master-dev2-azure-pg-user-4113006e",
+    "source": "Deployment-123-85-master-dev2-pgweb-0",
+    "target": "Secret-123-85-master-dev2-azure-pg-user-4113006e",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret azure-pg-user-4113006e",
+    },
+    "id": "edge-Deployment-123-85-master-dev2-hasura-0-Secret-123-85-master-dev2-azure-pg-user-4113006e",
+    "source": "Deployment-123-85-master-dev2-hasura-0",
+    "target": "Secret-123-85-master-dev2-azure-pg-user-4113006e",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret hasura-sealed-secret",
+    },
+    "id": "edge-Deployment-123-85-master-dev2-hasura-0-Secret-123-85-master-dev2-hasura-sealed-secret",
+    "source": "Deployment-123-85-master-dev2-hasura-0",
+    "target": "Secret-123-85-master-dev2-hasura-sealed-secret",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "ConfigMap hasura-configmap",
+    },
+    "id": "edge-Deployment-123-85-master-dev2-hasura-0-ConfigMap-123-85-master-dev2-hasura-configmap",
+    "source": "Deployment-123-85-master-dev2-hasura-0",
+    "target": "ConfigMap-123-85-master-dev2-hasura-configmap",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret azure-pg-user-4113006e",
+    },
+    "id": "edge-Deployment-123-85-master-dev2-strapi-0-Secret-123-85-master-dev2-azure-pg-user-4113006e",
+    "source": "Deployment-123-85-master-dev2-strapi-0",
+    "target": "Secret-123-85-master-dev2-azure-pg-user-4113006e",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "Secret strapi-sealed-secret",
+    },
+    "id": "edge-Deployment-123-85-master-dev2-strapi-0-Secret-123-85-master-dev2-strapi-sealed-secret",
+    "source": "Deployment-123-85-master-dev2-strapi-0",
+    "target": "Secret-123-85-master-dev2-strapi-sealed-secret",
+    "type": "smoothstep",
+  },
+  Object {
+    "data": Object {
+      "label": "ConfigMap strapi-configmap",
+    },
+    "id": "edge-Deployment-123-85-master-dev2-strapi-0-ConfigMap-123-85-master-dev2-strapi-configmap",
+    "source": "Deployment-123-85-master-dev2-strapi-0",
+    "target": "ConfigMap-123-85-master-dev2-strapi-configmap",
+    "type": "smoothstep",
+  },
+]
+`;

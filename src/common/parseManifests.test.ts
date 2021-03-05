@@ -4,6 +4,7 @@ const fixtures = [
   "basic.json",
   "ingress-hosts.json",
   "sample-next-app.json",
+  "strapi-hasura-dev.json",
   "sealed-secret.json",
 ];
 
