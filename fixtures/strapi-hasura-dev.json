@@ -1,178 +1,24 @@
 [
   {
-    "kind": "Namespace",
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "123-85-master-dev2"
-    }
-  },
-  {
     "kind": "Deployment",
     "metadata": {
       "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
       },
       "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "pgweb",
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "replicas": 1,
-      "selector": {
-        "matchLabels": {
-          "app": "pgweb"
-        }
-      },
-      "template": {
-        "metadata": {
-          "annotations": {
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-          },
-          "labels": {
-            "application": "chore-d-u8fps8-les123",
-            "owner": "les123",
-            "team": "les123",
-            "cert": "wildcard"
-          }
-        },
-        "spec": {
-          "containers": [
-            {
-              "image": "sosedoff/pgweb:0.11.7",
-              "name": "pgweb",
-              "envFrom": [
-                {
-                  "secretRef": {
-                    "name": "azure-pg-user-4113006e"
-                  }
-                }
-              ]
-            }
-          ],
-          "initContainers": [
-            {
-              "env": [
-                {
-                  "name": "WAIT_FOR_RETRIES",
-                  "value": "24"
-                }
-              ],
-              "envFrom": [
-                {
-                  "secretRef": {
-                    "name": "azure-pg-user-4113006e"
-                  }
-                }
-              ],
-              "image": "registry.com/org/docker/wait-for-postgres:4.6.0",
-              "imagePullPolicy": "Always",
-              "name": "wait-for-postgres"
-            }
-          ]
-        }
-      }
-    }
-  },
-  {
-    "kind": "Service",
-    "metadata": {
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "pgweb",
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "selector": {
-        "app": "pgweb"
-      }
-    }
-  },
-  {
-    "kind": "Ingress",
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "pgweb",
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "rules": [
-        {
-          "host": "pgweb-chore-d-u8fps8-les123.dev2.factory.fr",
-          "http": {
-            "paths": [
-              {
-                "backend": {
-                  "serviceName": "pgweb",
-                  "servicePort": 80
-                },
-                "path": "/"
-              }
-            ]
-          }
-        }
-      ],
-      "tls": [
-        {
-          "hosts": ["pgweb-chore-d-u8fps8-les123.dev2.factory.fr"],
-          "secretName": "wildcard-crt"
-        }
-      ]
-    }
-  },
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
+        "app": "expo",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "component": "nginx",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.2492c41885f60a9e1e6c4828eba9b521",
+        "owner": "app",
+        "team": "app"
       },
       "name": "expo",
-      "namespace": "123-85-master-dev2"
+      "namespace": "app-224-k8s2-dev2"
     },
     "spec": {
       "replicas": 1,
@@ -181,226 +27,61 @@
           "app": "expo"
         }
       },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": "25%",
+          "maxUnavailable": "25%"
+        },
+        "type": "RollingUpdate"
+      },
       "template": {
         "metadata": {
           "annotations": {
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+            "app.gitlab.com/app": "org-app-app",
+            "app.gitlab.com/env": "k8s2-dev2",
+            "app.gitlab.com/env.name": "k8s2-dev2"
           },
           "labels": {
-            "application": "chore-d-u8fps8-les123",
-            "owner": "les123",
-            "team": "les123",
-            "cert": "wildcard"
+            "app": "expo",
+            "application": "k8s2-dev2-app",
+            "cert": "wildcard",
+            "component": "nginx",
+            "owner": "app",
+            "team": "app"
           }
         },
         "spec": {
           "containers": [
             {
-              "image": "harbor.factory.fr/123/les123-front:4113006e12d735981f1d69f71fbd2f8759ad1cae",
+              "image": "harbor.demo.fr/app/app-expo:84c26083eff55c2b368971aefb7e294db9cafb1d",
+              "imagePullPolicy": "IfNotPresent",
               "name": "expo"
             }
-          ]
+          ],
+          "restartPolicy": "Always"
         }
       }
-    }
-  },
-  {
-    "kind": "Service",
-    "metadata": {
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "expo",
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "selector": {
-        "app": "expo"
-      }
-    }
-  },
-  {
-    "kind": "Ingress",
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "expo",
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "rules": [
-        {
-          "host": "chore-d-u8fps8-les123.dev2.factory.fr",
-          "http": {
-            "paths": [
-              {
-                "backend": {
-                  "serviceName": "expo",
-                  "servicePort": 80
-                },
-                "path": "/"
-              }
-            ]
-          }
-        }
-      ],
-      "tls": [
-        {
-          "hosts": ["chore-d-u8fps8-les123.dev2.factory.fr"],
-          "secretName": "wildcard-crt"
-        }
-      ]
     }
   },
   {
     "kind": "Deployment",
     "metadata": {
       "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
       },
       "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "expo-metro",
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "replicas": 1,
-      "selector": {
-        "matchLabels": {
-          "app": "expo-metro"
-        }
-      },
-      "template": {
-        "metadata": {
-          "annotations": {
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-          },
-          "labels": {
-            "application": "chore-d-u8fps8-les123",
-            "owner": "les123",
-            "team": "les123",
-            "cert": "wildcard"
-          }
-        },
-        "spec": {
-          "containers": [
-            {
-              "image": "harbor.factory.fr/123/les123-front:4113006e12d735981f1d69f71fbd2f8759ad1cae",
-              "name": "expo-metro"
-            }
-          ]
-        }
-      }
-    }
-  },
-  {
-    "kind": "Service",
-    "metadata": {
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "expo-metro",
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "selector": {
-        "app": "expo-metro"
-      }
-    }
-  },
-  {
-    "kind": "Ingress",
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "expo-metro",
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "rules": [
-        {
-          "host": "expo-metro-chore-d-u8fps8-les123.dev2.factory.fr",
-          "http": {
-            "paths": [
-              {
-                "backend": {
-                  "serviceName": "expo-metro",
-                  "servicePort": 80
-                },
-                "path": "/"
-              }
-            ]
-          }
-        }
-      ],
-      "tls": [
-        {
-          "hosts": ["expo-metro-chore-d-u8fps8-les123.dev2.factory.fr"],
-          "secretName": "wildcard-crt"
-        }
-      ]
-    }
-  },
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
+        "app": "hasura",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.81c2ba669829b679920cd71de636d708",
+        "owner": "app",
+        "team": "app"
       },
       "name": "hasura",
-      "namespace": "123-85-master-dev2"
+      "namespace": "app-224-k8s2-dev2"
     },
     "spec": {
       "replicas": 1,
@@ -409,29 +90,35 @@
           "app": "hasura"
         }
       },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": "25%",
+          "maxUnavailable": "25%"
+        },
+        "type": "RollingUpdate"
+      },
       "template": {
         "metadata": {
           "annotations": {
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+            "app.gitlab.com/app": "org-app-app",
+            "app.gitlab.com/env": "k8s2-dev2",
+            "app.gitlab.com/env.name": "k8s2-dev2"
           },
           "labels": {
-            "application": "chore-d-u8fps8-les123",
-            "owner": "les123",
-            "team": "les123",
-            "cert": "wildcard"
+            "app": "hasura",
+            "application": "k8s2-dev2-app",
+            "cert": "wildcard",
+            "owner": "app",
+            "team": "app"
           }
         },
         "spec": {
           "containers": [
             {
-              "image": "harbor.factory.fr/123/les123-hasura:4113006e12d735981f1d69f71fbd2f8759ad1cae",
-              "name": "hasura",
               "envFrom": [
                 {
                   "secretRef": {
-                    "name": "azure-pg-user-4113006e"
+                    "name": "azure-pg-user-84c26083"
                   }
                 },
                 {
@@ -444,7 +131,10 @@
                     "name": "hasura-configmap"
                   }
                 }
-              ]
+              ],
+              "image": "harbor.demo.fr/app/app-hasura:84c26083eff55c2b368971aefb7e294db9cafb1d",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "hasura"
             }
           ],
           "initContainers": [
@@ -458,259 +148,130 @@
               "envFrom": [
                 {
                   "secretRef": {
-                    "name": "azure-pg-user-4113006e"
+                    "name": "azure-pg-user-84c26083"
                   }
                 }
               ],
-              "image": "registry.com/org/docker/wait-for-postgres:4.6.0",
+              "image": "registry.gitlab.factory.social.gouv.fr/org/docker/wait-for-postgres:4.6.0",
               "imagePullPolicy": "Always",
               "name": "wait-for-postgres"
             }
-          ]
-        }
-      }
-    }
-  },
-  {
-    "kind": "SealedSecret",
-    "metadata": {
-      "annotations": {
-        "sealedsecrets.bitnami.com/cluster-wide": "true",
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "name": "hasura-sealed-secret",
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "encryptedData": {
-        "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value"
-      },
-      "template": {
-        "metadata": {
-          "annotations": {
-            "sealedsecrets.bitnami.com/cluster-wide": "true",
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-          },
-          "name": "hasura-sealed-secret",
-          "labels": {
-            "application": "chore-d-u8fps8-les123",
-            "owner": "les123",
-            "team": "les123",
-            "cert": "wildcard"
-          }
-        }
-      }
-    },
-    "encryptedData": {
-      "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value"
-    }
-  },
-  {
-    "kind": "ConfigMap",
-    "metadata": {
-      "name": "hasura-configmap",
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "namespace": "123-85-master-dev2"
-    },
-    "data": {
-      "HASURA_GRAPHQL_ENABLE_CONSOLE": "some-configmap-value",
-      "HASURA_GRAPHQL_ENABLED_LOG_TYPES": "some-configmap-value",
-      "HASURA_GRAPHQL_NO_OF_RETRIES": "some-configmap-value",
-      "HASURA_GRAPHQL_SERVER_PORT": "some-configmap-value",
-      "HASURA_GRAPHQL_LOG_LEVEL": "some-configmap-value",
-      "HASURA_GRAPHQL_DEV_MODE": "some-configmap-value"
-    }
-  },
-  {
-    "kind": "Service",
-    "metadata": {
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "hasura",
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "selector": {
-        "app": "hasura"
-      }
-    }
-  },
-  {
-    "kind": "Ingress",
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "hasura",
-      "namespace": "123-85-master-dev2"
-    },
-    "spec": {
-      "rules": [
-        {
-          "host": "hasura-chore-d-u8fps8-les123.dev2.factory.fr",
-          "http": {
-            "paths": [
-              {
-                "backend": {
-                  "serviceName": "hasura",
-                  "servicePort": 80
-                },
-                "path": "/"
-              }
-            ]
-          }
-        }
-      ],
-      "tls": [
-        {
-          "hosts": ["hasura-chore-d-u8fps8-les123.dev2.factory.fr"],
-          "secretName": "wildcard-crt"
-        }
-      ]
-    }
-  },
-  {
-    "kind": "Job",
-    "spec": {
-      "template": {
-        "spec": {
-          "containers": [
-            {
-              "env": [
-                {
-                  "name": "NEW_DB_NAME",
-                  "value": "autodevops_123"
-                },
-                {
-                  "name": "NEW_USER",
-                  "value": "user_123"
-                },
-                {
-                  "name": "NEW_PASSWORD",
-                  "value": "password_123"
-                },
-                {
-                  "name": "NEW_DB_EXTENSIONS",
-                  "value": "hstore pgcrypto citext uuid-ossp"
-                }
-              ],
-              "envFrom": [
-                {
-                  "secretRef": {
-                    "name": "azure-pg-admin-user"
-                  }
-                }
-              ],
-              "image": "registry.com/org/docker/azure-db:2.6.1",
-              "imagePullPolicy": "IfNotPresent",
-              "name": "create-db-user"
-            }
           ],
-          "restartPolicy": "Never"
-        },
-        "metadata": {
-          "annotations": {
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-          },
-          "labels": {
-            "application": "chore-d-u8fps8-les123",
-            "owner": "les123",
-            "team": "les123",
-            "cert": "wildcard"
-          }
+          "restartPolicy": "Always"
         }
       }
-    },
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "create-db-job-4113006e",
-      "namespace": "123-85-master-dev2"
     }
-  },
-  {
-    "kind": "Secret",
-    "metadata": {
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
-      },
-      "name": "azure-pg-user-4113006e",
-      "namespace": "123-85-master-dev2"
-    },
-    "data": {}
   },
   {
     "kind": "Deployment",
     "metadata": {
       "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
       },
       "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
+        "app": "pgweb",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "component": "pgweb",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.cae47fe0c68a55ae2d74eda7fece78de",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "pgweb",
+      "namespace": "app-224-k8s2-dev2"
+    },
+    "spec": {
+      "replicas": 1,
+      "selector": {
+        "matchLabels": {
+          "app": "pgweb"
+        }
+      },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": "25%",
+          "maxUnavailable": "25%"
+        },
+        "type": "RollingUpdate"
+      },
+      "template": {
+        "metadata": {
+          "annotations": {
+            "app.gitlab.com/app": "org-app-app",
+            "app.gitlab.com/env": "k8s2-dev2",
+            "app.gitlab.com/env.name": "k8s2-dev2"
+          },
+          "labels": {
+            "app": "pgweb",
+            "application": "k8s2-dev2-app",
+            "cert": "wildcard",
+            "component": "pgweb",
+            "owner": "app",
+            "team": "app"
+          }
+        },
+        "spec": {
+          "containers": [
+            {
+              "envFrom": [
+                {
+                  "secretRef": {
+                    "name": "azure-pg-user-84c26083"
+                  }
+                }
+              ],
+              "image": "sosedoff/pgweb:0.11.7",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "pgweb"
+            }
+          ],
+          "initContainers": [
+            {
+              "env": [
+                {
+                  "name": "WAIT_FOR_RETRIES",
+                  "value": "24"
+                }
+              ],
+              "envFrom": [
+                {
+                  "secretRef": {
+                    "name": "azure-pg-user-84c26083"
+                  }
+                }
+              ],
+              "image": "registry.gitlab.factory.social.gouv.fr/org/docker/wait-for-postgres:4.6.0",
+              "imagePullPolicy": "Always",
+              "name": "wait-for-postgres"
+            }
+          ],
+          "restartPolicy": "Always"
+        }
+      }
+    }
+  },
+  {
+    "kind": "Deployment",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
+      "labels": {
+        "app": "strapi",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.4ebf1a7a02c27807918c9ab8f7f95234",
+        "owner": "app",
+        "team": "app"
       },
       "name": "strapi",
-      "namespace": "123-85-master-dev2"
+      "namespace": "app-224-k8s2-dev2"
     },
     "spec": {
       "replicas": 1,
@@ -719,42 +280,31 @@
           "app": "strapi"
         }
       },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": "25%",
+          "maxUnavailable": "25%"
+        },
+        "type": "RollingUpdate"
+      },
       "template": {
         "metadata": {
           "annotations": {
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+            "app.gitlab.com/app": "org-app-app",
+            "app.gitlab.com/env": "k8s2-dev2",
+            "app.gitlab.com/env.name": "k8s2-dev2"
           },
           "labels": {
-            "application": "chore-d-u8fps8-les123",
-            "owner": "les123",
-            "team": "les123",
-            "cert": "wildcard"
+            "app": "strapi",
+            "application": "k8s2-dev2-app",
+            "cert": "wildcard",
+            "owner": "app",
+            "team": "app"
           }
         },
         "spec": {
           "containers": [
             {
-              "image": "harbor.factory.fr/123/les123-strapi:4113006e12d735981f1d69f71fbd2f8759ad1cae",
-              "name": "strapi",
-              "envFrom": [
-                {
-                  "secretRef": {
-                    "name": "azure-pg-user-4113006e"
-                  }
-                },
-                {
-                  "secretRef": {
-                    "name": "strapi-sealed-secret"
-                  }
-                },
-                {
-                  "configMapRef": {
-                    "name": "strapi-configmap"
-                  }
-                }
-              ],
               "env": [
                 {
                   "name": "DATABASE_CLIENT",
@@ -784,6 +334,32 @@
                   "name": "DATABASE_SSL",
                   "value": "true"
                 }
+              ],
+              "envFrom": [
+                {
+                  "secretRef": {
+                    "name": "azure-pg-user-84c26083"
+                  }
+                },
+                {
+                  "secretRef": {
+                    "name": "strapi-sealed-secret"
+                  }
+                },
+                {
+                  "configMapRef": {
+                    "name": "strapi-configmap"
+                  }
+                }
+              ],
+              "image": "harbor.demo.fr/app/app-strapi:84c26083eff55c2b368971aefb7e294db9cafb1d",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "strapi",
+              "volumeMounts": [
+                {
+                  "mountPath": "/app/public/uploads",
+                  "name": "uploads"
+                }
               ]
             }
           ],
@@ -798,13 +374,23 @@
               "envFrom": [
                 {
                   "secretRef": {
-                    "name": "azure-pg-user-4113006e"
+                    "name": "azure-pg-user-84c26083"
                   }
                 }
               ],
-              "image": "registry.com/org/docker/wait-for-postgres:4.6.0",
+              "image": "registry.gitlab.factory.social.gouv.fr/org/docker/wait-for-postgres:4.6.0",
               "imagePullPolicy": "Always",
               "name": "wait-for-postgres"
+            }
+          ],
+          "restartPolicy": "Always",
+          "volumes": [
+            {
+              "azureFile": {
+                "secretName": "strapi-sealed-secret",
+                "shareName": "uploads"
+              },
+              "name": "uploads"
             }
           ]
         }
@@ -812,87 +398,286 @@
     }
   },
   {
-    "kind": "SealedSecret",
+    "kind": "Ingress",
     "metadata": {
       "annotations": {
-        "sealedsecrets.bitnami.com/cluster-wide": "true",
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
       },
-      "name": "strapi-sealed-secret",
       "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
+        "app": "expo",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.4eca66d321db7839dfba6baf16bc2412",
+        "owner": "app",
+        "team": "app"
       },
-      "namespace": "123-85-master-dev2"
+      "name": "expo",
+      "namespace": "app-224-k8s2-dev2"
     },
     "spec": {
-      "encryptedData": {
-        "hello": "some-sealed-secret-value"
-      },
-      "template": {
-        "metadata": {
-          "annotations": {
-            "sealedsecrets.bitnami.com/cluster-wide": "true",
-            "app.gitlab.com/app": "org-123-les123",
-            "app.gitlab.com/env": "chore-d-u8fps8",
-            "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-          },
-          "name": "strapi-sealed-secret",
-          "labels": {
-            "application": "chore-d-u8fps8-les123",
-            "owner": "les123",
-            "team": "les123",
-            "cert": "wildcard"
+      "rules": [
+        {
+          "host": "k8s2-dev2-app.dev2.demo.fr",
+          "http": {
+            "paths": [
+              {
+                "backend": {
+                  "serviceName": "expo",
+                  "servicePort": 80
+                },
+                "path": "/",
+                "pathType": "ImplementationSpecific"
+              }
+            ]
           }
         }
-      }
-    },
-    "encryptedData": {
-      "hello": "some-sealed-secret-value"
+      ],
+      "tls": [
+        {
+          "hosts": ["k8s2-dev2-app.dev2.demo.fr"],
+          "secretName": "wildcard-crt"
+        }
+      ]
     }
   },
   {
-    "kind": "ConfigMap",
+    "kind": "Ingress",
     "metadata": {
-      "name": "strapi-configmap",
       "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
       },
       "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
+        "app": "hasura",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.0b9b24e732df458c55270d41cb36acd4",
+        "owner": "app",
+        "team": "app"
       },
-      "namespace": "123-85-master-dev2"
+      "name": "hasura",
+      "namespace": "app-224-k8s2-dev2"
     },
-    "data": {
-      "STRAPI_LOG_LEVEL": "some-configmap-value",
-      "NODE_ENV": "some-configmap-value"
+    "spec": {
+      "rules": [
+        {
+          "host": "hasura-k8s2-dev2-app.dev2.demo.fr",
+          "http": {
+            "paths": [
+              {
+                "backend": {
+                  "serviceName": "hasura",
+                  "servicePort": 80
+                },
+                "path": "/",
+                "pathType": "ImplementationSpecific"
+              }
+            ]
+          }
+        }
+      ],
+      "tls": [
+        {
+          "hosts": ["hasura-k8s2-dev2-app.dev2.demo.fr"],
+          "secretName": "wildcard-crt"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "Ingress",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
+      "labels": {
+        "app": "pgweb",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.b4de5ebd999f52e49a5865b4877a2f9c",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "pgweb",
+      "namespace": "app-224-k8s2-dev2"
+    },
+    "spec": {
+      "rules": [
+        {
+          "host": "pgweb-k8s2-dev2-app.dev2.demo.fr",
+          "http": {
+            "paths": [
+              {
+                "backend": {
+                  "serviceName": "pgweb",
+                  "servicePort": 80
+                },
+                "path": "/",
+                "pathType": "ImplementationSpecific"
+              }
+            ]
+          }
+        }
+      ],
+      "tls": [
+        {
+          "hosts": ["pgweb-k8s2-dev2-app.dev2.demo.fr"],
+          "secretName": "wildcard-crt"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "Ingress",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
+      "labels": {
+        "app": "strapi",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.65ee71b4904b1e6599ba453f83f2a273",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "strapi",
+      "namespace": "app-224-k8s2-dev2"
+    },
+    "spec": {
+      "rules": [
+        {
+          "host": "strapi-k8s2-dev2-app.dev2.demo.fr",
+          "http": {
+            "paths": [
+              {
+                "backend": {
+                  "serviceName": "strapi",
+                  "servicePort": 80
+                },
+                "path": "/",
+                "pathType": "ImplementationSpecific"
+              }
+            ]
+          }
+        }
+      ],
+      "tls": [
+        {
+          "hosts": ["strapi-k8s2-dev2-app.dev2.demo.fr"],
+          "secretName": "wildcard-crt"
+        }
+      ]
     }
   },
   {
     "kind": "Service",
     "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
       "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
+        "app": "expo",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.d4b452f9aee0a7e8d89efaae3e6cfe44",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "expo",
+      "namespace": "app-224-k8s2-dev2"
+    },
+    "spec": {
+      "selector": {
+        "app": "expo"
+      }
+    }
+  },
+  {
+    "kind": "Service",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
+      "labels": {
+        "app": "hasura",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.caf690300cfca4098921cc22883b80e6",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "hasura",
+      "namespace": "app-224-k8s2-dev2"
+    },
+    "spec": {
+      "selector": {
+        "app": "hasura"
+      }
+    }
+  },
+  {
+    "kind": "Service",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
+      "labels": {
+        "app": "pgweb",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.e563f704b486202aafa154d22aa53d3b",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "pgweb",
+      "namespace": "app-224-k8s2-dev2"
+    },
+    "spec": {
+      "selector": {
+        "app": "pgweb"
+      }
+    }
+  },
+  {
+    "kind": "Service",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
+      "labels": {
+        "app": "strapi",
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.34100404bc0b1ab3f507fc916e1231e7",
+        "owner": "app",
+        "team": "app"
       },
       "name": "strapi",
-      "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
-      },
-      "namespace": "123-85-master-dev2"
+      "namespace": "app-224-k8s2-dev2"
     },
     "spec": {
       "selector": {
@@ -901,45 +686,283 @@
     }
   },
   {
-    "kind": "Ingress",
+    "data": {
+      "ADMIN_PG_PASSWORD": "some-secret-value",
+      "ADMIN_PG_PASSWORD_ENCODED": "some-secret-value",
+      "ADMIN_PG_USER": "some-secret-value",
+      "ADMIN_PG_USER_ENCODED": "some-secret-value",
+      "DATABASE_URL": "some-secret-value",
+      "PGHOST": "some-secret-value",
+      "PGPASSWORD": "some-secret-value",
+      "PGSSLMODE": "some-secret-value",
+      "PGUSER": "some-secret-value",
+      "PG_HOST": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "cattle.io/creator": "norman",
+        "kubed.appscode.com/origin.cluster": "dev2",
+        "kubed.appscode.com/origin.name": "azure-pg-admin-user",
+        "kubed.appscode.com/origin.namespace": "app-secret"
+      },
+      "name": "azure-pg-admin-user",
+      "namespace": "app-224-k8s2-dev2"
+    }
+  },
+  {
+    "data": {
+      "DATABASE_URL": "some-secret-value",
+      "DB_URI": "some-secret-value",
+      "HASURA_GRAPHQL_DATABASE_URL": "some-secret-value",
+      "PGDATABASE": "some-secret-value",
+      "PGHOST": "some-secret-value",
+      "PGPASSWORD": "some-secret-value",
+      "PGRST_DB_URI": "some-secret-value",
+      "PGSSLMODE": "some-secret-value",
+      "PGUSER": "some-secret-value"
+    },
+    "kind": "Secret",
     "metadata": {
       "annotations": {
-        "app.gitlab.com/app": "org-123-les123",
-        "app.gitlab.com/env": "chore-d-u8fps8",
-        "app.gitlab.com/env.name": "chore-db-schema2-dev2"
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
       },
       "labels": {
-        "application": "chore-d-u8fps8-les123",
-        "owner": "les123",
-        "team": "les123",
-        "cert": "wildcard"
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.05f0cd3cade6ae4673c9954d0e38e491",
+        "owner": "app",
+        "team": "app"
       },
-      "name": "strapi",
-      "namespace": "123-85-master-dev2"
+      "name": "azure-pg-user-84c26083",
+      "namespace": "app-224-k8s2-dev2"
+    }
+  },
+  {
+    "data": {
+      "ca.crt": "some-secret-value",
+      "namespace": "some-secret-value",
+      "token": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {},
+      "name": "default-token-htnw5",
+      "namespace": "app-224-k8s2-dev2"
+    }
+  },
+  {
+    "data": {
+      "HASURA_GRAPHQL_ADMIN_SECRET": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2",
+        "sealedsecrets.bitnami.com/cluster-wide": "true"
+      },
+      "labels": {
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "hasura-sealed-secret",
+      "namespace": "app-224-k8s2-dev2"
+    }
+  },
+  {
+    "data": {
+      "azurestorageaccountkey": "some-secret-value",
+      "azurestorageaccountname": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2",
+        "sealedsecrets.bitnami.com/cluster-wide": "true"
+      },
+      "labels": {
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "strapi-sealed-secret",
+      "namespace": "app-224-k8s2-dev2"
+    }
+  },
+  {
+    "data": {
+      "ca.crt": "some-secret-value",
+      "tls.crt": "some-secret-value",
+      "tls.key": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "certmanager.k8s.io/certificate-name": "wildcard-crt",
+        "kubed.appscode.com/origin.cluster": "dev2",
+        "kubed.appscode.com/origin.name": "wildcard-crt",
+        "kubed.appscode.com/origin.namespace": "cert-manager"
+      },
+      "name": "wildcard-crt",
+      "namespace": "app-224-k8s2-dev2"
+    }
+  },
+  {
+    "kind": "SealedSecret",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2",
+        "sealedsecrets.bitnami.com/cluster-wide": "true"
+      },
+      "labels": {
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.9271aadb62d73beaa57b3b4a239dbd51",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "hasura-sealed-secret",
+      "namespace": "app-224-k8s2-dev2"
     },
     "spec": {
-      "rules": [
-        {
-          "host": "strapi-chore-d-u8fps8-les123.dev2.factory.fr",
-          "http": {
-            "paths": [
-              {
-                "backend": {
-                  "serviceName": "strapi",
-                  "servicePort": 80
-                },
-                "path": "/"
-              }
-            ]
-          }
+      "encryptedData": {
+        "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value"
+      },
+      "template": {
+        "metadata": {
+          "annotations": {
+            "app.gitlab.com/app": "org-app-app",
+            "app.gitlab.com/env": "k8s2-dev2",
+            "app.gitlab.com/env.name": "k8s2-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true"
+          },
+          "labels": {
+            "application": "k8s2-dev2-app",
+            "cert": "wildcard",
+            "owner": "app",
+            "team": "app"
+          },
+          "name": "hasura-sealed-secret"
         }
-      ],
-      "tls": [
-        {
-          "hosts": ["strapi-chore-d-u8fps8-les123.dev2.factory.fr"],
-          "secretName": "wildcard-crt"
+      }
+    },
+    "encryptedData": {
+      "HASURA_GRAPHQL_ADMIN_SECRET": "some-sealed-secret-value"
+    }
+  },
+  {
+    "kind": "SealedSecret",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2",
+        "sealedsecrets.bitnami.com/cluster-wide": "true"
+      },
+      "labels": {
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.809b0e808fd8714462e32065321cb78b",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "strapi-sealed-secret",
+      "namespace": "app-224-k8s2-dev2"
+    },
+    "spec": {
+      "encryptedData": {
+        "azurestorageaccountkey": "some-sealed-secret-value",
+        "azurestorageaccountname": "some-sealed-secret-value"
+      },
+      "template": {
+        "metadata": {
+          "annotations": {
+            "app.gitlab.com/app": "org-app-app",
+            "app.gitlab.com/env": "k8s2-dev2",
+            "app.gitlab.com/env.name": "k8s2-dev2",
+            "sealedsecrets.bitnami.com/cluster-wide": "true"
+          },
+          "labels": {
+            "application": "k8s2-dev2-app",
+            "cert": "wildcard",
+            "owner": "app",
+            "team": "app"
+          },
+          "name": "strapi-sealed-secret"
         }
-      ]
+      }
+    },
+    "encryptedData": {
+      "azurestorageaccountkey": "some-sealed-secret-value",
+      "azurestorageaccountname": "some-sealed-secret-value"
+    }
+  },
+  {
+    "data": {
+      "HASURA_GRAPHQL_DEV_MODE": "some-configmap-value",
+      "HASURA_GRAPHQL_ENABLED_LOG_TYPES": "some-configmap-value",
+      "HASURA_GRAPHQL_ENABLE_CONSOLE": "some-configmap-value",
+      "HASURA_GRAPHQL_LOG_LEVEL": "some-configmap-value",
+      "HASURA_GRAPHQL_NO_OF_RETRIES": "some-configmap-value",
+      "HASURA_GRAPHQL_SERVER_PORT": "some-configmap-value"
+    },
+    "kind": "ConfigMap",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
+      "labels": {
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.b6911d8b8b85f83f1145dd5db34e5cf3",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "hasura-configmap",
+      "namespace": "app-224-k8s2-dev2"
+    }
+  },
+  {
+    "data": {
+      "NODE_ENV": "some-configmap-value",
+      "STRAPI_LOG_LEVEL": "some-configmap-value"
+    },
+    "kind": "ConfigMap",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-app-app",
+        "app.gitlab.com/env": "k8s2-dev2",
+        "app.gitlab.com/env.name": "k8s2-dev2"
+      },
+      "labels": {
+        "application": "k8s2-dev2-app",
+        "cert": "wildcard",
+        "kapp.k14s.io/app": "1615241323170693357",
+        "kapp.k14s.io/association": "v1.c719ece45d72de57b8bccde0bc4941d1",
+        "owner": "app",
+        "team": "app"
+      },
+      "name": "strapi-configmap",
+      "namespace": "app-224-k8s2-dev2"
     }
   }
 ]

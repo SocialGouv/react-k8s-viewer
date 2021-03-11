@@ -1,0 +1,674 @@
+[
+  {
+    "kind": "Deployment",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-some-admin",
+        "app.gitlab.com/env": "debug1-dev2"
+      },
+      "labels": {
+        "app.kubernetes.io/instance": "hasura",
+        "app.kubernetes.io/managed-by": "Tiller",
+        "app.kubernetes.io/name": "some-admin",
+        "app.kubernetes.io/part-of": "some-admin",
+        "app.kubernetes.io/version": "1",
+        "helm.sh/chart": "app-6.2.0",
+        "owner": "some-admin",
+        "team": "some-admin"
+      },
+      "name": "hasura-some-admin",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "replicas": 1,
+      "selector": {
+        "matchLabels": {
+          "app.kubernetes.io/instance": "hasura",
+          "app.kubernetes.io/name": "some-admin"
+        }
+      },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": "25%",
+          "maxUnavailable": "25%"
+        },
+        "type": "RollingUpdate"
+      },
+      "template": {
+        "metadata": {
+          "annotations": {
+            "app.gitlab.com/app": "org-some-admin",
+            "app.gitlab.com/env": "debug1-dev2"
+          },
+          "labels": {
+            "app.kubernetes.io/instance": "hasura",
+            "app.kubernetes.io/managed-by": "Tiller",
+            "app.kubernetes.io/name": "some-admin",
+            "app.kubernetes.io/part-of": "some-admin",
+            "app.kubernetes.io/version": "1",
+            "helm.sh/chart": "app-6.2.0",
+            "owner": "some-admin",
+            "team": "some-admin"
+          }
+        },
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NODE_ENV",
+                  "value": "production"
+                },
+                {
+                  "name": "HASURA_GRAPHQL_ENABLE_CONSOLE",
+                  "value": "false"
+                },
+                {
+                  "name": "HASURA_GRAPHQL_SERVER_PORT",
+                  "value": "80"
+                },
+                {
+                  "name": "HASURA_GRAPHQL_ENABLED_LOG_TYPES",
+                  "value": "startup, http-log, webhook-log, websocket-log, query-log"
+                },
+                {
+                  "name": "HASURA_GRAPHQL_NO_OF_RETRIES",
+                  "value": "5"
+                },
+                {
+                  "name": "HASURA_GRAPHQL_UNAUTHORIZED_ROLE",
+                  "value": "public"
+                },
+                {
+                  "name": "ACCOUNT_EMAIL_WEBHOOK_URL",
+                  "value": "http://www:3000/api/webhooks/account"
+                },
+                {
+                  "name": "PUBLICATION_WEBHOOK_URL",
+                  "value": "http://www:3000/api/webhooks/publication"
+                },
+                {
+                  "name": "API_URL",
+                  "value": "http://www:3000/api"
+                },
+                {
+                  "name": "HASURA_GRAPHQL_DATABASE_URL",
+                  "value": "postgresql://user:pass@host"
+                }
+              ],
+              "envFrom": [
+                {
+                  "secretRef": {
+                    "name": "some-admin-secrets"
+                  }
+                }
+              ],
+              "image": "registry.fr/org/some-admin/hasura:4d6c3b174ed74e99472a088b5e6f49e3934cd403",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "app"
+            }
+          ],
+          "restartPolicy": "Always"
+        }
+      }
+    }
+  },
+  {
+    "kind": "Deployment",
+    "metadata": {
+      "annotations": {
+        "app.gitlab.com/app": "org-some-admin",
+        "app.gitlab.com/env": "debug1-dev2"
+      },
+      "labels": {
+        "app.kubernetes.io/instance": "www",
+        "app.kubernetes.io/managed-by": "Tiller",
+        "app.kubernetes.io/name": "some-admin",
+        "app.kubernetes.io/part-of": "some-admin",
+        "app.kubernetes.io/version": "1",
+        "helm.sh/chart": "app-6.2.0",
+        "owner": "some-admin",
+        "team": "some-admin"
+      },
+      "name": "www",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "replicas": 1,
+      "selector": {
+        "matchLabels": {
+          "app.kubernetes.io/instance": "www",
+          "app.kubernetes.io/name": "some-admin"
+        }
+      },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": "25%",
+          "maxUnavailable": "25%"
+        },
+        "type": "RollingUpdate"
+      },
+      "template": {
+        "metadata": {
+          "annotations": {
+            "app.gitlab.com/app": "org-some-admin",
+            "app.gitlab.com/env": "debug1-dev2"
+          },
+          "labels": {
+            "app.kubernetes.io/instance": "www",
+            "app.kubernetes.io/managed-by": "Tiller",
+            "app.kubernetes.io/name": "some-admin",
+            "app.kubernetes.io/part-of": "some-admin",
+            "app.kubernetes.io/version": "1",
+            "helm.sh/chart": "app-6.2.0",
+            "owner": "some-admin",
+            "team": "some-admin"
+          }
+        },
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "CI_ENVIRONMENT_URL",
+                  "value": "https://debug1-dev2-some-admin.dev2.demo.fr"
+                },
+                {
+                  "name": "AZURE_STORAGE_ACCOUNT_KEY"
+                },
+                {
+                  "name": "AZURE_STORAGE_ACCOUNT_NAME"
+                }
+              ],
+              "envFrom": [
+                {
+                  "configMapRef": {
+                    "name": "www-env"
+                  }
+                },
+                {
+                  "secretRef": {
+                    "name": "some-admin-secrets"
+                  }
+                }
+              ],
+              "image": "registry.fr/org/some-admin/www:4d6c3b174ed74e99472a088b5e6f49e3934cd403",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "app"
+            }
+          ],
+          "restartPolicy": "Always"
+        }
+      }
+    }
+  },
+  {
+    "kind": "Job",
+    "metadata": {
+      "labels": {
+        "controller-uid": "320a9f38-fc25-4b44-ac9c-9d48388e8142",
+        "job-name": "alert-1615424400"
+      },
+      "name": "alert-1615424400",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "selector": {
+        "matchLabels": {
+          "controller-uid": "320a9f38-fc25-4b44-ac9c-9d48388e8142"
+        }
+      },
+      "template": {
+        "metadata": {
+          "labels": {
+            "controller-uid": "320a9f38-fc25-4b44-ac9c-9d48388e8142",
+            "job-name": "alert-1615424400"
+          }
+        },
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "PRODUCTION"
+                },
+                {
+                  "name": "HASURA_GRAPHQL_ENDPOINT",
+                  "value": "http://hasura-some-admin/v1/graphql"
+                }
+              ],
+              "envFrom": [
+                {
+                  "secretRef": {
+                    "name": "some-admin-secrets"
+                  }
+                }
+              ],
+              "image": "registry.fr/org/some-admin/alert:4d6c3b174ed74e99472a088b5e6f49e3934cd403",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "update-alert",
+              "volumeMounts": [
+                {
+                  "mountPath": "/etc/localtime",
+                  "name": "tz-paris"
+                }
+              ]
+            }
+          ],
+          "restartPolicy": "Never",
+          "volumes": [
+            {
+              "hostPath": {
+                "path": "/usr/share/zoneinfo/Europe/Paris",
+                "type": ""
+              },
+              "name": "tz-paris"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "kind": "Job",
+    "metadata": {
+      "labels": {
+        "controller-uid": "252404ac-80c7-4b42-a332-8f7c2643d3b6",
+        "job-name": "ingester-1615422600"
+      },
+      "name": "ingester-1615422600",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "selector": {
+        "matchLabels": {
+          "controller-uid": "252404ac-80c7-4b42-a332-8f7c2643d3b6"
+        }
+      },
+      "template": {
+        "metadata": {
+          "labels": {
+            "controller-uid": "252404ac-80c7-4b42-a332-8f7c2643d3b6",
+            "job-name": "ingester-1615422600"
+          }
+        },
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "PRODUCTION"
+                },
+                {
+                  "name": "HASURA_GRAPHQL_ENDPOINT",
+                  "value": "http://hasura-some-admin/v1/graphql"
+                }
+              ],
+              "envFrom": [
+                {
+                  "secretRef": {
+                    "name": "some-admin-secrets"
+                  }
+                }
+              ],
+              "image": "registry.fr/org/some-admin/ingester:4d6c3b174ed74e99472a088b5e6f49e3934cd403",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "update-ingester",
+              "volumeMounts": [
+                {
+                  "mountPath": "/app/data",
+                  "name": "data"
+                },
+                {
+                  "mountPath": "/etc/localtime",
+                  "name": "tz-paris"
+                }
+              ]
+            }
+          ],
+          "restartPolicy": "Never",
+          "volumes": [
+            {
+              "name": "data",
+              "persistentVolumeClaim": {
+                "claimName": "ingester-data"
+              }
+            },
+            {
+              "hostPath": {
+                "path": "/usr/share/zoneinfo/Europe/Paris",
+                "type": ""
+              },
+              "name": "tz-paris"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "kind": "CronJob",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "app.kubernetes.io/part-of": "some-admin",
+        "owner": "some-admin",
+        "team": "some-admin"
+      },
+      "name": "alert",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "concurrencyPolicy": "Forbid",
+      "failedJobsHistoryLimit": 3,
+      "jobTemplate": {
+        "spec": {
+          "template": {
+            "spec": {
+              "containers": [
+                {
+                  "env": [
+                    {
+                      "name": "PRODUCTION"
+                    },
+                    {
+                      "name": "HASURA_GRAPHQL_ENDPOINT",
+                      "value": "http://hasura-some-admin/v1/graphql"
+                    }
+                  ],
+                  "envFrom": [
+                    {
+                      "secretRef": {
+                        "name": "some-admin-secrets"
+                      }
+                    }
+                  ],
+                  "image": "registry.fr/org/some-admin/alert:4d6c3b174ed74e99472a088b5e6f49e3934cd403",
+                  "imagePullPolicy": "IfNotPresent",
+                  "name": "update-alert",
+                  "volumeMounts": [
+                    {
+                      "mountPath": "/etc/localtime",
+                      "name": "tz-paris"
+                    }
+                  ]
+                }
+              ],
+              "restartPolicy": "Never",
+              "volumes": [
+                {
+                  "hostPath": {
+                    "path": "/usr/share/zoneinfo/Europe/Paris",
+                    "type": ""
+                  },
+                  "name": "tz-paris"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "schedule": "0 1 * * *",
+      "successfulJobsHistoryLimit": 3
+    }
+  },
+  {
+    "kind": "CronJob",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "app.kubernetes.io/part-of": "some-admin",
+        "owner": "some-admin",
+        "team": "some-admin"
+      },
+      "name": "ingester",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "concurrencyPolicy": "Forbid",
+      "failedJobsHistoryLimit": 3,
+      "jobTemplate": {
+        "spec": {
+          "template": {
+            "spec": {
+              "containers": [
+                {
+                  "env": [
+                    {
+                      "name": "PRODUCTION"
+                    },
+                    {
+                      "name": "HASURA_GRAPHQL_ENDPOINT",
+                      "value": "http://hasura-some-admin/v1/graphql"
+                    }
+                  ],
+                  "envFrom": [
+                    {
+                      "secretRef": {
+                        "name": "some-admin-secrets"
+                      }
+                    }
+                  ],
+                  "image": "registry.fr/org/some-admin/ingester:4d6c3b174ed74e99472a088b5e6f49e3934cd403",
+                  "imagePullPolicy": "IfNotPresent",
+                  "name": "update-ingester",
+                  "volumeMounts": [
+                    {
+                      "mountPath": "/app/data",
+                      "name": "data"
+                    },
+                    {
+                      "mountPath": "/etc/localtime",
+                      "name": "tz-paris"
+                    }
+                  ]
+                }
+              ],
+              "restartPolicy": "Never",
+              "volumes": [
+                {
+                  "name": "data",
+                  "persistentVolumeClaim": {
+                    "claimName": "ingester-data"
+                  }
+                },
+                {
+                  "hostPath": {
+                    "path": "/usr/share/zoneinfo/Europe/Paris",
+                    "type": ""
+                  },
+                  "name": "tz-paris"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "schedule": "30 0 * * *",
+      "successfulJobsHistoryLimit": 3
+    }
+  },
+  {
+    "kind": "Ingress",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "app.kubernetes.io/instance": "www",
+        "app.kubernetes.io/managed-by": "Tiller",
+        "app.kubernetes.io/name": "some-admin",
+        "app.kubernetes.io/part-of": "some-admin",
+        "app.kubernetes.io/version": "1",
+        "helm.sh/chart": "app-6.2.0",
+        "owner": "some-admin",
+        "team": "some-admin"
+      },
+      "name": "www",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "rules": [
+        {
+          "host": "debug1-dev2-some-admin.dev2.demo.fr",
+          "http": {
+            "paths": [
+              {
+                "backend": {
+                  "serviceName": "www",
+                  "servicePort": 3000
+                },
+                "path": "/",
+                "pathType": "ImplementationSpecific"
+              }
+            ]
+          }
+        }
+      ],
+      "tls": [
+        {
+          "hosts": ["debug1-dev2-some-admin.dev2.demo.fr"],
+          "secretName": "wildcard-crt"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "Service",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "app.kubernetes.io/instance": "hasura",
+        "app.kubernetes.io/managed-by": "Tiller",
+        "app.kubernetes.io/name": "some-admin",
+        "app.kubernetes.io/part-of": "some-admin",
+        "app.kubernetes.io/version": "1",
+        "helm.sh/chart": "app-6.2.0",
+        "owner": "some-admin",
+        "team": "some-admin"
+      },
+      "name": "hasura-some-admin",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "selector": {
+        "app.kubernetes.io/instance": "hasura",
+        "app.kubernetes.io/name": "some-admin"
+      }
+    }
+  },
+  {
+    "kind": "Service",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "app.kubernetes.io/instance": "www",
+        "app.kubernetes.io/managed-by": "Tiller",
+        "app.kubernetes.io/name": "some-admin",
+        "app.kubernetes.io/part-of": "some-admin",
+        "app.kubernetes.io/version": "1",
+        "helm.sh/chart": "app-6.2.0",
+        "owner": "some-admin",
+        "team": "some-admin"
+      },
+      "name": "www",
+      "namespace": "some-admin-136-debug1-dev2"
+    },
+    "spec": {
+      "selector": {
+        "app.kubernetes.io/instance": "www",
+        "app.kubernetes.io/name": "some-admin"
+      }
+    }
+  },
+  {
+    "data": {
+      "azurestorageaccountkey": "some-secret-value",
+      "azurestorageaccountname": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "cattle.io/creator": "norman"
+      },
+      "name": "azure-someadmindev-volume",
+      "namespace": "some-admin-136-debug1-dev2"
+    }
+  },
+  {
+    "data": {
+      "ACCOUNT_EMAIL_SECRET": "some-secret-value",
+      "ACTIONS_SECRET": "some-secret-value",
+      "ELASTICSEARCH_APIKEY_DEV": "some-secret-value",
+      "ELASTICSEARCH_APIKEY_PUBLISH_PROD": "some-secret-value",
+      "ELASTICSEARCH_URL_DEV": "some-secret-value",
+      "ELASTICSEARCH_URL_PROD": "some-secret-value",
+      "GITLAB_ACCESS_TOKEN": "some-secret-value",
+      "GITLAB_TRIGGER_TOKEN": "some-secret-value",
+      "HASURA_GRAPHQL_ADMIN_SECRET": "some-secret-value",
+      "HASURA_GRAPHQL_JWT_SECRET": "some-secret-value",
+      "PUBLICATION_SECRET": "some-secret-value",
+      "SMTP_EMAIL_PASSWORD": "some-secret-value",
+      "SMTP_EMAIL_USER": "some-secret-value",
+      "SMTP_URL": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "cattle.io/creator": "norman"
+      },
+      "name": "some-admin-secrets",
+      "namespace": "some-admin-136-debug1-dev2"
+    }
+  },
+  {
+    "data": {
+      "ca.crt": "some-secret-value",
+      "namespace": "some-secret-value",
+      "token": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {},
+      "name": "default-token-mckkc",
+      "namespace": "some-admin-136-debug1-dev2"
+    }
+  },
+  {
+    "data": {
+      "ca.crt": "some-secret-value",
+      "tls.crt": "some-secret-value",
+      "tls.key": "some-secret-value"
+    },
+    "kind": "Secret",
+    "metadata": {
+      "annotations": {},
+      "labels": {
+        "certmanager.k8s.io/certificate-name": "wildcard-crt",
+        "kubed.appscode.com/origin.cluster": "dev2",
+        "kubed.appscode.com/origin.name": "wildcard-crt",
+        "kubed.appscode.com/origin.namespace": "cert-manager"
+      },
+      "name": "wildcard-crt",
+      "namespace": "some-admin-136-debug1-dev2"
+    }
+  },
+  {
+    "data": {
+      "ACCOUNT_MAIL_SENDER": "some-configmap-value",
+      "CI_COMMIT_SHORT_SHA": "some-configmap-value",
+      "FRONTEND_PORT": "some-configmap-value",
+      "FRONTEND_URL": "some-configmap-value",
+      "HASURA_GRAPHQL_ENDPOINT": "some-configmap-value",
+      "NEXT_PUBLIC_ACTIVATION_TOKEN_EXPIRES": "some-configmap-value",
+      "NEXT_PUBLIC_REFRESH_TOKEN_EXPIRES": "some-configmap-value",
+      "NODE_ENV": "some-configmap-value"
+    },
+    "kind": "ConfigMap",
+    "metadata": {
+      "annotations": {},
+      "name": "www-env",
+      "namespace": "some-admin-136-debug1-dev2"
+    }
+  }
+]
