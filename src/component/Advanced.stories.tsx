@@ -20,6 +20,14 @@ export const StrapiHasura: React.FC<{}> = () => (
   </div>
 );
 
+export const SomeAdmin: React.FC<{}> = () => (
+  <div style={{ height: 700 }}>
+    <ReactFlowProvider>
+      <K8sViewer manifests={require("../../fixtures/some-admin.json")} />
+    </ReactFlowProvider>
+  </div>
+);
+
 export default {
   title: "K8sViewer - Advanced", // Title of you main menu entry for this group of stories
   component: K8sViewer, // This is the component documented by this Storybook page

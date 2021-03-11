@@ -39,7 +39,9 @@ const createVolumeNode = (manifest: Manifest, volume: AnyObject): Node => {
 
 const getManifestNodes = (manifest: Manifest): Node[] => {
   return (
-    (manifest.spec.template.spec.volumes &&
+    (manifest.spec &&
+      manifest.spec.template &&
+      manifest.spec.template.spec.volumes &&
       manifest.spec.template.spec.volumes
         .filter((volume: Volume) => !volume.name.match(/^default-token-/))
         .map((volume: Volume) => createVolumeNode(manifest, volume))) ||
@@ -171,6 +173,11 @@ const createEdge = (
   };
 };
 
+const hasValidSelector = (manifest: Manifest, selector: AnyObject) => {
+  const labels = (manifest.metadata && manifest.metadata.labels) || {};
+  return Object.keys(selector).every((key) => labels[key] === selector[key]);
+};
+
 const getElements = (elements: Elements, filters: AnyObject): Elements => {
   const filtered = elements.filter((e) => {
     const isValid = e && e.data && e.data.manifest;
@@ -180,8 +187,10 @@ const getElements = (elements: Elements, filters: AnyObject): Elements => {
     const isKind = !filters.kind || e.data.manifest.kind === filters.kind;
     const isName =
       !filters.name || e.data.manifest?.metadata?.name === filters.name;
+    const isSelector =
+      !filters.selector || hasValidSelector(e.data.manifest, filters.selector);
 
-    return isKind && isName;
+    return isKind && isName && isSelector;
   });
   return filtered;
 };
@@ -337,12 +346,6 @@ export const parseManifests = (
     .filter((manifest: Manifest) => manifest.kind === "Service")
     .forEach((manifest: Manifest) => {
       // service to deployment edge
-      const targetDeploymentName =
-        manifest.spec.selector.app ||
-        manifest.spec.selector["app.kubernetes.io/instance"] +
-          "-" +
-          manifest.spec.selector["app.kubernetes.io/name"];
-
       const serviceNode = getElements(elements, {
         kind: "Service",
         name: manifest?.metadata?.name,
@@ -350,9 +353,12 @@ export const parseManifests = (
 
       const deploymentNodes = getElements(elements, {
         kind: "Deployment",
-        name: targetDeploymentName,
+        selector: manifest.spec.selector,
       });
 
+      if (!deploymentNodes.length) {
+        console.log("cannot find deployment for service", manifest);
+      }
       deploymentNodes.forEach((deploymentNode) => {
         const edge = createEdge(serviceNode, deploymentNode, {
           // defaultTargetLabel: rule.secretName,
@@ -419,152 +425,207 @@ export const parseManifests = (
       });
 
       manifestNodes.forEach((manifestNode) => {
-        if (manifest.spec.template.spec.imagePullSecrets) {
-          manifest.spec.template.spec.imagePullSecrets.forEach(
-            (pullSecret: AnyObject) => {
-              const secretNode = getElements(elements, {
-                kind: "Secret",
-                name: pullSecret.name,
+        const addSecret = (secret: AnyObject) => {
+          const secretNode = getElements(elements, {
+            kind: "Secret",
+            name: secret.name,
+          })[0];
+          const edge = createEdge(manifestNode, secretNode, {
+            type: "smoothstep",
+            data: {
+              label: `Secret ${secret.name}`,
+            },
+          });
+          if (edge) {
+            elements.push(edge);
+          }
+        };
+
+        const addVolume = (volume: Volume) => {
+          const volumeNode = getVolume(
+            elements,
+            manifest?.metadata?.namespace,
+            volume
+          );
+          if (volumeNode) {
+            const edge = createEdge(manifestNode, volumeNode, {
+              type: "smoothstep",
+            });
+            if (edge) {
+              elements.push(edge);
+            }
+            if (volume.configMap) {
+              const configMapNode = getElements(elements, {
+                kind: "ConfigMap",
+                name: volume.configMap.name,
               })[0];
-              const edge = createEdge(manifestNode, secretNode, {
+              const edge = createEdge(volumeNode, configMapNode, {
                 type: "smoothstep",
                 data: {
-                  label: `Secret ${pullSecret.name}`,
+                  label: `ConfigMap ${volume.configMap.name}`,
+                  ...volume,
                 },
               });
               if (edge) {
                 elements.push(edge);
               }
             }
+            if (volume.azureFile) {
+              const secretNode = getElements(elements, {
+                kind: "Secret",
+                name: volume.azureFile.secretName,
+              })[0];
+              const edge = createEdge(volumeNode, secretNode, {
+                type: "smoothstep",
+                data: {
+                  label: `Secret ${volume.azureFile.secretName}`,
+                  ...volume,
+                },
+              });
+              if (edge) {
+                elements.push(edge);
+              }
+            }
+          }
+        };
+
+        if (
+          manifest &&
+          manifest.spec &&
+          manifest.spec.template &&
+          manifest.spec.template.spec.imagePullSecrets
+        ) {
+          manifest.spec.template.spec.imagePullSecrets.forEach(
+            (pullSecret: AnyObject) => {
+              addSecret(pullSecret);
+            }
           );
         }
 
-        manifest.spec.template.spec.volumes &&
+        if (
+          manifest &&
+          manifest.kind === "CronJob" &&
+          manifest.spec &&
+          manifest.spec.jobTemplate &&
+          manifest.spec.jobTemplate.spec &&
+          manifest.spec.jobTemplate.spec.template &&
+          manifest.spec.jobTemplate.spec.template.imagePullSecrets
+        ) {
+          manifest.spec.jobTemplate.spec.template.imagePullSecrets.forEach(
+            (pullSecret: AnyObject) => {
+              addSecret(pullSecret);
+            }
+          );
+        }
+
+        manifest &&
+          manifest.spec &&
+          manifest.spec.template &&
+          manifest.spec.template.spec.volumes &&
           manifest.spec.template.spec.volumes
             .filter((volume: Volume) => !volume.name.match(/^default-token-/))
             .forEach((volume: Volume) => {
-              const volumeNode = getVolume(
-                elements,
-                manifest?.metadata?.namespace,
-                volume
-              );
-              if (volumeNode) {
-                const edge = createEdge(manifestNode, volumeNode, {
-                  type: "smoothstep",
-                });
-                if (edge) {
-                  elements.push(edge);
+              addVolume(volume);
+            });
+
+        manifest &&
+          manifest.kind === "CronJob" &&
+          manifest.spec &&
+          manifest.spec.jobTemplate &&
+          manifest.spec.jobTemplate.spec &&
+          manifest.spec.jobTemplate.spec.template &&
+          manifest.spec.jobTemplate.spec.template.spec &&
+          manifest.spec.jobTemplate.spec.template.spec.volumes
+            .filter((volume: Volume) => !volume.name.match(/^default-token-/))
+            .forEach((volume: Volume) => {
+              addVolume(volume);
+            });
+
+        const addSecretEdge = (secretName: string) => {
+          const secretNode = getElements(elements, {
+            kind: "Secret",
+            name: secretName,
+          })[0];
+          const edge = createEdge(manifestNode, secretNode, {
+            type: "smoothstep",
+            data: {
+              label: `Secret ${secretName}`,
+            },
+          });
+          if (edge) {
+            elements.push(edge);
+          }
+        };
+
+        const addConfigMapEdge = (configMapName: string) => {
+          const configMapNode = getElements(elements, {
+            kind: "ConfigMap",
+            name: configMapName,
+          })[0];
+          const edge = createEdge(manifestNode, configMapNode, {
+            type: "smoothstep",
+            data: {
+              label: `ConfigMap ${configMapName}`,
+            },
+          });
+          if (edge) {
+            elements.push(edge);
+          }
+        };
+
+        const addContainerEdges = (container: AnyObject) => {
+          if (container.envFrom) {
+            container.envFrom.forEach(
+              (envFrom: IIoK8sApiCoreV1EnvFromSource) => {
+                if (envFrom.secretRef && envFrom.secretRef.name) {
+                  addSecretEdge(envFrom.secretRef.name);
                 }
-                if (volume.configMap) {
-                  const configMapNode = getElements(elements, {
-                    kind: "ConfigMap",
-                    name: volume.configMap.name,
-                  })[0];
-                  const edge = createEdge(volumeNode, configMapNode, {
-                    type: "smoothstep",
-                    data: {
-                      label: `ConfigMap ${volume.configMap.name}`,
-                      ...volume,
-                    },
-                  });
-                  if (edge) {
-                    elements.push(edge);
-                  }
+                if (envFrom.configMapRef && envFrom.configMapRef.name) {
+                  addConfigMapEdge(envFrom.configMapRef.name);
                 }
-                if (volume.azureFile) {
-                  const secretNode = getElements(elements, {
-                    kind: "Secret",
-                    name: volume.azureFile.secretName,
-                  })[0];
-                  const edge = createEdge(volumeNode, secretNode, {
-                    type: "smoothstep",
-                    data: {
-                      label: `Secret ${volume.azureFile.secretName}`,
-                      ...volume,
-                    },
-                  });
-                  if (edge) {
-                    elements.push(edge);
-                  }
+              }
+            );
+          }
+          if (container.env) {
+            container.env.forEach((env: IIoK8sApiCoreV1EnvVar) => {
+              if (env.valueFrom) {
+                if (
+                  env.valueFrom.secretKeyRef &&
+                  env.valueFrom.secretKeyRef.name
+                ) {
+                  addSecretEdge(env.valueFrom.secretKeyRef.name);
+                } else if (
+                  env.valueFrom.configMapKeyRef &&
+                  env.valueFrom.configMapKeyRef.name
+                ) {
+                  addConfigMapEdge(env.valueFrom.configMapKeyRef.name);
                 }
               }
             });
-
-        manifest.spec.template.spec.containers.forEach(
-          (container: Container) => {
-            if (container.envFrom) {
-              container.envFrom.forEach(
-                (envFrom: IIoK8sApiCoreV1EnvFromSource) => {
-                  if (envFrom.secretRef) {
-                    const secretNode = getElements(elements, {
-                      kind: "Secret",
-                      name: envFrom.secretRef.name,
-                    })[0];
-                    const edge = createEdge(manifestNode, secretNode, {
-                      type: "smoothstep",
-                      data: {
-                        label: `Secret ${envFrom.secretRef.name}`,
-                      },
-                    });
-                    if (edge) {
-                      elements.push(edge);
-                    }
-                  }
-                  if (envFrom.configMapRef) {
-                    const configMapNode = getElements(elements, {
-                      kind: "ConfigMap",
-                      name: envFrom.configMapRef.name,
-                    })[0];
-                    const edge = createEdge(manifestNode, configMapNode, {
-                      type: "smoothstep",
-                      data: {
-                        label: `ConfigMap ${envFrom.configMapRef.name}`,
-                      },
-                    });
-                    if (edge) {
-                      elements.push(edge);
-                    }
-                  }
-                }
-              );
-            }
-            if (container.env) {
-              container.env.forEach((env: IIoK8sApiCoreV1EnvVar) => {
-                if (env.valueFrom) {
-                  if (env.valueFrom.secretKeyRef) {
-                    const secretNode = getElements(elements, {
-                      kind: "Secret",
-                      name: env.valueFrom.secretKeyRef.name,
-                    })[0];
-                    const edge = createEdge(manifestNode, secretNode, {
-                      type: "smoothstep",
-                      data: {
-                        label: `Secret ${env.valueFrom.secretKeyRef.name}`,
-                      },
-                    });
-                    if (edge) {
-                      elements.push(edge);
-                    }
-                  } else if (env.valueFrom.configMapKeyRef) {
-                    const configMapNode = getElements(elements, {
-                      kind: "Secret",
-                      name: env.valueFrom.configMapKeyRef.name,
-                    })[0];
-                    const edge = createEdge(manifestNode, configMapNode, {
-                      type: "smoothstep",
-                      data: {
-                        label: `ConfigMap ${env.valueFrom.configMapKeyRef.name}`,
-                      },
-                    });
-                    if (edge) {
-                      elements.push(edge);
-                    }
-                  }
-                }
-              });
-            }
           }
-        );
+        };
+
+        manifest &&
+          manifest.spec &&
+          manifest.spec.template &&
+          manifest.spec.template.spec.containers.forEach(
+            (container: Container) => {
+              addContainerEdges(container);
+            }
+          );
+
+        manifest &&
+          manifest.kind === "CronJob" &&
+          manifest.spec &&
+          manifest.spec.jobTemplate &&
+          manifest.spec.jobTemplate.spec &&
+          manifest.spec.jobTemplate.spec.template &&
+          manifest.spec.jobTemplate.spec.template.spec &&
+          manifest.spec.jobTemplate.spec.template.spec.containers.forEach(
+            (container: Container) => {
+              addContainerEdges(container);
+            }
+          );
       });
     });
 

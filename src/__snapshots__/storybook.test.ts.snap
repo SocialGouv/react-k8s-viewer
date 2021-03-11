@@ -403,7 +403,7 @@ exports[`Storyshots K8sViewer - Advanced Sample Next App 1`] = `
 </div>
 `;
 
-exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
+exports[`Storyshots K8sViewer - Advanced Some Admin 1`] = `
 <div
   style="height: 700px;"
 >
@@ -415,384 +415,267 @@ exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
     >
       <div
         class="react-flow__nodes"
-        style="transform: translate(0px,45px) scale(0.5);"
+        style="transform: translate(0px,95px) scale(0.5);"
       >
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Deployment-123-85-master-dev2-pgweb-0"
-          style="z-index: 3; transform: translate(750px,0px); pointer-events: all; opacity: 0;"
+          data-id="Deployment-some-admin-136-debug1-dev2-hasura-some-admin-0"
+          style="z-index: 3; transform: translate(750px,20px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Deployment-123-85-master-dev2-pgweb-0"
+            data-nodeid="Deployment-some-admin-136-debug1-dev2-hasura-some-admin-0"
           />
-          📦 pgweb
+          📦 hasura-some-admin
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Deployment-123-85-master-dev2-pgweb-0"
+            data-nodeid="Deployment-some-admin-136-debug1-dev2-hasura-some-admin-0"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Service-123-85-master-dev2-pgweb"
-          style="z-index: 3; transform: translate(500px,0px); pointer-events: all; opacity: 0;"
+          data-id="Deployment-some-admin-136-debug1-dev2-www-0"
+          style="z-index: 3; transform: translate(750px,120px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Service-123-85-master-dev2-pgweb"
+            data-nodeid="Deployment-some-admin-136-debug1-dev2-www-0"
           />
-          🚦 Service pgweb
+          📦 www
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Service-123-85-master-dev2-pgweb"
-          />
-        </div>
-        <div
-          class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-123-85-master-dev2-pgweb"
-          style="z-index: 3; transform: translate(250px,0px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__node-default react-flow__node-input react-flow__node-output"
-            style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 pgweb-chore-d-u8fps8-les123.dev2.factory.fr"
-          >
-            <div
-              class="react-flow__handle react-flow__handle-left nodrag target connectable"
-              data-handlepos="left"
-              data-nodeid="Ingress-123-85-master-dev2-pgweb"
-            />
-            <div>
-              🌍 pgweb-chore-d-u8fps8-les123.dev2.factory.fr
-            </div>
-            <div
-              class="react-flow__handle react-flow__handle-right nodrag source connectable"
-              data-handlepos="right"
-              data-nodeid="Ingress-123-85-master-dev2-pgweb"
-            />
-          </div>
-        </div>
-        <div
-          class="react-flow__node react-flow__node-default"
-          data-id="Deployment-123-85-master-dev2-expo-0"
-          style="z-index: 3; transform: translate(750px,100px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Deployment-123-85-master-dev2-expo-0"
-          />
-          📦 expo
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="Deployment-123-85-master-dev2-expo-0"
+            data-nodeid="Deployment-some-admin-136-debug1-dev2-www-0"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Service-123-85-master-dev2-expo"
-          style="z-index: 3; transform: translate(500px,100px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Service-123-85-master-dev2-expo"
-          />
-          🚦 Service expo
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="Service-123-85-master-dev2-expo"
-          />
-        </div>
-        <div
-          class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-123-85-master-dev2-expo"
-          style="z-index: 3; transform: translate(250px,100px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__node-default react-flow__node-input react-flow__node-output"
-            style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 chore-d-u8fps8-les123.dev2.factory.fr"
-          >
-            <div
-              class="react-flow__handle react-flow__handle-left nodrag target connectable"
-              data-handlepos="left"
-              data-nodeid="Ingress-123-85-master-dev2-expo"
-            />
-            <div>
-              🌍 chore-d-u8fps8-les123.dev2.factory.fr
-            </div>
-            <div
-              class="react-flow__handle react-flow__handle-right nodrag source connectable"
-              data-handlepos="right"
-              data-nodeid="Ingress-123-85-master-dev2-expo"
-            />
-          </div>
-        </div>
-        <div
-          class="react-flow__node react-flow__node-default"
-          data-id="Deployment-123-85-master-dev2-expo-metro-0"
-          style="z-index: 3; transform: translate(750px,200px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Deployment-123-85-master-dev2-expo-metro-0"
-          />
-          📦 expo-metro
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="Deployment-123-85-master-dev2-expo-metro-0"
-          />
-        </div>
-        <div
-          class="react-flow__node react-flow__node-default"
-          data-id="Service-123-85-master-dev2-expo-metro"
-          style="z-index: 3; transform: translate(500px,200px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Service-123-85-master-dev2-expo-metro"
-          />
-          🚦 Service expo-metro
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="Service-123-85-master-dev2-expo-metro"
-          />
-        </div>
-        <div
-          class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-123-85-master-dev2-expo-metro"
-          style="z-index: 3; transform: translate(250px,200px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__node-default react-flow__node-input react-flow__node-output"
-            style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 expo-metro-chore-d-u8fps8-les123.dev2.factory.fr"
-          >
-            <div
-              class="react-flow__handle react-flow__handle-left nodrag target connectable"
-              data-handlepos="left"
-              data-nodeid="Ingress-123-85-master-dev2-expo-metro"
-            />
-            <div>
-              🌍 expo-metro-chore-d-u8fps8-les123.dev2.factory.fr
-            </div>
-            <div
-              class="react-flow__handle react-flow__handle-right nodrag source connectable"
-              data-handlepos="right"
-              data-nodeid="Ingress-123-85-master-dev2-expo-metro"
-            />
-          </div>
-        </div>
-        <div
-          class="react-flow__node react-flow__node-default"
-          data-id="Deployment-123-85-master-dev2-hasura-0"
-          style="z-index: 3; transform: translate(750px,300px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Deployment-123-85-master-dev2-hasura-0"
-          />
-          📦 hasura
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="Deployment-123-85-master-dev2-hasura-0"
-          />
-        </div>
-        <div
-          class="react-flow__node react-flow__node-input"
-          data-id="SealedSecret-123-85-master-dev2-hasura-sealed-secret"
-          style="z-index: 3; transform: translate(750px,400px); pointer-events: all; opacity: 0;"
-        >
-          🔐 hasura-sealed-secret
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="SealedSecret-123-85-master-dev2-hasura-sealed-secret"
-          />
-        </div>
-        <div
-          class="react-flow__node react-flow__node-output"
-          data-id="ConfigMap-123-85-master-dev2-hasura-configmap"
+          data-id="volume-some-admin-136-debug1-dev2-tz-paris"
           style="z-index: 3; transform: translate(1000px,520px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="ConfigMap-123-85-master-dev2-hasura-configmap"
+            data-nodeid="volume-some-admin-136-debug1-dev2-tz-paris"
           />
-          🗒 hasura-configmap
+          💾 tz-paris
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="volume-some-admin-136-debug1-dev2-tz-paris"
+          />
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Service-123-85-master-dev2-hasura"
-          style="z-index: 3; transform: translate(500px,300px); pointer-events: all; opacity: 0;"
+          data-id="Job-some-admin-136-debug1-dev2-alert-1615424400"
+          style="z-index: 3; transform: translate(750px,220px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Service-123-85-master-dev2-hasura"
+            data-nodeid="Job-some-admin-136-debug1-dev2-alert-1615424400"
           />
-          🚦 Service hasura
+          ⚡️ alert-1615424400
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Service-123-85-master-dev2-hasura"
+            data-nodeid="Job-some-admin-136-debug1-dev2-alert-1615424400"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="volume-some-admin-136-debug1-dev2-data"
+          style="z-index: 3; transform: translate(1000px,620px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="volume-some-admin-136-debug1-dev2-data"
+          />
+          💾 data
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="volume-some-admin-136-debug1-dev2-data"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Job-some-admin-136-debug1-dev2-ingester-1615422600"
+          style="z-index: 3; transform: translate(750px,420px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Job-some-admin-136-debug1-dev2-ingester-1615422600"
+          />
+          ⚡️ ingester-1615422600
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Job-some-admin-136-debug1-dev2-ingester-1615422600"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="CronJob-some-admin-136-debug1-dev2-alert"
+          style="z-index: 3; transform: translate(750px,320px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="CronJob-some-admin-136-debug1-dev2-alert"
+          />
+          ⏳ alert
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="CronJob-some-admin-136-debug1-dev2-alert"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="CronJob-some-admin-136-debug1-dev2-ingester"
+          style="z-index: 3; transform: translate(750px,520px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="CronJob-some-admin-136-debug1-dev2-ingester"
+          />
+          ⏳ ingester
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="CronJob-some-admin-136-debug1-dev2-ingester"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-123-85-master-dev2-hasura"
-          style="z-index: 3; transform: translate(250px,300px); pointer-events: all; opacity: 0;"
+          data-id="Ingress-some-admin-136-debug1-dev2-www"
+          style="z-index: 3; transform: translate(250px,620px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__node-default react-flow__node-input react-flow__node-output"
             style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 hasura-chore-d-u8fps8-les123.dev2.factory.fr"
+            title="🌍 debug1-dev2-some-admin.dev2.demo.fr"
           >
             <div
               class="react-flow__handle react-flow__handle-left nodrag target connectable"
               data-handlepos="left"
-              data-nodeid="Ingress-123-85-master-dev2-hasura"
+              data-nodeid="Ingress-some-admin-136-debug1-dev2-www"
             />
             <div>
-              🌍 hasura-chore-d-u8fps8-les123.dev2.factory.fr
+              🌍 debug1-dev2-some-admin.dev2.demo.fr
             </div>
             <div
               class="react-flow__handle react-flow__handle-right nodrag source connectable"
               data-handlepos="right"
-              data-nodeid="Ingress-123-85-master-dev2-hasura"
+              data-nodeid="Ingress-some-admin-136-debug1-dev2-www"
             />
           </div>
         </div>
         <div
           class="react-flow__node react-flow__node-default"
-          data-id="Job-123-85-master-dev2-create-db-job-4113006e"
-          style="z-index: 3; transform: translate(0px,100px); pointer-events: all; opacity: 0;"
+          data-id="Service-some-admin-136-debug1-dev2-hasura-some-admin"
+          style="z-index: 3; transform: translate(500px,20px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Job-123-85-master-dev2-create-db-job-4113006e"
+            data-nodeid="Service-some-admin-136-debug1-dev2-hasura-some-admin"
           />
-          ⚡️ create-db-job-4113006e
+          🚦 Service hasura-some-admin
           <div
             class="react-flow__handle react-flow__handle-right nodrag source"
             data-handlepos="right"
-            data-nodeid="Job-123-85-master-dev2-create-db-job-4113006e"
+            data-nodeid="Service-some-admin-136-debug1-dev2-hasura-some-admin"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-some-admin-136-debug1-dev2-www"
+          style="z-index: 3; transform: translate(500px,120px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-some-admin-136-debug1-dev2-www"
+          />
+          🚦 Service www
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-some-admin-136-debug1-dev2-www"
           />
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="Secret-123-85-master-dev2-azure-pg-user-4113006e"
-          style="z-index: 3; transform: translate(1000px,420px); pointer-events: all; opacity: 0;"
+          data-id="Secret-some-admin-136-debug1-dev2-azure-someadmindev-volume"
+          style="z-index: 3; transform: translate(0px,420px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Secret-123-85-master-dev2-azure-pg-user-4113006e"
+            data-nodeid="Secret-some-admin-136-debug1-dev2-azure-someadmindev-volume"
           />
-          🔓 azure-pg-user-4113006e
-        </div>
-        <div
-          class="react-flow__node react-flow__node-default"
-          data-id="Deployment-123-85-master-dev2-strapi-0"
-          style="z-index: 3; transform: translate(750px,500px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Deployment-123-85-master-dev2-strapi-0"
-          />
-          📦 strapi
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="Deployment-123-85-master-dev2-strapi-0"
-          />
-        </div>
-        <div
-          class="react-flow__node react-flow__node-input"
-          data-id="SealedSecret-123-85-master-dev2-strapi-sealed-secret"
-          style="z-index: 3; transform: translate(750px,820px); pointer-events: all; opacity: 0;"
-        >
-          🔐 strapi-sealed-secret
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="SealedSecret-123-85-master-dev2-strapi-sealed-secret"
-          />
+          🔓 azure-someadmindev-volume
         </div>
         <div
           class="react-flow__node react-flow__node-output"
-          data-id="ConfigMap-123-85-master-dev2-strapi-configmap"
-          style="z-index: 3; transform: translate(1000px,720px); pointer-events: all; opacity: 0;"
+          data-id="Secret-some-admin-136-debug1-dev2-some-admin-secrets"
+          style="z-index: 3; transform: translate(1000px,340px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="ConfigMap-123-85-master-dev2-strapi-configmap"
+            data-nodeid="Secret-some-admin-136-debug1-dev2-some-admin-secrets"
           />
-          🗒 strapi-configmap
+          🔓 some-admin-secrets
         </div>
         <div
-          class="react-flow__node react-flow__node-default"
-          data-id="Service-123-85-master-dev2-strapi"
-          style="z-index: 3; transform: translate(500px,500px); pointer-events: all; opacity: 0;"
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-some-admin-136-debug1-dev2-default-token-mckkc"
+          style="z-index: 3; transform: translate(0px,520px); pointer-events: all; opacity: 0;"
         >
           <div
             class="react-flow__handle react-flow__handle-left nodrag target"
             data-handlepos="left"
-            data-nodeid="Service-123-85-master-dev2-strapi"
+            data-nodeid="Secret-some-admin-136-debug1-dev2-default-token-mckkc"
           />
-          🚦 Service strapi
-          <div
-            class="react-flow__handle react-flow__handle-right nodrag source"
-            data-handlepos="right"
-            data-nodeid="Service-123-85-master-dev2-strapi"
-          />
+          🔓 default-token-mckkc
         </div>
         <div
-          class="react-flow__node react-flow__node-ingress"
-          data-id="Ingress-123-85-master-dev2-strapi"
-          style="z-index: 3; transform: translate(250px,500px); pointer-events: all; opacity: 0;"
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-some-admin-136-debug1-dev2-wildcard-crt"
+          style="z-index: 3; transform: translate(500px,620px); pointer-events: all; opacity: 0;"
         >
           <div
-            class="react-flow__node-default react-flow__node-input react-flow__node-output"
-            style="white-space: nowrap; overflow: hidden; text-align: left;"
-            title="🌍 strapi-chore-d-u8fps8-les123.dev2.factory.fr"
-          >
-            <div
-              class="react-flow__handle react-flow__handle-left nodrag target connectable"
-              data-handlepos="left"
-              data-nodeid="Ingress-123-85-master-dev2-strapi"
-            />
-            <div>
-              🌍 strapi-chore-d-u8fps8-les123.dev2.factory.fr
-            </div>
-            <div
-              class="react-flow__handle react-flow__handle-right nodrag source connectable"
-              data-handlepos="right"
-              data-nodeid="Ingress-123-85-master-dev2-strapi"
-            />
-          </div>
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-some-admin-136-debug1-dev2-wildcard-crt"
+          />
+          🔓 wildcard-crt
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="ConfigMap-some-admin-136-debug1-dev2-www-env"
+          style="z-index: 3; transform: translate(1000px,0px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="ConfigMap-some-admin-136-debug1-dev2-www-env"
+          />
+          🗒 www-env
         </div>
         <div
           class="react-flow__node react-flow__node-input"
           data-id="Internet"
-          style="z-index: 3; transform: translate(0px,200px); pointer-events: all; opacity: 0;"
+          style="z-index: 3; transform: translate(0px,620px); pointer-events: all; opacity: 0;"
         >
           🌥 Internet
           <div
@@ -800,30 +683,6 @@ exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
             data-handlepos="right"
             data-nodeid="Internet"
           />
-        </div>
-        <div
-          class="react-flow__node react-flow__node-output"
-          data-id="Secret-123-85-master-dev2-hasura-sealed-secret"
-          style="z-index: 3; transform: translate(1000px,620px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Secret-123-85-master-dev2-hasura-sealed-secret"
-          />
-          🔓 hasura-sealed-secret
-        </div>
-        <div
-          class="react-flow__node react-flow__node-output"
-          data-id="Secret-123-85-master-dev2-strapi-sealed-secret"
-          style="z-index: 3; transform: translate(1000px,820px); pointer-events: all; opacity: 0;"
-        >
-          <div
-            class="react-flow__handle react-flow__handle-left nodrag target"
-            data-handlepos="left"
-            data-nodeid="Secret-123-85-master-dev2-strapi-sealed-secret"
-          />
-          🔓 strapi-sealed-secret
         </div>
       </div>
       <svg
@@ -872,7 +731,464 @@ exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
           </marker>
         </defs>
         <g
-          transform="translate(0,45) scale(0.5)"
+          transform="translate(0,95) scale(0.5)"
+        />
+      </svg>
+      <div
+        class="react-flow__pane"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots K8sViewer - Advanced Strapi Hasura 1`] = `
+<div
+  style="height: 700px;"
+>
+  <div
+    class="react-flow"
+  >
+    <div
+      class="react-flow__renderer react-flow__zoompane"
+    >
+      <div
+        class="react-flow__nodes"
+        style="transform: translate(-62.5px,70px) scale(0.5);"
+      >
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-app-224-k8s2-dev2-expo-0"
+          style="z-index: 3; transform: translate(750px,600px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-app-224-k8s2-dev2-expo-0"
+          />
+          📦 expo
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-app-224-k8s2-dev2-expo-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-app-224-k8s2-dev2-hasura-0"
+          style="z-index: 3; transform: translate(750px,500px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-app-224-k8s2-dev2-hasura-0"
+          />
+          📦 hasura
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-app-224-k8s2-dev2-hasura-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-app-224-k8s2-dev2-pgweb-0"
+          style="z-index: 3; transform: translate(750px,400px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-app-224-k8s2-dev2-pgweb-0"
+          />
+          📦 pgweb
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-app-224-k8s2-dev2-pgweb-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="volume-app-224-k8s2-dev2-uploads"
+          style="z-index: 3; transform: translate(1000px,120px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="volume-app-224-k8s2-dev2-uploads"
+          />
+          💾 uploads
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="volume-app-224-k8s2-dev2-uploads"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Deployment-app-224-k8s2-dev2-strapi-0"
+          style="z-index: 3; transform: translate(750px,80px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Deployment-app-224-k8s2-dev2-strapi-0"
+          />
+          📦 strapi
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Deployment-app-224-k8s2-dev2-strapi-0"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-app-224-k8s2-dev2-expo"
+          style="z-index: 3; transform: translate(250px,600px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 k8s2-dev2-app.dev2.demo.fr"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-app-224-k8s2-dev2-expo"
+            />
+            <div>
+              🌍 k8s2-dev2-app.dev2.demo.fr
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-app-224-k8s2-dev2-expo"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-app-224-k8s2-dev2-hasura"
+          style="z-index: 3; transform: translate(250px,280px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 hasura-k8s2-dev2-app.dev2.demo.fr"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-app-224-k8s2-dev2-hasura"
+            />
+            <div>
+              🌍 hasura-k8s2-dev2-app.dev2.demo.fr
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-app-224-k8s2-dev2-hasura"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-app-224-k8s2-dev2-pgweb"
+          style="z-index: 3; transform: translate(250px,180px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 pgweb-k8s2-dev2-app.dev2.demo.fr"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-app-224-k8s2-dev2-pgweb"
+            />
+            <div>
+              🌍 pgweb-k8s2-dev2-app.dev2.demo.fr
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-app-224-k8s2-dev2-pgweb"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-ingress"
+          data-id="Ingress-app-224-k8s2-dev2-strapi"
+          style="z-index: 3; transform: translate(250px,80px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__node-default react-flow__node-input react-flow__node-output"
+            style="white-space: nowrap; overflow: hidden; text-align: left;"
+            title="🌍 strapi-k8s2-dev2-app.dev2.demo.fr"
+          >
+            <div
+              class="react-flow__handle react-flow__handle-left nodrag target connectable"
+              data-handlepos="left"
+              data-nodeid="Ingress-app-224-k8s2-dev2-strapi"
+            />
+            <div>
+              🌍 strapi-k8s2-dev2-app.dev2.demo.fr
+            </div>
+            <div
+              class="react-flow__handle react-flow__handle-right nodrag source connectable"
+              data-handlepos="right"
+              data-nodeid="Ingress-app-224-k8s2-dev2-strapi"
+            />
+          </div>
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-app-224-k8s2-dev2-expo"
+          style="z-index: 3; transform: translate(500px,600px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-app-224-k8s2-dev2-expo"
+          />
+          🚦 Service expo
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-app-224-k8s2-dev2-expo"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-app-224-k8s2-dev2-hasura"
+          style="z-index: 3; transform: translate(500px,500px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-app-224-k8s2-dev2-hasura"
+          />
+          🚦 Service hasura
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-app-224-k8s2-dev2-hasura"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-app-224-k8s2-dev2-pgweb"
+          style="z-index: 3; transform: translate(500px,400px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-app-224-k8s2-dev2-pgweb"
+          />
+          🚦 Service pgweb
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-app-224-k8s2-dev2-pgweb"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-default"
+          data-id="Service-app-224-k8s2-dev2-strapi"
+          style="z-index: 3; transform: translate(500px,80px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Service-app-224-k8s2-dev2-strapi"
+          />
+          🚦 Service strapi
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Service-app-224-k8s2-dev2-strapi"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-app-224-k8s2-dev2-azure-pg-admin-user"
+          style="z-index: 3; transform: translate(0px,80px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-app-224-k8s2-dev2-azure-pg-admin-user"
+          />
+          🔓 azure-pg-admin-user
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-app-224-k8s2-dev2-azure-pg-user-84c26083"
+          style="z-index: 3; transform: translate(1000px,520px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-app-224-k8s2-dev2-azure-pg-user-84c26083"
+          />
+          🔓 azure-pg-user-84c26083
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-app-224-k8s2-dev2-default-token-htnw5"
+          style="z-index: 3; transform: translate(0px,180px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-app-224-k8s2-dev2-default-token-htnw5"
+          />
+          🔓 default-token-htnw5
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-app-224-k8s2-dev2-hasura-sealed-secret"
+          style="z-index: 3; transform: translate(1000px,720px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-app-224-k8s2-dev2-hasura-sealed-secret"
+          />
+          🔓 hasura-sealed-secret
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-app-224-k8s2-dev2-strapi-sealed-secret"
+          style="z-index: 3; transform: translate(1250px,220px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-app-224-k8s2-dev2-strapi-sealed-secret"
+          />
+          🔓 strapi-sealed-secret
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="Secret-app-224-k8s2-dev2-wildcard-crt"
+          style="z-index: 3; transform: translate(500px,300px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="Secret-app-224-k8s2-dev2-wildcard-crt"
+          />
+          🔓 wildcard-crt
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="SealedSecret-app-224-k8s2-dev2-hasura-sealed-secret"
+          style="z-index: 3; transform: translate(750px,720px); pointer-events: all; opacity: 0;"
+        >
+          🔐 hasura-sealed-secret
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="SealedSecret-app-224-k8s2-dev2-hasura-sealed-secret"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="SealedSecret-app-224-k8s2-dev2-strapi-sealed-secret"
+          style="z-index: 3; transform: translate(1000px,220px); pointer-events: all; opacity: 0;"
+        >
+          🔐 strapi-sealed-secret
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="SealedSecret-app-224-k8s2-dev2-strapi-sealed-secret"
+          />
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="ConfigMap-app-224-k8s2-dev2-hasura-configmap"
+          style="z-index: 3; transform: translate(1000px,620px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="ConfigMap-app-224-k8s2-dev2-hasura-configmap"
+          />
+          🗒 hasura-configmap
+        </div>
+        <div
+          class="react-flow__node react-flow__node-output"
+          data-id="ConfigMap-app-224-k8s2-dev2-strapi-configmap"
+          style="z-index: 3; transform: translate(1000px,0px); pointer-events: all; opacity: 0;"
+        >
+          <div
+            class="react-flow__handle react-flow__handle-left nodrag target"
+            data-handlepos="left"
+            data-nodeid="ConfigMap-app-224-k8s2-dev2-strapi-configmap"
+          />
+          🗒 strapi-configmap
+        </div>
+        <div
+          class="react-flow__node react-flow__node-input"
+          data-id="Internet"
+          style="z-index: 3; transform: translate(0px,280px); pointer-events: all; opacity: 0;"
+        >
+          🌥 Internet
+          <div
+            class="react-flow__handle react-flow__handle-right nodrag source"
+            data-handlepos="right"
+            data-nodeid="Internet"
+          />
+        </div>
+      </div>
+      <svg
+        class="react-flow__edges"
+        height="500"
+        width="500"
+      >
+        <defs>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrowclosed"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="#b1b1b7"
+              points="-5,-4 0,0 -5,4 -5,-4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+            />
+          </marker>
+          <marker
+            class="react-flow__arrowhead"
+            id="react-flow__arrow"
+            markerHeight="12.5"
+            markerWidth="12.5"
+            orient="auto"
+            refX="0"
+            refY="0"
+            viewBox="-10 -10 20 20"
+          >
+            <polyline
+              fill="none"
+              points="-5,-4 0,0 -5,4"
+              stroke="#b1b1b7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </marker>
+        </defs>
+        <g
+          transform="translate(-62.5,70) scale(0.5)"
         />
       </svg>
       <div
