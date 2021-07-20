@@ -7,18 +7,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version:
-          - 14.x
-
     steps:
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2-beta
-        with:
-          node-version: ${{ matrix.node-version }}
-
       - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+          cache: yarn
 
       - name: Installing
         run: yarn --frozen-lockfile --perfer-offline --link-duplicates
@@ -48,12 +44,12 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-
       - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
 
       - name: Download dist from build job
         uses: actions/download-artifact@v2
