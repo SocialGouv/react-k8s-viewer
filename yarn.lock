@@ -978,7 +978,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.8", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.14.8"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
   integrity sha512-twj3L8Og5SaCRCErB4x4ajbvBIVV77CGeFglHpeg5WC5FF8TZzBWXtTJ4MqaD9QszLYTtr+IsaAL2rEUevb+eg==
@@ -2773,10 +2773,10 @@
     "@types/d3-transition" "*"
     "@types/d3-zoom" "*"
 
-"@types/dagre@^0.7.45":
-  version "0.7.45"
-  resolved "https://registry.yarnpkg.com/@types/dagre/-/dagre-0.7.45.tgz#e53593e3223b3fc154e0b57a39586ce6f8ea5522"
-  integrity sha512-hyVsm212IGTE2nYE1coMzGBSbes9neRSJDWn2UfyVZ4l0x5nIF/oWVY7RbKDhfNCdfZn4k0gdxvYWDWiSif+RA==
+"@types/dagre@^0.7.46":
+  version "0.7.46"
+  resolved "https://registry.yarnpkg.com/@types/dagre/-/dagre-0.7.46.tgz#c51ffcc62ca8a9affa07f5e06842acd840d3d442"
+  integrity sha512-ku3y+F8sPqmiB5Ugl22NpukI2dLAViJiWwdtueXLeuF4fxZozl+bytPSFVlLu/gDgaKiwobu3LBXXRWktIMiIA==
 
 "@types/estree@0.0.39":
   version "0.0.39"
@@ -10447,12 +10447,12 @@ react-fast-compare@^3.0.1, react-fast-compare@^3.2.0:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
-react-flow-renderer@^9.6.5:
-  version "9.6.5"
-  resolved "https://registry.yarnpkg.com/react-flow-renderer/-/react-flow-renderer-9.6.5.tgz#e9ba50947c11ac71f3274c3e1e79271d0aad5299"
-  integrity sha512-H5y5wjFcrJJjEjfRZXhOPB3lRfdIFL5l6h2rQ9h7qEecksG6VuMN54HYT+7hvzo8O/2QOSZZdFcObC2p//W2Ng==
+react-flow-renderer@^9.6.6:
+  version "9.6.6"
+  resolved "https://registry.yarnpkg.com/react-flow-renderer/-/react-flow-renderer-9.6.6.tgz#2c2f4f0060b7ebae76610a67eae6b3b69d90db7c"
+  integrity sha512-cRlA7mweva/+ucVVde2zsdiktxm1prML4FJYAg7z9V9PjWCoxRIzEewG99aCIoPD0yF2nuuYLRQf+8CvPLn8og==
   dependencies:
-    "@babel/runtime" "^7.14.6"
+    "@babel/runtime" "^7.14.8"
     "@types/d3" "^7.0.0"
     "@types/react-redux" "^7.1.18"
     classcat "^5.0.3"
