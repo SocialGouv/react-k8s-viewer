@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/SocialGouv/react-k8s-viewer/compare/v1.1.4...v1.1.5) (2021-08-02)
+
+
+### Bug Fixes
+
+* **deps:** update all dependencies ([#25](https://github.com/SocialGouv/react-k8s-viewer/issues/25)) ([52b2027](https://github.com/SocialGouv/react-k8s-viewer/commit/52b2027da2757cf8e0aeac614d56d8f3a190e171))
+
 ## [1.1.4](https://github.com/SocialGouv/react-k8s-viewer/compare/v1.1.3...v1.1.4) (2021-07-20)
 
 
