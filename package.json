@@ -71,6 +71,6 @@
   "dependencies": {
     "@types/dagre": "^0.7.46",
     "dagre": "^0.8.5",
-    "react-flow-renderer": "^9.6.9"
+    "react-flow-renderer": "^9.6.11"
   }
 }
