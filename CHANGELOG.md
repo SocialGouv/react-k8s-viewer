@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/SocialGouv/react-k8s-viewer/compare/v1.1.6...v1.1.7) (2021-11-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-flow-renderer to ^9.6.11 ([#40](https://github.com/SocialGouv/react-k8s-viewer/issues/40)) ([8110d73](https://github.com/SocialGouv/react-k8s-viewer/commit/8110d732f741075ecb14e2443ee656cbc4f09bf0))
+
 ## [1.1.6](https://github.com/SocialGouv/react-k8s-viewer/compare/v1.1.5...v1.1.6) (2021-10-11)
 
 
