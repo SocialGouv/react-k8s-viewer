@@ -1,6 +1,6 @@
 {
   "name": "@socialgouv/react-k8s-viewer",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Render diagrams from your kubernetes manifests",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

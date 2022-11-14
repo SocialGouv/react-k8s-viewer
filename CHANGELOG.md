@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/SocialGouv/react-k8s-viewer/compare/v1.1.7...v1.1.8) (2022-11-14)
+
+
+### Bug Fixes
+
+* dummy ([1917753](https://github.com/SocialGouv/react-k8s-viewer/commit/1917753bda3c30164299e8c293397f2c47e3a406))
+
 ## [1.1.7](https://github.com/SocialGouv/react-k8s-viewer/compare/v1.1.6...v1.1.7) (2021-11-08)
 
 
