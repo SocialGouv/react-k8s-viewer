@@ -33,3 +33,4 @@ kubectl --namespace some-app get deploy,ing,service,secret,sealedsecret,configma
 ## Todo:
 
 - handle multiple namespaces
+
