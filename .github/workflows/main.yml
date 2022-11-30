@@ -52,7 +52,7 @@ jobs:
           node-version: lts/*
 
       - name: Download dist from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: build
           path: dist
