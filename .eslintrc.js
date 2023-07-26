@@ -1,29 +1,27 @@
 module.exports = {
-  extends: ["@socialgouv/eslint-config-react"],
+  extends: ["@socialgouv/eslint-config-react", "plugin:storybook/recommended"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   rules: {
     "react/prop-types": "off",
     "simple-import-sort/sort": "off",
-    "sort-keys-fix/sort-keys-fix": "off",
+    "sort-keys-fix/sort-keys-fix": "off"
   },
-  overrides: [
-    {
-      files: ["*.js", "*.ts", "*.tsx", "*.jsx"],
-    },
-  ],
+  overrides: [{
+    files: ["*.js", "*.ts", "*.tsx", "*.jsx"]
+  }],
   settings: {
     react: {
-      version: "detect",
+      version: "detect"
     },
     "import/resolver": {
       node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
-      },
-    },
-  },
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts"]
+      }
+    }
+  }
 };

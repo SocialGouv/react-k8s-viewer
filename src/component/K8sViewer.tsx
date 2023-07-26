@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, Fragment } from "react";
 import ReactFlow from "react-flow-renderer";
 import type { OnLoadFunc, Elements, ReactFlowProps } from "react-flow-renderer";
 
@@ -16,7 +16,7 @@ interface K8sViewerProps extends Omit<ReactFlowProps, "elements"> {
   manifests: ManifestList | Manifest[];
 }
 
-export const K8sViewer: React.FC<K8sViewerProps> = ({
+export const K8sViewer: FC<K8sViewerProps> = ({
   manifests,
   ...props
 }: K8sViewerProps) => {
@@ -28,8 +28,9 @@ export const K8sViewer: React.FC<K8sViewerProps> = ({
   const flow = makeLayout(elements) as Elements;
   console.log({ manifests, elements, flow });
   return (
-    <React.Fragment>
+    <Fragment>
       <ReactFlow
+        //@ts-ignore
         nodeTypes={{ ingress: HtmlFlowNode }}
         onLoad={onLoad}
         paneMoveable={true}
@@ -39,6 +40,6 @@ export const K8sViewer: React.FC<K8sViewerProps> = ({
         {...props}
         elements={flow}
       />
-    </React.Fragment>
+    </Fragment>
   );
 };

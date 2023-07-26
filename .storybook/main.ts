@@ -5,4 +5,11 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-storysource",
   ],
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
+  docs: {
+    autodocs: true,
+  },
 };
