@@ -1,6 +1,6 @@
+import { Meta } from "@storybook/react/types-6-0";
 import React from "react";
 import { ReactFlowProvider } from "react-flow-renderer";
-import { Meta } from "@storybook/react/types-6-0";
 
 import { K8sViewer } from "./K8sViewer";
 

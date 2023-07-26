@@ -1,5 +1,5 @@
 import React from "react";
-import { Position, Handle } from "react-flow-renderer";
+import { Handle, Position } from "react-flow-renderer";
 
 type AnyObject = {
   [U: string]: any;

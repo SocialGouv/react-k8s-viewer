@@ -1,14 +1,13 @@
-import type { FlowElement, Elements, Node, Edge } from "react-flow-renderer";
+import { IIoK8sApiCoreV1EnvFromSource } from "kubernetes-models/_definitions/IoK8sApiCoreV1EnvFromSource";
+import { IIoK8sApiCoreV1EnvVar } from "kubernetes-models/_definitions/IoK8sApiCoreV1EnvVar";
+import { Container } from "kubernetes-models/api/core/v1/Container";
+import { Volume } from "kubernetes-models/api/core/v1/Volume";
+import { IngressRule } from "kubernetes-models/networking.k8s.io/v1beta1/IngressRule";
+import { IngressTLS } from "kubernetes-models/networking.k8s.io/v1beta1/IngressTLS";
+import type { Edge, Elements, FlowElement, Node } from "react-flow-renderer";
 import { Position } from "react-flow-renderer";
 
 import type { AnyObject, Manifest, ManifestList } from "../types/types";
-
-import { Volume } from "kubernetes-models/api/core/v1/Volume";
-import { Container } from "kubernetes-models/api/core/v1/Container";
-import { IIoK8sApiCoreV1EnvFromSource } from "kubernetes-models/_definitions/IoK8sApiCoreV1EnvFromSource";
-import { IIoK8sApiCoreV1EnvVar } from "kubernetes-models/_definitions/IoK8sApiCoreV1EnvVar";
-import { IngressRule } from "kubernetes-models/networking.k8s.io/v1beta1/IngressRule";
-import { IngressTLS } from "kubernetes-models/networking.k8s.io/v1beta1/IngressTLS";
 
 const defaultPositions = {
   position: { x: 0, y: 0 },
@@ -155,7 +154,7 @@ const manifestsTypes = {
 const createEdge = (
   source: FlowElement,
   target: FlowElement,
-  opts = {}
+  opts = {},
 ): Edge | null => {
   if (!source) {
     console.log("createEdge.error source", source, opts);
@@ -198,7 +197,7 @@ const getElements = (elements: Elements, filters: AnyObject): Elements => {
 const getVolume = (
   elements: Elements,
   namespace: string,
-  volume: Volume
+  volume: Volume,
 ): Node | Edge | undefined => {
   const volumeName =
     (volume.azureFile && volume.azureFile.shareName) ||
@@ -210,7 +209,7 @@ const getVolume = (
 };
 
 export const parseManifests = (
-  manifests: ManifestList | Manifest[]
+  manifests: ManifestList | Manifest[],
 ): Elements => {
   const elements = [] as Elements;
   let allManifests = [];
@@ -255,7 +254,7 @@ export const parseManifests = (
     allManifests
       .filter(
         (manifest: Manifest) =>
-          manifest.kind === "Ingress" && manifest.spec.rules
+          manifest.kind === "Ingress" && manifest.spec.rules,
       )
       .filter((manifest: Manifest) => manifest.spec.rules[0].host)
       .forEach((manifest: Manifest) => {
@@ -416,7 +415,7 @@ export const parseManifests = (
       (manifest: Manifest) =>
         manifest.kind === "Job" ||
         manifest.kind === "CronJob" ||
-        manifest.kind === "Deployment"
+        manifest.kind === "Deployment",
     )
     .forEach((manifest: Manifest) => {
       const manifestNodes = getElements(elements, {
@@ -445,7 +444,7 @@ export const parseManifests = (
           const volumeNode = getVolume(
             elements,
             manifest?.metadata?.namespace,
-            volume
+            volume,
           );
           if (volumeNode) {
             const edge = createEdge(manifestNode, volumeNode, {
@@ -498,7 +497,7 @@ export const parseManifests = (
           manifest.spec.template.spec.imagePullSecrets.forEach(
             (pullSecret: AnyObject) => {
               addSecret(pullSecret);
-            }
+            },
           );
         }
 
@@ -514,7 +513,7 @@ export const parseManifests = (
           manifest.spec.jobTemplate.spec.template.imagePullSecrets.forEach(
             (pullSecret: AnyObject) => {
               addSecret(pullSecret);
-            }
+            },
           );
         }
 
@@ -583,7 +582,7 @@ export const parseManifests = (
                 if (envFrom.configMapRef && envFrom.configMapRef.name) {
                   addConfigMapEdge(envFrom.configMapRef.name);
                 }
-              }
+              },
             );
           }
           if (container.env) {
@@ -611,7 +610,7 @@ export const parseManifests = (
           manifest.spec.template.spec.containers.forEach(
             (container: Container) => {
               addContainerEdges(container);
-            }
+            },
           );
 
         manifest &&
@@ -624,7 +623,7 @@ export const parseManifests = (
           manifest.spec.jobTemplate.spec.template.spec.containers.forEach(
             (container: Container) => {
               addContainerEdges(container);
-            }
+            },
           );
       });
     });

@@ -1,12 +1,11 @@
 import React, { FC, Fragment } from "react";
+import type { Elements, OnLoadFunc, ReactFlowProps } from "react-flow-renderer";
 import ReactFlow from "react-flow-renderer";
-import type { OnLoadFunc, Elements, ReactFlowProps } from "react-flow-renderer";
 
 import { makeLayout } from "../common/makeLayout";
 import { parseManifests } from "../common/parseManifests";
+import type { Manifest, ManifestList } from "../types/types";
 import { HtmlFlowNode } from "./HtmlFlowNode";
-
-import type { ManifestList, Manifest } from "../types/types";
 
 const onLoad: OnLoadFunc = (reactFlowInstance) => {
   reactFlowInstance.fitView();

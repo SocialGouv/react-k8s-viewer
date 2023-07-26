@@ -1,5 +1,5 @@
-import dagre from "dagre";
 import type { Edge, Node } from "dagre";
+import dagre from "dagre";
 import type { EdgeProps } from "react-flow-renderer";
 
 const NODE_WIDTH = 200;
@@ -60,7 +60,7 @@ export const makeLayout = (elements: any[]): any[] => {
         element.source === e.v &&
         element.target &&
         e.w &&
-        element.target === e.w
+        element.target === e.w,
     );
 
     // if (!source || !e) {
