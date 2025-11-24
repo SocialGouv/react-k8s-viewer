@@ -29,7 +29,7 @@
     "@storybook/react": "^6.0.28",
     "@testing-library/react": "^11.2.7",
     "@types/jest": "^25.2.3",
-    "@types/react": "^16.14.21",
+    "@types/react": "^19.0.0",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "babel-loader": "^8.2.3",
@@ -38,17 +38,17 @@
     "jest-extended": "^0.11.5",
     "kubernetes-models": "^1.0.3",
     "prettier": "^2.2.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-is": "^16.13.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-is": "^19.0.0",
     "rollup": "^2.2.0",
     "rollup-plugin-typescript2": "^0.27.3",
     "ts-jest": "^25.5.1",
     "typescript": "^3.9.10"
   },
   "peerDependencies": {
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "publishConfig": {
     "access": "public"
